@@ -1,11 +1,9 @@
-{ config, pkgs, ... }:
-
 {
   enableCompletion = true;
   shellAliases = {
     ll = "ls -l";
     gs = "git status";
-    hl = "echo 'hello ni'";
+    hl = "echo 'hello'";
   };
 
   history.size = 10000;

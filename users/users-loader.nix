@@ -2,9 +2,10 @@
 
 let
   users = import ./users-config.nix;
+  module-loader = import ../modules/modules-loader.nix { inherit lib pkgs; };
 in {
   OSgroups = {
-      nixos-conf = {};
+    nixos-conf = {};
   };
 
   OSusers = lib.mapAttrs (name: values: {
@@ -21,10 +22,21 @@ in {
     home = values.homedir;
   }) users;
 
-  HMusers = lib.mapAttrs (_: values: 
+  HMusers = lib.mapAttrs (name: values: 
     home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [ ./${values.path} ];
+      modules = [
+        ./common/home-common.nix
+        ./${values.path}
+        ({ config, pkgs, module-loader, ... }: {
+          home.username = name;
+          home.homeDirectory = "/home/${name}";
+          home.stateVersion = "25.05";
+        })
+      ];
+      extraSpecialArgs = {
+        module-loader = module-loader;
+      };
     }
   ) users;
 }
