@@ -35,16 +35,29 @@ in {
         };
       };
 
-      loaded-packages = with pkgs; package-names.packages;
-      loaded-script-languages = lib.mapAttrsToList (name: lang: lang.package) shebangs;
+      loaded-packages = with pkgs; lib.map (package-name: 
+        pkgs.${package-name}
+      ) package-names.packages;
+
+      loaded-script-languages = lib.filter (package: package != null)
+        (lib.mapAttrsToList (name: lang: lang.package) shebangs);
+
       loaded-script-programs = lib.map (script-name:
         let 
-          script = import script-database.${script-name};
-          fullscript = ''${shebangs.${script.language}}'';
-        in pkgs.writeShellScriptBin script.name fullscript
+          script = import ../scripts/${script-database.${script-name}};
+          fullscript = ''
+            ${shebangs.${script.language}.shebang}
+            ${script.script}
+          '';
+        in pkgs.writeTextFile {
+            name = script.name;
+            destination = "/bin/${script-name}";
+            executable = true;
+            text = fullscript;
+          }
       ) package-names.scripts;
 
       loaded-scripts = loaded-script-programs ++ loaded-script-languages;
     in
-    with pkgs; loaded-packages ++ loaded-scripts;
+    with pkgs; loaded-scripts ++ loaded-packages;
 }
