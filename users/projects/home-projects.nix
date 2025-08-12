@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "thr-projects";
+  home.username = "projects";
   home.homeDirectory = "/home/projects";
 
   # This value determines the Home Manager release that your configuration is
@@ -68,8 +68,6 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-
-  programs.
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

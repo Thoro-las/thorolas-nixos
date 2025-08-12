@@ -21,10 +21,10 @@ in {
     home = values.homedir;
   }) users;
 
-  HMusers = lib.mapAttrs (name: values: 
+  HMusers = lib.mapAttrs (_: values: 
     home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [ values.path ];
+      modules = [ ./${values.path} ];
     }
   ) users;
 }

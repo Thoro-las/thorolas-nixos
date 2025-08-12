@@ -8,7 +8,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "thr-nixos";
+  networking.hostName = "thorolas";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Africa/Algiers";

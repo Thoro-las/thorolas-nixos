@@ -15,7 +15,7 @@
 
   academy = {
     description = "Academy";
-    homedir = "/home/study";
+    homedir = "/home/academy";
     password = "academy";
     path = "academy/home-academy.nix";
   };
