@@ -13,7 +13,7 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
-      loadedUsers = import users/users-loader.nix {
+      loadedUsers = import loaders/users-loader.nix {
         pkgs = pkgs;
         lib = lib;
         home-manager = home-manager;
@@ -27,7 +27,21 @@
             system/configuration.nix
             ({ pkgs, ... }: {
               users.mutableUsers = false;
-              users.users = loadedUsers.OSusers;
+              users.users = loadedUsers.OSusers // {
+                rescue = {
+                  description = "Rescue";
+                  password = "rescue";
+
+                  enable = true;
+                  isNormalUser = true;
+
+                  extraGroups = [ "wheel" "networkmanager" ];
+                  packages = with pkgs; [ ];
+
+                  createHome = true;
+                  home = "/home/rescue";
+                };
+              };
               users.groups = loadedUsers.OSgroups;
             })
           ];
