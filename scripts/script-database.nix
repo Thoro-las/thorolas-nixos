@@ -1,3 +1,0 @@
-{
-  hergo = "./hergo.nix";
-}

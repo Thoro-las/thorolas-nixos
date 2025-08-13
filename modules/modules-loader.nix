@@ -9,17 +9,23 @@ in {
       checkExist = module: lib.hasAttr "${module}" database;
       existing-modules = lib.filter checkExist module-names;
       loaded-modules = lib.listToAttrs (lib.map (module: 
-        let loaded-module = database.${module};
-        in {
-          name = loaded-module.package;
-          value = if lib.hasAttr "config" loaded-module
-            then (import ./${database.${module}.config}) // { enable = true; }
+        let
+          loaded-module = database.${module};
+          name = loaded-module;
+          extracted = if builtins.pathExists ./${module}/config.nix
+            then (import (./${module}/config.nix)) // { enable = true; }
             else { enable = true; };
+          
+          # filter = config: lib.hasAttr "module" 
+        in {
+          name = name;
+          value = extracted;
       }) existing-modules);
-    in 
+    in
       lib.recursiveUpdate loaded-modules {
         home-manager.enable = true;
       };
+    
 
   load-packages = package-names:
     let
@@ -44,7 +50,7 @@ in {
 
       loaded-script-programs = lib.map (script-name:
         let 
-          script = import ../scripts/${script-database.${script-name}};
+          script = import ../scripts/${script-name}.nix;
           fullscript = ''
             ${shebangs.${script.language}.shebang}
             ${script.script}
@@ -60,4 +66,8 @@ in {
       loaded-scripts = loaded-script-programs ++ loaded-script-languages;
     in
     with pkgs; loaded-scripts ++ loaded-packages;
+
+  load-all = config: {
+    programs = load-programs config.
+  };
 }
