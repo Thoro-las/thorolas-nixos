@@ -19,12 +19,9 @@ in {
         in {
           name = name;
           value = extracted;
-      }) existing-modules);
-    in
-      lib.recursiveUpdate loaded-modules {
-        home-manager.enable = true;
-      };
-    
+        }) existing-modules
+      );
+    in lib.recursiveUpdate loaded-modules { home-manager.enable = true; };
 
   load-packages = package-names:
     let

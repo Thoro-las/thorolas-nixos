@@ -17,16 +17,18 @@ let
     (shebangs: lib.mapAttrsToList (_: lang: lang.package) shebangs)
     (packages: lib.filter (package: package != null) packages)
   ];
+
+  get-fullscript = script: ''
+    ${shebangs.${script.language}.shebang}
+    ${script.script}
+  '';
 in {
   load = script-names:
     let
       loaded-script-files = lib.map (script-name:
         let
           script = import ../scripts/${script-name}.nix;
-          fullscript = ''
-            ${shebangs.${script.language}.shebang}
-            ${script.script}
-          '';
+          fullscript = get-fullscript script;
         in pkgs.writeTextFile {
             name = script.name;
             destination = "/bin/${script-name}";
