@@ -67,7 +67,7 @@ in {
     in
     with pkgs; loaded-scripts ++ loaded-packages;
 
-  load-all = config: {
-    programs = load-programs config.
-  };
+  # load-all = config: {
+  #   programs = load-programs config.
+  # };
 }

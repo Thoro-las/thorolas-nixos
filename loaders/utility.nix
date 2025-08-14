@@ -5,7 +5,7 @@
     lib.pipe folder [
       (dir: builtins.readDir dir)
       (subitems: lib.filterAttrs (_: type: type == type) subitems)
-      (subitems: builtins.attrNames)
+      (subitems: builtins.attrNames subitems)
     ];
 
   generate-password = user:

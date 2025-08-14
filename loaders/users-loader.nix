@@ -11,35 +11,40 @@ in {
     nixos-conf = {};
   };
 
-  OSusers = lib.map (user: {
-    description = utility.generate-description user;
-    password = utility.generate-password user;
+  OSusers = lib.listToAttrs (map (user: {
+    name = user;
+    value = {
+      description = utility.generate-description user;
+      password = utility.generate-password user;
 
-    enable = true;
-    isNormalUser = true;
+      enable = true;
+      isNormalUser = true;
 
-    extraGroups = [ "wheel" "networkmanager" "nixos-conf" ];
-    packages = with pkgs; [ ];
+      extraGroups = [ "wheel" "networkmanager" "nixos-conf" ];
+      packages = with pkgs; [ ];
 
-    createHome = true;
-    home = utility.generate-home user;
-  }) users;
+      createHome = true;
+      home = utility.generate-home user;
+    };
+  }) users);
 
-  HMusers = lib.map (user:
-    user = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        ./common/home-common.nix
-        ./${utility.generate-home-config user}
-        ({ config, pkgs, module-loader, ... }: {
-          home.username = name;
-          home.homeDirectory = "/home/${name}";
-          home.stateVersion = state-version;
-        })
-      ];
+  HMusers = lib.listToAttrs (map (user: {
+      name = user;
+      value = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./common/home-common.nix
+          ./${utility.generate-home-config user}
+          ({ config, pkgs, module-loader, ... }: {
+            home.username = user;
+            home.homeDirectory = utility.generate-home user;
+            home.stateVersion = state-version;
+          })
+        ];
 
-      extraSpecialArgs = {
-        module-loader = module-loader;
+        extraSpecialArgs = {
+          module-loader = module-loader;
+        };
       };
-    }) users;
+    }) users);
 }

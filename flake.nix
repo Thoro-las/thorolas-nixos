@@ -11,13 +11,10 @@
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
 
+      pkgs = nixpkgs.legacyPackages.${system};
       loadedUsers = import loaders/users-loader.nix {
-        pkgs = pkgs;
-        lib = lib;
-        home-manager = home-manager;
-      };
+        inherit pkgs lib home-manager; };
     in {
       homeConfigurations = loadedUsers.HMusers;
       nixosConfigurations = {
