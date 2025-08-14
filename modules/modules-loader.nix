@@ -12,11 +12,10 @@ in {
         let
           loaded-module = database.${module};
           name = loaded-module;
-          extracted = if builtins.pathExists ./${module}/config.nix
-            then (import (./${module}/config.nix)) // { enable = true; }
+          config-file = ./${module}/config.nix;
+          extracted = if builtins.pathExists config-file;
+            then (import config-file) // { enable = true; }
             else { enable = true; };
-          
-          # filter = config: lib.hasAttr "module" 
         in {
           name = name;
           value = extracted;

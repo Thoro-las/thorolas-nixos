@@ -1,11 +1,11 @@
 { pkgs, lib, home-manager, ... }:
 
 let
-  utility = import ./utility.nix { inherit pkgs lib; };
+  utility = import ./loader-utility.nix { inherit pkgs lib; };
   module-loader = import ./modules-loader.nix { inherit lib pkgs; };
   state-version = "25.05";
 
-  users = utility.list-subitems ../users "directory";
+  users = utility.fs.list-subitems ../users "directory";
 in {
   OSgroups = {
     nixos-conf = {};
@@ -14,8 +14,8 @@ in {
   OSusers = lib.listToAttrs (map (user: {
     name = user;
     value = {
-      description = utility.generate-description user;
-      password = utility.generate-password user;
+      description = utility.generators.get-description user;
+      password = utility.generators.get-password user;
 
       enable = true;
       isNormalUser = true;
@@ -24,27 +24,27 @@ in {
       packages = with pkgs; [ ];
 
       createHome = true;
-      home = utility.generate-home user;
+      home = utility.generators.get-home user;
     };
   }) users);
 
   HMusers = lib.listToAttrs (map (user: {
-      name = user;
-      value = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./common/home-common.nix
-          ./${utility.generate-home-config user}
-          ({ config, pkgs, module-loader, ... }: {
-            home.username = user;
-            home.homeDirectory = utility.generate-home user;
-            home.stateVersion = state-version;
-          })
-        ];
+    name = user;
+    value = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        ./common/home-common.nix
+        ./${utility.generators.get-homeconfig user}
+        ({ config, pkgs, module-loader, ... }: {
+          home.username = user;
+          home.homeDirectory = utility.generators.get-home user;
+          home.stateVersion = state-version;
+        })
+      ];
 
-        extraSpecialArgs = {
-          module-loader = module-loader;
-        };
+      extraSpecialArgs = {
+        module-loader = module-loader;
       };
-    }) users);
+    };
+  }) users);
 }
