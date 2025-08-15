@@ -1,7 +1,5 @@
-{ config, pkgs, module-loader, ... }:
+{ config, pkgs, ... }:
 
 {
   systemd.user.startServices = "sd-switch";
-
-  programs = module-loader.load-programs [ "nvim" ];
 }

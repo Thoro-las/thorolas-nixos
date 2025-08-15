@@ -1,7 +1,14 @@
+{ ... }:
+
 {
   module = {
-    packages = [ "freetube" ];
-    aliases = [ "ftube" "ft" ];
+    package = "freetube";
+    dependencies = [ "first_dep" "second_dep" ];
+    
+    aliases = { 
+      ftube = "freetube";
+      ft = "freetube";
+    };
 
     sources = {
       thing = "/home/thing/test";

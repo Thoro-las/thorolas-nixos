@@ -1,9 +1,7 @@
-{ config, pkgs, module-loader, ... }:
+{ users-loader, ... }:
 
-{
-  programs = module-loader.load-programs [ "sh" "ftube" ];
-  home.packages = module-loader.load-packages {
-    packages = [];
-    scripts = [ "hergo" ];
-  };
-}
+users-loader.create-user {
+  modules = [ "ftube" ];
+  scripts = [ "hergo" ];
+  packages = [];
+};

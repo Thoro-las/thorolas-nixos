@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: 
+{ lib, pkgs, home-manager, ... }: 
 
 let
   shebangs = {
@@ -25,16 +25,22 @@ let
 in {
   load = script-names:
     let
-      loaded-script-files = lib.map (script-name:
-        let
-          script = import ../scripts/${script-name}.nix;
-          fullscript = get-fullscript script;
-        in pkgs.writeTextFile {
-            name = script.name;
-            destination = "/bin/${script-name}";
-            executable = true;
-            text = fullscript;
-          }
-      ) package-names.scripts;
-    in with pkgs; loaded-script-files ++ loaded-script-languages;
+      check-exist = script: builtins.pathExists ../scripts/${script}.nix;
+      loaded-scripts = lib.pipe script-names [
+        (script-names: lib.filter check-exist script-names)
+        (existing-scripts: (script: import ../scripts/${script}.nix { inherit pkgs lib home-manager; }) existing-scripts)
+      ];
+
+      loaded-script-files = lib.map (script:
+        pkgs.writeTextFile {
+          name = script.name;
+          destination = "/bin/${script.name}";
+          executable = true;
+          text = get-fullscript script;
+        }
+      ) loaded-scripts;
+    in {
+      packages = with pkgs; loaded-script-files ++ loaded-script-languages;
+      aliases = lib.lists.concatmap (script: script.aliases;) loaded-scripts;
+    }
 }

@@ -13,7 +13,7 @@
       system = "x86_64-linux";
 
       pkgs = nixpkgs.legacyPackages.${system};
-      loadedUsers = import loaders/users-loader.nix {
+      loadedUsers = import loaders/configs-loader.nix {
         inherit pkgs lib home-manager; };
     in {
       homeConfigurations = loadedUsers.HMusers;

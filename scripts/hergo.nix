@@ -1,7 +1,9 @@
+{ ... }:
 {
   name = "hergo";
-  description = "her goes";
+  aliases = [ "herigo" "heroa" ];
   language = "python";
+
   script = ''
   print("test in python")
   '';

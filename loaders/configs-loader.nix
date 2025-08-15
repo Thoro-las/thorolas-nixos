@@ -1,11 +1,11 @@
 { pkgs, lib, home-manager, ... }:
 
 let
-  utility = import ./loader-utility.nix { inherit pkgs lib; };
-  module-loader = import ./modules-loader.nix { inherit lib pkgs; };
+  loader-utility = import ./loader-utility.nix { inherit pkgs lib; };
+  users-loader = import ./users-loader.nix;
   state-version = "25.05";
 
-  users = utility.fs.list-subitems ../users "directory";
+  users = loader-utility.fs.list-subitems ../users "directory";
 in {
   OSgroups = {
     nixos-conf = {};
@@ -14,8 +14,8 @@ in {
   OSusers = lib.listToAttrs (map (user: {
     name = user;
     value = {
-      description = utility.generators.get-description user;
-      password = utility.generators.get-password user;
+      description = loader-utility.generators.get-description user;
+      password = loader-utility.generators.get-password user;
 
       enable = true;
       isNormalUser = true;
@@ -24,27 +24,24 @@ in {
       packages = with pkgs; [ ];
 
       createHome = true;
-      home = utility.generators.get-home user;
+      home = loader-utility.generators.get-home user;
     };
   }) users);
-
+#
   HMusers = lib.listToAttrs (map (user: {
     name = user;
     value = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
         ./common/home-common.nix
-        ./${utility.generators.get-homeconfig user}
-        ({ config, pkgs, module-loader, ... }: {
+        # ({ config, pkgs, ... }: users)
+        # ${loader-utility.generators.get-homeconfig user}
+        ({ config, pkgs, ... }: {
           home.username = user;
-          home.homeDirectory = utility.generators.get-home user;
+          home.homeDirectory = loader-utility.generators.get-home user;
           home.stateVersion = state-version;
         })
       ];
-
-      extraSpecialArgs = {
-        module-loader = module-loader;
-      };
     };
   }) users);
 }
