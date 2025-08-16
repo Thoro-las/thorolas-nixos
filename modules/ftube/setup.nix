@@ -3,7 +3,7 @@
 {
   module = {
     package = "freetube";
-    dependencies = [ "first_dep" "second_dep" ];
+    dependencies = [];
     
     aliases = { 
       ftube = "freetube";
@@ -17,6 +17,5 @@
   };
 
   config = {
-    test = "value";
   };
 }

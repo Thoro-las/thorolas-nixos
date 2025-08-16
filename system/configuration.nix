@@ -97,6 +97,8 @@
     steam
   ];
 
+  programs.steam.enable = true;
+
   boot = {
     plymouth = {
       enable = true;

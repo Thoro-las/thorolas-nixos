@@ -1,9 +1,10 @@
 { pkgs, lib, home-manager, ... }:
 
 let
-  loader-utility = import ./loader-utility.nix { inherit pkgs lib; };
-  users-loader = import ./users-loader.nix;
   state-version = "25.05";
+
+  loader-utility = import ./loader-utility.nix { inherit pkgs lib; };
+  users-loader = import ./users-loader.nix { inherit pkgs lib home-manager; };
 
   users = loader-utility.fs.list-subitems ../users "directory";
 in {
@@ -27,20 +28,24 @@ in {
       home = loader-utility.generators.get-home user;
     };
   }) users);
-#
+
   HMusers = lib.listToAttrs (map (user: {
     name = user;
     value = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
-        ./common/home-common.nix
-        # ({ config, pkgs, ... }: users)
-        # ${loader-utility.generators.get-homeconfig user}
+        ../users/common.nix
+
         ({ config, pkgs, ... }: {
           home.username = user;
           home.homeDirectory = loader-utility.generators.get-home user;
           home.stateVersion = state-version;
         })
+
+        ({config, pkgs, ...}@args:
+          (import (./${loader-utility.generators.get-homeconfig user})
+            { inherit users-loader; }) args
+        )
       ];
     };
   }) users);

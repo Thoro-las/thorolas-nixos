@@ -1,3 +1,6 @@
+{ ... }:
 {
-  defaultEditor = true;
+  config = {
+    defaultEditor = true;
+  }
 }

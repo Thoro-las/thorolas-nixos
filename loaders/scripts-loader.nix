@@ -28,7 +28,9 @@ in {
       check-exist = script: builtins.pathExists ../scripts/${script}.nix;
       loaded-scripts = lib.pipe script-names [
         (script-names: lib.filter check-exist script-names)
-        (existing-scripts: (script: import ../scripts/${script}.nix { inherit pkgs lib home-manager; }) existing-scripts)
+          (existing-scripts: lib.map (script: 
+            import ../scripts/${script}.nix { inherit pkgs lib home-manager; }
+          ) existing-scripts)
       ];
 
       loaded-script-files = lib.map (script:
@@ -41,6 +43,6 @@ in {
       ) loaded-scripts;
     in {
       packages = with pkgs; loaded-script-files ++ loaded-script-languages;
-      aliases = lib.lists.concatmap (script: script.aliases;) loaded-scripts;
-    }
+      aliases = lib.lists.concatMap (script: script.aliases) loaded-scripts;
+    };
 }

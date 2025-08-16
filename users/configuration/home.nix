@@ -1,7 +1,11 @@
 { users-loader, ... }:
 
 users-loader.create-user {
-  modules = [ "ftube" ];
-  scripts = [ "hergo" ];
+  modules = [ ];
+  scripts = [ ];
   packages = [];
-};
+
+  home-config = { config, pkgs, ... }: {
+
+  };
+}
