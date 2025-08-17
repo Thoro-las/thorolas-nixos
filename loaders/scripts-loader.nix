@@ -43,6 +43,9 @@ in {
       ) loaded-scripts;
     in {
       packages = with pkgs; loaded-script-files ++ loaded-script-languages;
-      aliases = lib.lists.concatMap (script: script.aliases) loaded-scripts;
+      aliases = lib.pipe loaded-scripts [
+        (loaded-scripts: lib.map (script: script.aliases) loaded-scripts)
+        (aliases: lib.attrsets.mergeAttrsList aliases)
+      ];
     };
 }

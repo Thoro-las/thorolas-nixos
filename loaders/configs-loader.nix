@@ -44,7 +44,7 @@ in {
 
         ({config, pkgs, ...}@args:
           (import (./${loader-utility.generators.get-homeconfig user})
-            { inherit users-loader; }) args
+            { inherit users-loader; }) { inherit config pkgs; }
         )
       ];
     };

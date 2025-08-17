@@ -10,7 +10,7 @@ in {
         modules-content = modules-loader.load modules;
         scripts-content = scripts-loader.load scripts;
       in {
-        # home.shellAliases = modules-content.aliases // scripts-content.aliases;
+        home.shellAliases = modules-content.aliases // scripts-content.aliases;
         home.packages = modules-content.packages ++ scripts-content.packages;
         programs = modules-content.programs;
       } // home-config { inherit config pkgs; };

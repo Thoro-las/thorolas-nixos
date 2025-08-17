@@ -1,8 +1,8 @@
 { users-loader, ... }:
 
 users-loader.create-user {
-  modules = [ ];
-  scripts = [ ];
+  modules = [ "htop" ];
+  scripts = [ "hergo" "hego" ];
   packages = [];
 
   home-config = { config, pkgs, ... }: {

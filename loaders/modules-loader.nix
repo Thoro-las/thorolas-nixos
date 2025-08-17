@@ -28,13 +28,26 @@ in {
                   module.${attribute}) loaded-modules;
     in {
       programs = lib.pipe loaded-modules [
-        (loaded-modules: lib.map ({module, config}: { name = module.package; value = config; }) loaded-modules)
+        (loaded-modules: lib.map ({module, config}: { 
+            name = module.program;
+            value = config; }) 
+          loaded-modules)
         (loaded-programs: lib.listToAttrs loaded-programs)
-        (loaded-programs: loaded-programs // {home-manager.enable = true;})
+        (loaded-programs: loaded-programs //
+          { home-manager.enable = true; })
       ];
 
-      aliases = get-attribute "aliases";
-      sources = get-attribute "sources";
-      packages = get-attribute "dependencies";
+      aliases = lib.pipe loaded-modules [
+        (loaded-modules: lib.map ({module, config}: module.aliases) loaded-modules)
+        (aliases: lib.attrsets.mergeAttrsList aliases)
+      ];
+
+      sources = lib.pipe loaded-modules [
+        (loaded-modules: lib.map ({module, config}: module.sources) loaded-modules)
+        (aliases: lib.attrsets.mergeAttrsList aliases)
+      ];
+
+      packages = lib.lists.concatMap ({module, config}: 
+                  module.packages) loaded-modules;
     };
 }
