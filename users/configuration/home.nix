@@ -1,7 +1,7 @@
 { users-loader, ... }:
 
 users-loader.create-user {
-  modules = [ "htop" ];
+  modules = [ "nvim" ];
   scripts = [ "hergo" "hego" ];
   packages = [];
 

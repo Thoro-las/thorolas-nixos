@@ -1,8 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 {
   module = {
     program = "htop";
-    packages = [ "htop-vim" ];
+    packages = [ ];
     
     aliases = { 
       htp = "htop";
@@ -17,7 +17,6 @@
 
   config = {
     enable = true;
-    nigatron = "the";
-    test = 3;
+    settings.color_scheme = 3;
   };
 }

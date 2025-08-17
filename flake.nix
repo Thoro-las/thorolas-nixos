@@ -14,7 +14,7 @@
 
       pkgs = nixpkgs.legacyPackages.${system};
       loadedUsers = import loaders/configs-loader.nix {
-        inherit pkgs lib home-manager; };
+          inherit pkgs lib home-manager; };
     in {
       homeConfigurations = loadedUsers.HMusers;
       nixosConfigurations = {

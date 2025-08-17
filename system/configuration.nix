@@ -52,14 +52,20 @@
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    lunarvim
+    kitty
+    python3
+    gcc
+    appimage-run
+
+    vim
+    lua5_1
+
     tmux
     wget
     git
 
-    neovim
+    # neovim
     mercurial
-    lua5_1
     luarocks-nix
     nodejs
     go
@@ -77,8 +83,6 @@
 
     gnumake
     dotnet-sdk
-    python3
-    gcc
 
     eww
     rofi
@@ -88,9 +92,6 @@
     feh
 
     xclip
-
-    appimage-run
-    unetbootin
 
     inkscape
     krita
