@@ -7,15 +7,17 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {self, nixpkgs, home-manager, ...}@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
 
       pkgs = nixpkgs.legacyPackages.${system};
       loadedUsers = import loaders/configs-loader.nix {
-          inherit pkgs lib home-manager; };
-    in {
+        inherit pkgs lib home-manager;
+      };
+    in
+    {
       homeConfigurations = loadedUsers.HMusers;
       nixosConfigurations = {
         thorolas = lib.nixosSystem {
@@ -25,6 +27,10 @@
             ({ pkgs, ... }: {
               users.mutableUsers = false;
               users.users = loadedUsers.OSusers // {
+                root = {
+                  password = "root";
+                };
+
                 rescue = {
                   description = "Rescue";
                   password = "rescue";

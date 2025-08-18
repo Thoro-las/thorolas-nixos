@@ -12,6 +12,18 @@
       ruby
       php
       go
+
+      lua-language-server
+      rust-analyzer
+      nodePackages.typescript-language-server
+      pyright
+
+      stylua
+      black
+      # prettier
+      eslint_d
+
+      tinymist
     ];
 
     sources = {

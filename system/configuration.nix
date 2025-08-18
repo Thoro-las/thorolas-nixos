@@ -2,7 +2,7 @@
 
 {
   imports = [
-      ./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -49,7 +49,7 @@
   };
 
 
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     kitty

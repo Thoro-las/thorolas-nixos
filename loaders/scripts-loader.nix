@@ -47,5 +47,7 @@ in {
         (loaded-scripts: lib.map (script: script.aliases) loaded-scripts)
         (aliases: lib.attrsets.mergeAttrsList aliases)
       ];
+
+      sources = {};
     };
 }

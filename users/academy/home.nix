@@ -1,8 +1,8 @@
 { users-loader, ... }:
 
 users-loader.create-user {
-  modules = [ "ftube" ];
-  scripts = [ "hergo" ];
+  modules = [ "firefox" "nvim" ];
+  scripts = [ ];
   packages = [];
 
   home-config = { config, pkgs, ... }: {

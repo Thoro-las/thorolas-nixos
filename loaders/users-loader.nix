@@ -12,7 +12,7 @@ in {
       in {
         home.shellAliases = modules-content.aliases // scripts-content.aliases;
         home.packages = modules-content.packages ++ scripts-content.packages;
-        home.file = modules-content.sources;
+        home.file = modules-content.sources // scripts-content.sources;
         programs = modules-content.programs;
       } // home-config { inherit config pkgs; };
 }
