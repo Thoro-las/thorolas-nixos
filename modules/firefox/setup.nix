@@ -3,9 +3,11 @@
 {
   module = {
     program = "firefox";
-
+    packages = [];
+    aliases = {};
     sources = {
       ".mozilla/firefox/default/xulstore.json".source = ./xulstore.json;
+      ".mozilla/firefox/default/prefs.js".source = ./prefs.js;
     };
   };
 
@@ -16,19 +18,21 @@
       id = 0;
       name = "default";
 
-      extensions = with pkgs.nur.repos.rycee.firefox-addongs; [
-        downthemall
-        return-youtube-dislikes
-        multiselect-for-youtube
-        adaptive-tab-bar-colour
-        tabliss
-        vimium-c
-      ];
+      # extensions = {
+      #   packages = with pkgs.nur.repos.rycee.firefox-addons; [
+      #     downthemall
+      #     return-youtube-dislikes
+      #     multiselect-for-youtube
+      #     adaptive-tab-bar-colour
+      #     tabliss
+      #     vimium-c
+      #   ];
+      # };
 
       search = {
         force = true;
-        default = "DuckDuckGo";
-        privateDefault = "DuckDuckGo";
+        default = "ddg";
+        privateDefault = "ddg";
 
         engines = {
           "GitHub" = {

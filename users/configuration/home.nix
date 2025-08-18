@@ -6,6 +6,5 @@ users-loader.create-user {
   packages = [];
 
   home-config = { config, pkgs, ... }: {
-
   };
 }
