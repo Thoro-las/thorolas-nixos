@@ -1,4 +1,4 @@
-{ lib, pkgs, home-manager, ... }: 
+{ lib, pkgs, home-manager, ... }:
 
 let
   shebangs = {
@@ -13,41 +13,52 @@ let
     };
   };
 
+  script-tester = import ../testers/script-tester.nix;
+
   loaded-script-languages = lib.pipe shebangs [
     (shebangs: lib.mapAttrsToList (_: lang: lang.package) shebangs)
     (packages: lib.filter (package: package != null) packages)
   ];
 
   get-fullscript = script: ''
-    ${shebangs.${script.language}.shebang}
+    ${shebangs.${script.language or "bash"}.shebang}
     ${script.script}
   '';
-in {
+in
+{
   load = script-names:
     let
       check-exist = script: builtins.pathExists ../scripts/${script}.nix;
       loaded-scripts = lib.pipe script-names [
         (script-names: lib.filter check-exist script-names)
-          (existing-scripts: lib.map (script: 
+        (existing-names: lib.filter script-tester.check-script script-names)
+        (tested-scripts: lib.map
+          (script:
             import ../scripts/${script}.nix { inherit pkgs lib home-manager; }
-          ) existing-scripts)
+          )
+          tested-scripts)
       ];
 
-      loaded-script-files = lib.map (script:
-        pkgs.writeTextFile {
-          name = script.name;
-          destination = "/bin/${script.name}";
-          executable = true;
-          text = get-fullscript script;
-        }
-      ) loaded-scripts;
-    in {
-      packages = with pkgs; loaded-script-files ++ loaded-script-languages;
+      loaded-script-dependencies = lib.concatMap (script: script.packages or { }) loaded-scripts;
+      loaded-script-files = lib.map
+        (script:
+          pkgs.writeTextFile {
+            name = script.name;
+            destination = "/bin/${script.name}";
+            executable = true;
+            text = get-fullscript script;
+          }
+        )
+        loaded-scripts;
+    in
+    {
+      packages = with pkgs; loaded-script-files ++ loaded-script-languages ++ loaded-script-dependencies;
+
       aliases = lib.pipe loaded-scripts [
         (loaded-scripts: lib.map (script: script.aliases) loaded-scripts)
         (aliases: lib.attrsets.mergeAttrsList aliases)
       ];
 
-      sources = {};
+      sources = { };
     };
 }

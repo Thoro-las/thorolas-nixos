@@ -2,7 +2,7 @@
 
 users-loader.create-user {
   modules = [ "firefox" "nvim" ];
-  scripts = [ ];
+  scripts = [];
   packages = [];
 
   home-config = { config, pkgs, ... }: {

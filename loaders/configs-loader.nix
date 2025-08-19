@@ -1,4 +1,4 @@
-{ pkgs, lib, home-manager, ... }:
+{ nixpkgs, lib, home-manager, nur, system, ... }:
 
 let
   state-version = "25.05";
@@ -7,6 +7,11 @@ let
   users-loader = import ./users-loader.nix { inherit pkgs lib home-manager; };
 
   users = loader-utility.fs.list-subitems ../users "directory";
+
+  pkgs = import nixpkgs.path {
+    inherit system;
+    overlays = [ nur.overlay ];
+  };
 in {
   OSgroups = {
     nixos-conf = {};
@@ -32,7 +37,7 @@ in {
   HMusers = lib.listToAttrs (map (user: {
     name = user;
     value = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+      pkgs = pkgs;
       modules = [
         ../users/common.nix
 
