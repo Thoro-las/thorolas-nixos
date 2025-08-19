@@ -1,6 +1,6 @@
 { ... }:
 {
-  # name = "hego";
+  name = "hego";
   language = "python";
 
   script = ''

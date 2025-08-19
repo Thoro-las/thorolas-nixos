@@ -3,7 +3,7 @@
   name = "hergo";
   language = "python";
 
-  # script = ''
-  # print("test in python")
-  # '';
+  script = ''
+  print("test in python")
+  '';
 }
