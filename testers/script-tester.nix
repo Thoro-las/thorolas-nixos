@@ -1,6 +1,6 @@
 {
-  check-script = script-file:
-    if !((script-file ? name) || (script-file ? script))
-      then builtins.throw "name or script attribute missing in ${script-file}"
-      else script-file;
+  check-script = script-contents:
+    if !(script-contents ? name) || !(script-contents ? script)
+      then builtins.throw "name or script attribute missing in scripts/${script-contents.name}"
+      else script-contents;
 }

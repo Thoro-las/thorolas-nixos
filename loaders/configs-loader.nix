@@ -48,8 +48,13 @@ in {
         })
 
         ({config, pkgs, ...}@args:
+          let
+            database = {
+              pkgs = pkgs;
+            };
+          in
           (import (./${loader-utility.generators.get-homeconfig user})
-            { inherit users-loader; }) { inherit config pkgs; }
+            { inherit users-loader database; }) { inherit config pkgs; }
         )
       ];
     };

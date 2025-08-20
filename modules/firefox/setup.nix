@@ -6,7 +6,6 @@
     packages = [ ];
     aliases = { };
     sources = {
-      ".mozilla/firefox/default/xulstore.json".source = ./xulstore.json;
       ".mozilla/firefox/default/prefs.js".source = ./prefs.js;
     };
   };

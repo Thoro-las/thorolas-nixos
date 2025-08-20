@@ -11,7 +11,7 @@ in {
         scripts-content = scripts-loader.load scripts;
       in {
         home.shellAliases = modules-content.aliases // scripts-content.aliases;
-        home.packages = modules-content.packages ++ scripts-content.packages;
+        home.packages = packages ++ modules-content.packages ++ scripts-content.packages;
         home.file = modules-content.sources // scripts-content.sources;
         programs = modules-content.programs;
       } // home-config { inherit config pkgs; };

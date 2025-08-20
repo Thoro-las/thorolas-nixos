@@ -31,15 +31,13 @@ in
       check-exist = script: builtins.pathExists ../scripts/${script}.nix;
       loaded-scripts = lib.pipe script-names [
         (script-names: lib.filter check-exist script-names)
-        (existing-names: lib.filter script-tester.check-script script-names)
-        (tested-scripts: lib.map
-          (script:
-            import ../scripts/${script}.nix { inherit pkgs lib home-manager; }
-          )
-          tested-scripts)
+        (existing-scripts: lib.map
+          (script: import ../scripts/${script}.nix { inherit pkgs lib home-manager; })
+            existing-scripts)
+        (loaded-scripts: lib.map script-tester.check-script loaded-scripts)
       ];
 
-      loaded-script-dependencies = lib.concatMap (script: script.packages or { }) loaded-scripts;
+      loaded-script-dependencies = lib.concatMap (script: script.packages or []) loaded-scripts;
       loaded-script-files = lib.map
         (script:
           pkgs.writeTextFile {

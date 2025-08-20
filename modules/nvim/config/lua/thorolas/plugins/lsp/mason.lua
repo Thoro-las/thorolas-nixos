@@ -4,6 +4,7 @@ return {
 
     build = ":MasonUpdate",
     config = function()
+        vim.notify("tinymist config loaded", vim.log.levels.INFO)
         require("mason").setup()
         require("mason-lspconfig").setup({ automatic_installation = true, });
 
