@@ -1,7 +1,6 @@
 return {
     "neovim/nvim-lspconfig",
     config = function()
-        print("configuring the lsp")
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
         local server_dir = vim.fn.stdpath("config") .. "/lua/thorolas/plugins/lsp/servers"
@@ -15,7 +14,6 @@ return {
             else
                 vim.notify("Failed to load LSP server: " .. filename)
             end
-            print("Loading LSP server:", filename)
         end
 
         local kw = require("thorolas.utility.keymaps")

@@ -51,6 +51,9 @@ in {
           let
             database = {
               pkgs = pkgs;
+              custom-pkgs = {
+                typst-lsp = import ../packages/typst-lsp.nix { inherit pkgs; };
+              };
             };
           in
           (import (./${loader-utility.generators.get-homeconfig user})
