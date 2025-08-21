@@ -10,7 +10,7 @@ let
 
   pkgs = import nixpkgs.path {
     inherit system;
-    overlays = [ nur.overlay ];
+    overlays = [ nur.overlays.default ];
   };
 in {
   OSgroups = {
@@ -52,7 +52,7 @@ in {
             database = {
               pkgs = pkgs;
               custom-pkgs = {
-                typst-lsp = import ../packages/typst-lsp.nix { inherit pkgs; };
+                typst-lsp = import ../packages/typst-lsp.nix { inherit pkgs lib; };
               };
             };
           in

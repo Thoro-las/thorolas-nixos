@@ -40,10 +40,13 @@
         };
       };
 
-      bookmarks = [
-        { name = "GitHub"; url = "https://github.com"; }
-        { name = "NixOS"; url = "https://nixos.org"; }
-      ];
+      bookmarks = {
+        force = true;
+        settings = [
+          { name = "GitHub"; url = "https://github.com"; }
+          { name = "NixOS"; url = "https://nixos.org"; }
+        ];
+      };
     };
 
   };
