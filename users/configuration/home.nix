@@ -5,7 +5,6 @@ users-loader.create-user {
   scripts = [ "hergo" "hego" "thrnix" ];
   packages = [
     database.pkgs.typst
-    database.custom-pkgs.typst-lsp
   ];
 
   home-config = { config, pkgs, ... }: {

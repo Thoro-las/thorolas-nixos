@@ -12,54 +12,60 @@ let
     inherit system;
     overlays = [ nur.overlays.default ];
   };
-in {
+in
+{
   OSgroups = {
-    nixos-conf = {};
+    nixos-conf = { };
   };
 
-  OSusers = lib.listToAttrs (map (user: {
-    name = user;
-    value = {
-      description = loader-utility.generators.get-description user;
-      password = loader-utility.generators.get-password user;
+  OSusers = lib.listToAttrs (map
+    (user: let
+      credentials = import ../users/${user}/credentials.nix;
+    in {
+      name = user;
+      value = {
+        description = credentials.name or user;
+        hashedPassword = credentials.password or user;
 
-      enable = true;
-      isNormalUser = true;
+        enable = true;
+        isNormalUser = true;
 
-      extraGroups = [ "wheel" "networkmanager" "nixos-conf" ];
-      packages = with pkgs; [ ];
+        extraGroups = [ "wheel" "networkmanager" "nixos-conf" ];
+        packages = with pkgs; [ ];
 
-      createHome = true;
-      home = loader-utility.generators.get-home user;
-    };
-  }) users);
+        createHome = true;
+        home = "/home/" + user;
+      };
+    })
+    users);
 
-  HMusers = lib.listToAttrs (map (user: {
-    name = user;
-    value = home-manager.lib.homeManagerConfiguration {
-      pkgs = pkgs;
-      modules = [
-        ../users/common.nix
+  HMusers = lib.listToAttrs (map
+    (user: {
+      name = user;
+      value = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgs;
+        modules = [
+          ../users/common.nix
 
-        ({ config, pkgs, ... }: {
-          home.username = user;
-          home.homeDirectory = loader-utility.generators.get-home user;
-          home.stateVersion = state-version;
-        })
+          ({ config, pkgs, ... }: {
+            home.username = user;
+            home.homeDirectory = "/home/" + user;
+            home.stateVersion = state-version;
+          })
 
-        ({config, pkgs, ...}@args:
-          let
-            database = {
-              pkgs = pkgs;
-              custom-pkgs = {
-                typst-lsp = import ../packages/typst-lsp.nix { inherit pkgs lib; };
+          ({ config, pkgs, ... }@args:
+            let
+              database = {
+                pkgs = pkgs;
+                custom-pkgs = {};
               };
-            };
-          in
-          (import (./${loader-utility.generators.get-homeconfig user})
-            { inherit users-loader database; }) { inherit config pkgs; }
-        )
-      ];
-    };
-  }) users);
+            in
+              (import (../users/${user}/home.nix)
+                { inherit users-loader database; })
+              { inherit config pkgs; }
+          )
+        ];
+      };
+    })
+    users);
 }
