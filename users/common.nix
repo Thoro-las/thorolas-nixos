@@ -1,9 +1,9 @@
 { users-loader, database, ... }:
 
-users-loader.create-common {
-  modules = [ "firefox" "nvim" "kitty" "shell" ];
-  scripts = [ ];
-  packages = with database.pkgs; [ ];
+users-loader.create-user {
+  modules = [ "firefox" "nvim" "kitty" "shell" "design" ];
+  packages = [];
+  scripts = [];
 
   home-config = { config, pkgs, ... }: {
     xdg.mimeApps = {

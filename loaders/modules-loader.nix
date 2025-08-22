@@ -42,15 +42,15 @@ in
       ];
 
       aliases = lib.pipe loaded-modules [
-        (loaded-modules: lib.map ({ module, config }: module.aliases or { }) loaded-modules)
+        (loaded-modules: lib.map ({ module, config }: module.aliases or {}) loaded-modules)
         (aliases: lib.attrsets.mergeAttrsList aliases)
       ];
 
       sources = lib.pipe loaded-modules [
-        (loaded-modules: lib.map ({ module, config }: module.sources or { }) loaded-modules)
+        (loaded-modules: lib.map ({ module, config }: module.sources or {}) loaded-modules)
         (aliases: lib.attrsets.mergeAttrsList aliases)
       ];
 
-      packages = lib.lists.concatMap ({ module, config }: module.packages or { }) loaded-modules;
+      packages = lib.lists.concatMap ({ module, config }: module.packages or {}) loaded-modules;
     };
 }

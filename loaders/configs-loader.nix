@@ -6,8 +6,10 @@ let
   loader-utility = import ./loader-utility.nix { inherit pkgs lib; };
   users-loader = import ./users-loader.nix { inherit pkgs lib home-manager; };
 
+  _ = builtins.warn "test";
+
   loaded-users = lib.pipe (loader-utility.fs.list-subitems ../users "directory") [
-    (user-names: lib.listToAttrs (map
+    (user-names: lib.listToAttrs (lib.map
       (user-name: {
         name = user-name;
         value = {
@@ -69,11 +71,10 @@ in
             home.stateVersion = state-version;
           })
 
-          ({ config, pkgs, ... }: 
-            user-config.home 
-              { inherit users-loader database; }
-              { inherit config pkgs; }
-          )
+	  ({ config, pkgs, ... }: 
+	    user-config.home 
+	      { inherit users-loader database; }
+	      { inherit config pkgs; })
         ];
       }
     )

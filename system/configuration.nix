@@ -51,7 +51,6 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    # kitty
     python3
     gcc
     appimage-run

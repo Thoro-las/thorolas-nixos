@@ -4,27 +4,26 @@ let
   modules-loader = import ./modules-loader.nix { inherit lib pkgs home-manager; };
   scripts-loader = import ./scripts-loader.nix { inherit lib pkgs home-manager; };
 in {
-  create-user = { modules, scripts, packages, home-config, ... }:
+  create-user = { modules, scripts, packages, ... }@args:
     { config, pkgs, ... }: 
       let
         modules-content = modules-loader.load modules;
         scripts-content = scripts-loader.load scripts;
-      in {
-        home.shellAliases = modules-content.aliases // scripts-content.aliases;
-        home.packages = packages ++ modules-content.packages ++ scripts-content.packages;
-        home.file = modules-content.sources // scripts-content.sources;
-        programs = modules-content.programs;
-      } // home-config { inherit config pkgs; };
 
-  create-common = { modules, scripts, packages, home-config, ... }:
-    { config, pkgs, ... }: 
-      let
-        modules-content = modules-loader.load modules;
-        scripts-content = scripts-loader.load scripts;
+        loaded-home-config = if args ? home-config 
+          then args.home-config { inherit config pkgs; }
+          else {};
       in {
-        home.shellAliases = modules-content.aliases // scripts-content.aliases;
-        home.packages = packages ++ modules-content.packages ++ scripts-content.packages;
-        home.file = modules-content.sources // scripts-content.sources;
+        home.shellAliases = (modules-content.aliases or {})
+                         // (scripts-content.aliases or {});
+
+        home.packages = (packages) 
+                     ++ (modules-content.packages or [])
+                     ++ (scripts-content.packages or []);
+
+        home.file = (modules-content.sources or {})
+                 // (scripts-content.sources or {});
+
         programs = modules-content.programs;
-      } // home-config { inherit config pkgs; };
+      } // loaded-home-config; 
 }

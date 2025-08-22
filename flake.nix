@@ -22,7 +22,7 @@
         };
       };
 
-      loadedUsers = import loaders/configs-loader.nix {
+      loadedUsers = import ./loaders/configs-loader.nix {
         inherit lib home-manager nur system;
         nixpkgs = pkgs;
       };
