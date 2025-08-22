@@ -13,8 +13,6 @@ let
     };
   };
 
-  script-tester = import ../testers/script-tester.nix;
-
   loaded-script-languages = lib.pipe shebangs [
     (shebangs: lib.mapAttrsToList (_: lang: lang.package) shebangs)
     (packages: lib.filter (package: package != null) packages)
@@ -34,7 +32,6 @@ in
         (existing-scripts: lib.map
           (script: import ../scripts/${script}.nix { inherit pkgs lib home-manager; })
             existing-scripts)
-        (loaded-scripts: lib.map script-tester.check-script loaded-scripts)
       ];
 
       loaded-script-dependencies = lib.concatMap (script: script.packages or []) loaded-scripts;

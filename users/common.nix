@@ -1,7 +1,7 @@
 { users-loader, database, ... }:
 
 users-loader.create-common {
-  modules = [ "firefox" "nvim" "kitty" ];
+  modules = [ "firefox" "nvim" "kitty" "shell" ];
   scripts = [ ];
   packages = with database.pkgs; [ ];
 

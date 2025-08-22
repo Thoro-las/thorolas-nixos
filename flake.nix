@@ -32,7 +32,7 @@
               users.mutableUsers = false;
               users.users = loadedUsers.OSusers // {
                 root = {
-                  password = "root";
+                  hashedPassword = "$y$j9T$94N5V1zFu894r2GaVkTut1$u9hnEfJw6qdSQrHfFh6mkjAoCaQM8T6b04xp52hqgHC";
                 };
 
                 rescue = {

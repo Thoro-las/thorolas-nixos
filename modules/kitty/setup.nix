@@ -3,6 +3,7 @@
   module = {
     program = "kitty";
     packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
     ];
 
     sources = {

@@ -5,6 +5,5 @@ users-loader.create-user {
   scripts = [ ];
   packages = with database.pkgs; [ typst tinymist ];
 
-  home-config = { config, pkgs, ... }: {
-  };
+  home-config = { config, pkgs, ... }: { };
 }

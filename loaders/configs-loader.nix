@@ -6,7 +6,18 @@ let
   loader-utility = import ./loader-utility.nix { inherit pkgs lib; };
   users-loader = import ./users-loader.nix { inherit pkgs lib home-manager; };
 
-  users = loader-utility.fs.list-subitems ../users "directory";
+  loaded-users = lib.pipe (loader-utility.fs.list-subitems ../users "directory") [
+    (user-names: lib.listToAttrs (map
+      (user-name: {
+        name = user-name;
+        value = {
+          home = import ../users/${user-name}/home.nix;
+          credentials = import ../users/${user-name}/credentials.nix;
+        };
+      })
+      user-names
+    ))
+  ];
 
   pkgs = import nixpkgs.path {
     inherit system;
@@ -23,33 +34,27 @@ in
     nixos-conf = { };
   };
 
-  OSusers = lib.listToAttrs (map
-    (user:
-      let
-        credentials = import ../users/${user}/credentials.nix;
-      in
+  OSusers = lib.mapAttrs
+    (user: user-config:
       {
-        name = user;
-        value = {
-          description = credentials.name or user;
-          hashedPassword = credentials.password or user;
+        description = user-config.credentials.name or user;
+        hashedPassword = user-config.credentials.password or user;
 
-          enable = true;
-          isNormalUser = true;
+        enable = true;
+        isNormalUser = true;
 
-          extraGroups = [ "wheel" "networkmanager" "nixos-conf" ];
-          packages = with pkgs; [ ];
+        extraGroups = [ "wheel" "networkmanager" "nixos-conf" ];
+        packages = with pkgs; [ ];
 
-          createHome = true;
-          home = "/home/" + user;
-        };
-      })
-    users);
+        createHome = true;
+        home = "/home/" + user;
+      }
+    )
+    loaded-users;
 
-  HMusers = lib.listToAttrs (map
-    (user: {
-      name = user;
-      value = home-manager.lib.homeManagerConfiguration {
+  HMusers = lib.mapAttrs
+    (user: user-config:
+      home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs;
         modules = [
           ({ config, pkgs, ... }@args:
@@ -64,13 +69,13 @@ in
             home.stateVersion = state-version;
           })
 
-          ({ config, pkgs, ... }@args:
-            (import (../users/${user}/home.nix)
-              { inherit users-loader database; })
+          ({ config, pkgs, ... }: 
+            user-config.home 
+              { inherit users-loader database; }
               { inherit config pkgs; }
           )
         ];
-      };
-    })
-    users);
+      }
+    )
+    loaded-users;
 }
