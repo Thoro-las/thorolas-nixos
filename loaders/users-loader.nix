@@ -15,4 +15,16 @@ in {
         home.file = modules-content.sources // scripts-content.sources;
         programs = modules-content.programs;
       } // home-config { inherit config pkgs; };
+
+  create-common = { modules, scripts, packages, home-config, ... }:
+    { config, pkgs, ... }: 
+      let
+        modules-content = modules-loader.load modules;
+        scripts-content = scripts-loader.load scripts;
+      in {
+        home.shellAliases = modules-content.aliases // scripts-content.aliases;
+        home.packages = packages ++ modules-content.packages ++ scripts-content.packages;
+        home.file = modules-content.sources // scripts-content.sources;
+        programs = modules-content.programs;
+      } // home-config { inherit config pkgs; };
 }

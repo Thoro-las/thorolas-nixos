@@ -2,7 +2,7 @@
 
 users-loader.create-user {
   modules = [ "nvim" "firefox" ];
-  scripts = [ "hergo" "hego" "thrnix" ];
+  scripts = [ "thrnix" ];
   packages = [
     database.pkgs.typst
   ];

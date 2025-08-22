@@ -2,7 +2,7 @@
 
 users-loader.create-user {
   modules = [ "firefox" "nvim" ];
-  scripts = [ "hergo" ];
+  scripts = [ ];
   packages = with database.pkgs; [ typst tinymist ];
 
   home-config = { config, pkgs, ... }: {

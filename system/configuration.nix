@@ -52,7 +52,7 @@
   # programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    kitty
+    # kitty
     python3
     gcc
     appimage-run
@@ -64,14 +64,6 @@
     wget
     git
 
-    # neovim
-    mercurial
-    luarocks-nix
-    nodejs
-    go
-    cargo
-    ruby
-    php
     ripgrep
     trashy
 
@@ -92,10 +84,6 @@
     feh
 
     xclip
-
-    inkscape
-    krita
-    steam
   ];
 
   programs.steam.enable = true;

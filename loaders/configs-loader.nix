@@ -12,6 +12,11 @@ let
     inherit system;
     overlays = [ nur.overlays.default ];
   };
+
+  database = {
+    pkgs = pkgs;
+    custom-pkgs = { };
+  };
 in
 {
   OSgroups = {
@@ -19,24 +24,26 @@ in
   };
 
   OSusers = lib.listToAttrs (map
-    (user: let
-      credentials = import ../users/${user}/credentials.nix;
-    in {
-      name = user;
-      value = {
-        description = credentials.name or user;
-        hashedPassword = credentials.password or user;
+    (user:
+      let
+        credentials = import ../users/${user}/credentials.nix;
+      in
+      {
+        name = user;
+        value = {
+          description = credentials.name or user;
+          hashedPassword = credentials.password or user;
 
-        enable = true;
-        isNormalUser = true;
+          enable = true;
+          isNormalUser = true;
 
-        extraGroups = [ "wheel" "networkmanager" "nixos-conf" ];
-        packages = with pkgs; [ ];
+          extraGroups = [ "wheel" "networkmanager" "nixos-conf" ];
+          packages = with pkgs; [ ];
 
-        createHome = true;
-        home = "/home/" + user;
-      };
-    })
+          createHome = true;
+          home = "/home/" + user;
+        };
+      })
     users);
 
   HMusers = lib.listToAttrs (map
@@ -45,7 +52,11 @@ in
       value = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs;
         modules = [
-          ../users/common.nix
+          ({ config, pkgs, ... }@args:
+            (import (../users/common.nix)
+              { inherit users-loader database; })
+              { inherit config pkgs; }
+          )
 
           ({ config, pkgs, ... }: {
             home.username = user;
@@ -54,14 +65,8 @@ in
           })
 
           ({ config, pkgs, ... }@args:
-            let
-              database = {
-                pkgs = pkgs;
-                custom-pkgs = {};
-              };
-            in
-              (import (../users/${user}/home.nix)
-                { inherit users-loader database; })
+            (import (../users/${user}/home.nix)
+              { inherit users-loader database; })
               { inherit config pkgs; }
           )
         ];
