@@ -15,7 +15,13 @@
       lib = nixpkgs.lib;
       system = "x86_64-linux";
 
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        system = system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+
       loadedUsers = import loaders/configs-loader.nix {
         inherit lib home-manager nur system;
         nixpkgs = pkgs;
@@ -43,7 +49,6 @@
                   isNormalUser = true;
 
                   extraGroups = [ "wheel" "networkmanager" ];
-                  packages = with pkgs; [ ];
 
                   createHome = true;
                   home = "/home/rescue";
