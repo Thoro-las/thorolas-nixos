@@ -1,7 +1,7 @@
 { users-loader, ... }:
 
 users-loader.create-user {
-  modules = [ "nvim" ];
+  modules = [ "nvim" "steam" ];
   scripts = [ ];
   packages = [];
 

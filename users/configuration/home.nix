@@ -1,7 +1,7 @@
 { users-loader, database, ... }:
 
 users-loader.create-user {
-  modules = [ "nvim" "firefox" ];
+  modules = [ "nvim" "firefox" "steam" ];
   scripts = [ "thrnix" ];
   packages = [ ];
 
