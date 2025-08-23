@@ -1,7 +1,17 @@
 { users-loader, database, ... }:
 
 users-loader.create-user {
-  modules = [ "firefox" "nvim" "kitty" "shell" "files" ];
+  modules = [
+    "firefox"
+    "nvim"
+    "kitty"
+    "shell"
+    "files"
+    "utils"
+    "dev"
+    "git"
+  ];
+
   packages = [];
   scripts = [];
 
