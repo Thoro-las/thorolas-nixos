@@ -5,11 +5,11 @@ let
   scripts-loader = import ./scripts-loader.nix { inherit lib pkgs home-manager; };
 in
 {
-  create-user = { modules, scripts, packages, ... }@args:
+  create-user = { ... }@args:
     { config, pkgs, ... }:
     let
-      modules-content = modules-loader.load modules;
-      scripts-content = scripts-loader.load scripts;
+      modules-content = modules-loader.load (args.modules or [ ]);
+      scripts-content = scripts-loader.load (args.scripts or [ ]);
 
       loaded-home-config =
         if args ? home-config
@@ -20,7 +20,7 @@ in
       home.shellAliases = (modules-content.aliases or { })
       // (scripts-content.aliases or { });
 
-      home.packages = (packages)
+      home.packages = (args.packages or [ ])
       ++ (modules-content.packages or [ ])
       ++ (scripts-content.packages or [ ]);
 

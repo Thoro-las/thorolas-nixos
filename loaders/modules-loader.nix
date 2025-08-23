@@ -51,6 +51,6 @@ in
         (aliases: lib.attrsets.mergeAttrsList aliases)
       ];
 
-      packages = lib.lists.concatMap ({ module, config }: module.packages or {}) loaded-modules;
+      packages = lib.lists.concatMap ({ module, config }: module.packages or []) loaded-modules;
     };
 }
