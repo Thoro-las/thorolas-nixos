@@ -48,41 +48,9 @@
     pulse.enable = true;
   };
 
-
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    python3
-    gcc
-    appimage-run
-
-    vim
-    lua5_1
-
-    tmux
-    wget
-    git
-
-    ripgrep
-    trashy
-
-    zathura
-    vimiv-qt
-    yazi
-    kitty
-    discord
-
-    gnumake
-    dotnet-sdk
-
-    eww
-    rofi
-    dmenu
-    notify
-    libnotify
-    feh
-
-    xclip
-  ];
+  # environment.systemPackages = with pkgs; [
+  # ];
 
   boot = {
     plymouth = {

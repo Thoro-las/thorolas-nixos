@@ -1,9 +1,10 @@
 { pkgs, ... }:
 {
   module = {
-    packages = with pkgs; [
-      eza
-      zoxide
+    packages = [
+      pkgs.eza
+      pkgs.zoxide
+      pkgs.tmux
     ];
 
     aliases = {
