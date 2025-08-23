@@ -1,7 +1,7 @@
 { users-loader, ... }:
 
 users-loader.create-user {
-  modules = [ "ftube" ];
+  modules = [ "design" ];
   scripts = [ ];
   packages = [];
 

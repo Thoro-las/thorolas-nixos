@@ -5,7 +5,6 @@
     packages = [
       pkgs.inkscape
       pkgs.krita
-      pkgs.htop
     ];
   };
 }

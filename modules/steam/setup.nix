@@ -5,8 +5,4 @@
       steam
     ];
   };
-
-  config = {
-    enable = true;
-  };
 }

@@ -1,10 +1,7 @@
 { users-loader, ... }:
 
 users-loader.create-user {
-  modules = [ "nvim" "steam" ];
-  scripts = [ ];
+  modules = [ "nvim" "steam" "design" ];
+  scripts = [];
   packages = [];
-
-  home-config = { config, pkgs, ... }: {
-  };
 }
