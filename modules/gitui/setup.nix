@@ -2,13 +2,10 @@
 
 {
   module = {
-    program = "git";
+    program = "gitui";
   };
 
   config = {
     enable = true;
-
-    userName = "thorolas";
-    userEmail = "had.azouaou@gmail.com";
   };
 }

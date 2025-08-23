@@ -10,6 +10,7 @@ users-loader.create-user {
     "utils"
     "dev"
     "git"
+    "gitui"
   ];
 
   packages = [];
