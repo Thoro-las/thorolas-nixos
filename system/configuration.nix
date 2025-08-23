@@ -5,6 +5,8 @@
     ./hardware-configuration.nix
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -47,10 +49,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-  nixpkgs.config.allowUnfree = true;
-  # environment.systemPackages = with pkgs; [
-  # ];
 
   boot = {
     plymouth = {

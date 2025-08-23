@@ -23,6 +23,7 @@ let
 
   pkgs = import nixpkgs.path {
     inherit system;
+    config.allowUnfree = true;
     overlays = [ nur.overlays.default ];
   };
 
@@ -57,7 +58,7 @@ in
   HMusers = lib.mapAttrs
     (user: user-config:
       home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgs;
+        inherit pkgs;
         modules = [
           ({ config, pkgs, ... }@args:
             (import (../users/common.nix)

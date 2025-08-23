@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager.url = "github:nix-community/home-manager/release-25.05";
@@ -35,7 +36,6 @@
           modules = [
             system/configuration.nix
             ({ pkgs, ... }: {
-              users.mutableUsers = false;
               users.users = loadedUsers.OSusers // {
                 root = {
                   hashedPassword = "$y$j9T$94N5V1zFu894r2GaVkTut1$u9hnEfJw6qdSQrHfFh6mkjAoCaQM8T6b04xp52hqgHC";

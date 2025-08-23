@@ -13,9 +13,6 @@ users-loader.create-user {
     "gitui"
   ];
 
-  packages = [];
-  scripts = [];
-
   home-config = { config, pkgs, ... }: {
     xdg.mimeApps = {
       enable = true;
