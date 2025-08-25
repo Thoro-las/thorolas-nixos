@@ -3,6 +3,12 @@
 {
   module = {
     program = "fish";
+    packages = [ pkgs.eza ];
+
+    aliases = {
+      fishr = "source $HOME/.config/fish/config.fish";
+      ls = "exa --icons=always";
+    };
   };
 
   config = {
@@ -24,7 +30,7 @@
       fish_prompt = ''
         set -l last_status $status
         printf "\n"
-        printf "â"[$(set_color green)$USER$(set_color normal)@$(set_color blue)$hostname$(set_color normal)] "
+        printf "[$(set_color green)$USER$(set_color normal)@$(set_color blue)$hostname$(set_color normal)] "
         set -l cur_dir (pwd)
         if test "" != "$(string match -r "^$HOME" $cur_dir)"
           set cur_dir (string replace -r "^$HOME" "$(set_color red)Home" $cur_dir)
@@ -51,16 +57,10 @@
         if test "$USER" = "root"
           set end_sign "#"
         end
-        printf "$(set_color normal)\nâ""$(set_color cyan)fish$error_code$(set_color blue)$end_sign$(set_color normal) "
+        printf "$(set_color normal)\n""$(set_color cyan)fish$error_code$(set_color blue)$end_sign$(set_color normal) "
       '';
 
       fish_greeting = "";
-    };
-
-    # Shell aliases
-    shellAliases = {
-      fishr = "source $HOME/.config/fish/config.fish";
-      ls = "exa --icons=always";
     };
 
     # Interactive shell initialization (for exports and other setup)
@@ -87,7 +87,7 @@
       set -U fish_color_cancel -r
       set -U fish_color_command blue
       set -U fish_color_comment red
-      set -U fish_color_cwd green
+      set -U fish_color_cwd red
       set -U fish_color_cwd_root red
       set -U fish_color_end green
       set -U fish_color_error brred

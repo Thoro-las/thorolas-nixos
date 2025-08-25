@@ -12,6 +12,7 @@ users-loader.create-user {
     modules.git
     modules.gitui
     modules.fish
+    modules.tmux
   ];
 
   home-config = { config, pkgs, ... }: {
