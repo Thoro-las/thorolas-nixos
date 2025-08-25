@@ -11,6 +11,7 @@ users-loader.create-user {
     modules.dev
     modules.git
     modules.gitui
+    modules.fish
   ];
 
   home-config = { config, pkgs, ... }: {

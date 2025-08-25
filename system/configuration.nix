@@ -45,7 +45,6 @@
     polkit
     dconf
 
-    fish
     wlogout
     kdePackages.dolphin
     wofi
@@ -60,7 +59,7 @@
     swaynotificationcenter
   ];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     dejavu_fonts
   ];
 
