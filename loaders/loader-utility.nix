@@ -10,16 +10,25 @@ rec {
       ];
   };
 
-  create-database = let
-    to-useless-attrset = directory: type: 
-      lib.pipe fs.list-subitems directory type [
-        (module-names: lib.map
-          (module-name: { name = module-name; value = "" + module-name; })
-          module-names)
-        (module-names: lib.listToAttrs module-names)
+  get-database =
+    let
+      to-placeholder-attrset = directory: type:
+        lib.pipe (fs.list-subitems directory type) [
+          (module-names: lib.map
+            (module-name: { name = module-name; value = "" + module-name; })
+            module-names)
+          (module-names: lib.listToAttrs module-names)
+        ];
+    in
+    {
+      modules = to-placeholder-attrset ../modules "directory";
+      scripts = lib.pipe (to-placeholder-attrset ../scripts "regular") [
+        (script-names: lib.mapAttrs'
+          (name: value: {
+            name = lib.removeSuffix ".nix" name;
+            value = value;
+          })
+          script-names)
       ];
-  in {
-    modules = to-useless-attrset ../modules "directory";
-    scripts = to-useless-attrset ../scripts "regular";
-  };
+    };
 }

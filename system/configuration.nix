@@ -40,6 +40,38 @@
     desktopManager.gnome.enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    xdg-desktop-portal-hyprland
+    polkit
+    dconf
+
+    fish
+    wlogout
+    kdePackages.dolphin
+    wofi
+    tmux
+    rofi-wayland
+    cliphist
+    waybar
+    hyprpaper
+    hypridle
+    hyprlock
+    nwg-drawer
+    swaynotificationcenter
+  ];
+
+  fonts.fonts = with pkgs; [
+    dejavu_fonts
+  ];
+
+  services.displayManager.defaultSession = "hyprland-uwsm";
+
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
+
   services.printing.enable = true;
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -51,13 +83,13 @@
   };
 
   boot = {
-    plymouth = {
-      enable = true;
-      theme = "circuit";
-      themePackages = with pkgs; [
-        (adi1090x-plymouth-themes.override { selected_themes = [ "circuit" ]; })
-      ];
-    };
+    # plymouth = {
+    #   enable = true;
+    #   theme = "circuit";
+    #   themePackages = with pkgs; [
+    #     (adi1090x-plymouth-themes.override { selected_themes = [ "circuit" ]; })
+    #   ];
+    # };
 
     uvesafb.enable = true;
     initrd.systemd.enable = true;

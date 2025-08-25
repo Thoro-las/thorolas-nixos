@@ -10,5 +10,9 @@
 
     userName = "thorolas";
     userEmail = "had.azouaou@gmail.com";
+
+    extraConfig = {
+      safe.directory = "/etc/nixos";
+    };
   };
 }

@@ -1,10 +1,12 @@
-font_family      JetBrainsMono Nerd Font
+font_family      Comic Mono
 font_size 10
 force_ltr yes
 disable_ligatures never
 text_composition_strategy platform
 text_fg_override_threshold 0
 
+modify_font cell_width 110%
+modify_font cell_height 110%
 modify_font underline_position 0
 # cursor none
 cursor_beam_thickness 0.3
@@ -22,8 +24,3 @@ shell fish
 editor nvim
 shell_integration no-cursor
 linux_display_server wayland
-
-# BEGIN_KITTY_THEME
-# One Dark
-include current-theme.conf
-# END_KITTY_THEME

@@ -27,10 +27,7 @@ let
     overlays = [ nur.overlays.default ];
   };
 
-  database = {
-    pkgs = pkgs;
-    custom-pkgs = { };
-  };
+  database = loader-utility.get-database;
 in
 {
   OSgroups = {
@@ -72,10 +69,12 @@ in
             home.stateVersion = state-version;
           })
 
-	  ({ config, pkgs, ... }: 
-	    user-config.home 
-	      { inherit users-loader database; }
-	      { inherit config pkgs; })
+          ({ config, pkgs, ... }: import ../interface/hyprland/default.nix )
+
+          ({ config, pkgs, ... }:
+            user-config.home
+              { inherit users-loader database; }
+              { inherit config pkgs; })
         ];
       }
     )

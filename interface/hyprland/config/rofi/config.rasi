@@ -1,0 +1,181 @@
+configuration {
+  modes: "drun,run,window";
+  font: "JetBrainsMono 8";
+  fixed-num-lines: true;
+  show-icons: true;
+  icon-theme: "Fluent-dark";
+  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+  sidebar-mode: true;
+  window-format: "{w}    {c}   {t}";
+  window-thumbnail: true;
+  timeout {
+    action: "kb-cancel";
+    delay: 0;
+  }
+  filebrowser {
+    directories-first: true;
+    sorting-method: "name";
+  }
+}
+
+/*******************************************************************************
+* ROFI Color theme
+* User: Rasi
+* Copyright: Rasmus Steinke
+*******************************************************************************/
+
+* {
+  bg: #1f2329;
+  bg1: #282c34;
+  bg2: #30363f;
+  bg3: #323641;
+  bg-blue: #61afef;
+  bg-d: #181b20;
+  bg-yellow: #e8c88c;
+  black: #0e1013;
+  blue: #4fa6ed;
+  cyan: #48b0bd;
+  dark-cyan: #266269;
+  dark-purple: #7e3992;
+  dark-red: #8b3434;
+  dark-yellow: #835d1a;
+  fg: #a0a8b7;
+  green: #8ebd6b;
+  grey: #535965;
+  light-grey: #7a818e;
+  orange: #cc9057;
+  purple: #bf68d9;
+  red: #e55561;
+  yellow: #e2b86b;
+}
+
+window {
+  background-color: @bg1;
+  padding: 0;
+  border-radius: 20px;
+  border: 0;
+}
+mainbox {
+  border: 0;
+  padding: 0;
+}
+
+message {
+  padding: 1em;
+  background-color: @bg2;
+  margin: 10px;
+}
+textbox {
+  text-color: @fg;
+}
+
+listview {
+  border: 0;
+  spacing: 0;
+  scrollbar: true;
+  padding: 0 0;
+  lines: 7;
+  fixed-height: true;
+  fixed-columns: true;
+}
+element {
+  margin: 5px;
+  padding: 8px;
+}
+element-icon {
+  size: 30;
+}
+element-text {
+  vertical-align: 0.5;
+  background-color: inherit;
+  text-color: inherit;
+}
+element.normal.normal {
+  background-color: @bg1;
+  text-color: @fg;
+}
+element.normal.urgent {
+  background-color: @bg1;
+  text-color: @red;
+}
+element.normal.active {
+  background-color: @bg1;
+  text-color: @green;
+}
+element.alternate.normal {
+  background-color: @bg;
+  text-color: @fg;
+}
+element.alternate.urgent {
+  background-color: @bg1;
+  text-color: @red;
+}
+element.alternate.active {
+  background-color: @bg1;
+  text-color: @green;
+}
+element.alternate.normal {
+  background-color: @bg1;
+  text-color: @fg;
+}
+element.selected.normal {
+  background-color: @bg;
+  text-color: @fg;
+}
+element.selected.urgent {
+  background-color: @bg;
+  text-color: @red;
+}
+element.selected.active {
+  background-color: @bg;
+  text-color: @green;
+}
+
+scrollbar {
+  width: 0.5em;
+  handle-width: 0.5em;
+  handle-color: @bg2;
+  background-color: @bg;
+}
+
+mode-switcher {
+  padding: 0;
+  background-color: @bg2;
+  text-color: @fg;
+}
+button {
+  padding: 10px 3px;
+  text-color: @fg;
+}
+button.selected {
+  text-color: @blue;
+  background-color: @bg1;
+}
+
+inputbar {
+  spacing: 0;
+  text-color: @fg;
+  background-color: @bg;
+  padding: 1em;
+  children: [ prompt, entry, case-indicator ];
+}
+case-indicator {
+  spacing: 0;
+  text-color: @fg;
+}
+entry {
+  margin: 0 0 0 1em;
+  spacing: 0;
+  text-color: @fg;
+  vertical-align: 0.5;
+  cursor-width: 1px;
+  cursor-color: @green;
+}
+prompt {
+  spacing: 0;
+  horizontal-align: 0.5;
+  text-color: @black;
+  background-color: @green;
+  border-radius: 0.5em;
+  padding: 0 1em;
+}

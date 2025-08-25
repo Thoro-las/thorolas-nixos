@@ -4,6 +4,9 @@
   name = "thrnix";
   language = "python";
 
+  /*
+  for user in $(awk -F: '($3 >= 1000 && $1 !~ /^(nixbld|nobody|rescue)/) {print $1}' /etc/passwd); do   sudo -u "$user" echo "THRNIX >> User $user loading..."; nix run nixpkgs#home-manager -- switch --flake /etc/nixos; done
+  */
   script = ''
     import argparse
 
