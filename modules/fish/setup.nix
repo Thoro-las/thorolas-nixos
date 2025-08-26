@@ -4,11 +4,6 @@
   module = {
     program = "fish";
     packages = [ pkgs.eza ];
-
-    aliases = {
-      fishr = "source $HOME/.config/fish/config.fish";
-      ls = "exa --icons=always";
-    };
   };
 
   config = {
@@ -29,7 +24,6 @@
 
       fish_prompt = ''
         set -l last_status $status
-        printf "\n"
         printf "[$(set_color green)$USER$(set_color normal)@$(set_color blue)$hostname$(set_color normal)] "
         set -l cur_dir (pwd)
         if test "" != "$(string match -r "^$HOME" $cur_dir)"
@@ -60,7 +54,17 @@
         printf "$(set_color normal)\n""$(set_color cyan)fish$error_code$(set_color blue)$end_sign$(set_color normal) "
       '';
 
-      fish_greeting = "";
+      fish_greeting = ''
+        set_color cyan
+        echo "Oh, it's you again."
+        set_color normal
+        echo "Another day, another shell."
+      '';
+
+      add_newline_before_prompt = {
+        body = ''printf "\n"'';
+        onEvent = "fish_postexec";
+      };
     };
 
     # Interactive shell initialization (for exports and other setup)

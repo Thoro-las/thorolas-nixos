@@ -9,11 +9,6 @@
     recursive = true;
   };
 
-  home.file.".config/tmux" = {
-    source = ./config/tmux;
-    recursive = true;
-  };
-
   home.file.".config/rofi" = {
     source = ./config/rofi;
     recursive = true;

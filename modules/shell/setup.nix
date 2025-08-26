@@ -8,7 +8,8 @@
     ];
 
     aliases = {
-      "ls" = "eza --icons --group-directories-first";
+      ls = "eza --icons=always --group-directories-first";
+      fishr = "source $HOME/.config/fish/config.fish";
     };
   };
 }
