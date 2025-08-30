@@ -13,40 +13,24 @@
     escapeTime = 0;
     keyMode = "vi";
 
-    # prefix = "C-x";
-
     extraConfig = ''
-      # Send prefix key through
-      # bind-key C-x send-prefix
-      
+      unbind h
+      unbind v
+
+      bind h split-window -h
+      bind v split-window -v
+
+      bind -n c-h select-pane -L
+      bind -n c-l select-pane -R
+      bind -n c-k select-pane -U
+      bind -n c-j select-pane -D
+
       # Visual settings
       set -g visual-activity off
       set -gq allow-passthrough on
-      
-      # Unbind default keys
-      unbind %
-      unbind \"
-      unbind n
-      unbind p
-      unbind C-z
-      
-      # Key bindings
-      # bind r source-file ~/.config/tmux/tmux.conf \; display-message "~/.config/tmux/tmux.conf Reloaded"
-      # bind | split-pane -h -c "#{pane_current_path}"
-      # bind _ split-pane -v -c "#{pane_current_path}"
-      # bind c next-window
-      # bind z previous-window
-      # bind a new-window -c "#{pane_current_path}"
-      # bind p choose-buffer
-      # bind Up select-pane -U
-      # bind Down select-pane -D
-      # bind Left select-pane -L
-      # bind Right select-pane -R
-      # 
-      # # Copy mode bindings
-      # bind-key -T copy-mode C-Right send-keys -X next-word
-      # bind-key -T copy-mode C-Left send-keys -X previous-word
-      
+      set -g base-index 1
+      setw -g pane-base-index 1
+
       # Status bar styling
       set-option -g status-style "bg=default,fg=white"
       set-option -g status-left-length 30
@@ -58,7 +42,7 @@
 
       # Status bar content
       set-option -g status-left " #{?client_prefix,#[fg=violet],#[fg=blue]}󰈈 #{?client_prefix,Prefix,Normal}"
-      set-option -g status-right "#[fg=green] %H:%M #[fg=yellow]󪰀 %d %A %B %Y"
+      set-option -g status-right "#[fg=blue] #[fg=green]%H:%M #[fg=blue]~ #[fg=yellow]%d %A %B %Y "
 
       # Window status format
       set-option -g window-status-current-format " #[fg=yellow]#I#[fg=default]:#[fg=green]#W"

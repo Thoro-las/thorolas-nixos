@@ -13,6 +13,9 @@
       php
       go
 
+      fsharp
+      fsautocomplete
+
       lua-language-server
       rust-analyzer
       nodePackages.typescript-language-server
@@ -20,7 +23,6 @@
 
       stylua
       black
-      # prettier
       eslint_d
 
       tinymist

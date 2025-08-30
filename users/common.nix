@@ -13,6 +13,8 @@ users-loader.create-user {
     modules.gitui
     modules.fish
     modules.tmux
+    modules.socials
+    modules.typing
   ];
 
   home-config = { config, pkgs, ... }: {

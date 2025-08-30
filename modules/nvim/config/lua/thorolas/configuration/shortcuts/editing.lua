@@ -23,3 +23,4 @@ kw.mapd("n", "<leader>tt", function()
         detach = true,
     })
 end, "Open Kitty")
+

@@ -31,7 +31,7 @@
 window#waybar {
   background: @bg;
   color: @fg;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   border: none;
   padding: 0 2px;
 }
@@ -43,16 +43,25 @@ window#waybar {
 
 #workspaces > button {
   font-weight: bold;
+  font-size: 1.2em;
   color: @fg;
-  border-radius: 3px;
+  /* border-radius: 3px; */
   padding: 0 .4em;
   margin: 0;
 }
 
+#workspaces > button:not(.empty):not(.active) {
+  border-bottom: 3px solid @green;
+}
+
 #workspaces > button.active {
-  font-size: 1em;
   color: @bg1;
   background: @blue;
+}
+
+#workspaces > button.urgent {
+  color: @bg1;
+  background: @red;
 }
 
 #window {

@@ -30,6 +30,7 @@ user_pref("browser.download.lastDir", "/home/configuration/Downloads");
 user_pref("browser.download.panel.shown", true);
 user_pref("browser.download.viewableInternally.typeWasRegistered.avif", true);
 user_pref("browser.download.viewableInternally.typeWasRegistered.webp", true);
+user_pref("browser.download.open_pdf_attachments_inline", true);
 user_pref("browser.engagement.ctrlTab.has-used", true);
 user_pref("browser.engagement.downloads-button.has-used", true);
 user_pref("browser.engagement.sidebar-button.has-used", true);

@@ -1,5 +1,5 @@
 return function(capabilities)
-    require("lspconfig").fsautocomplete.setup({
-        capabilities = capabilities,
-    })
+  require("lspconfig").fsautocomplete.setup({
+    capabilities = capabilities,
+  })
 end

@@ -50,13 +50,18 @@
     wofi
     tmux
     rofi-wayland
+    rofi-bluetooth
+    rofi-network-manager
+
     cliphist
     waybar
     hyprpaper
     hypridle
     hyprlock
+    hyprshot
     nwg-drawer
     swaynotificationcenter
+    blueman
   ];
 
   fonts.packages = with pkgs; [
@@ -72,8 +77,9 @@
   };
 
   services.printing.enable = true;
-  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+
+  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -82,13 +88,13 @@
   };
 
   boot = {
-    # plymouth = {
-    #   enable = true;
-    #   theme = "circuit";
-    #   themePackages = with pkgs; [
-    #     (adi1090x-plymouth-themes.override { selected_themes = [ "circuit" ]; })
-    #   ];
-    # };
+    plymouth = {
+      enable = true;
+      theme = "circuit";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override { selected_themes = [ "circuit" ]; })
+      ];
+    };
 
     uvesafb.enable = true;
     initrd.systemd.enable = true;
