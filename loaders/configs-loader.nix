@@ -6,8 +6,6 @@ let
   loader-utility = import ./loader-utility.nix { inherit pkgs lib; };
   users-loader = import ./users-loader.nix { inherit pkgs lib home-manager; };
 
-  _ = builtins.warn "test";
-
   loaded-users = lib.pipe (loader-utility.fs.list-subitems ../users "directory") [
     (user-names: lib.listToAttrs (lib.map
       (user-name: {
@@ -28,8 +26,7 @@ let
   };
 
   database = loader-utility.get-database;
-in
-{
+in {
   OSgroups = {
     nixos-conf = { };
   };

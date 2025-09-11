@@ -1,0 +1,43 @@
+@define-color bg #1f2329;
+@define-color bg1 #282c34;
+@define-color bg2 #30363f;
+@define-color bg3 #323641;
+@define-color bg_blue #61afef;
+@define-color bg_d #181b20;
+@define-color bg_yellow #e8c88c;
+@define-color black #0e1013;
+@define-color blue #4fa6ed;
+@define-color cyan #48b0bd;
+@define-color dark_cyan #266269;
+@define-color dark_purple #7e3992;
+@define-color dark_red #8b3434;
+@define-color dark_yellow #835d1a;
+@define-color fg #a0a8b7;
+@define-color green #8ebd6b;
+@define-color grey #535965;
+@define-color light_grey #7a818e;
+@define-color orange #cc9057;
+@define-color purple #bf68d9;
+@define-color red #e55561;
+@define-color yellow #e2b86b;
+
+@define-size icon-size 1.3em;
+
+@import url("/etc/nixos/interface/hyprland/config/waybar/styles/iconsvalues.css");
+@import url("/etc/nixos/interface/hyprland/config/waybar/styles/workspaces.css");
+
+* {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 18px;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+
+window#waybar {
+  background: @bg;
+  color: @fg;
+  border: none;
+  /* padding: 0 2px; */
+}
+

@@ -1,0 +1,6 @@
+{
+  "include": [
+    "/etc/nixos/interface/hyprland/config/waybar/modules/menu.jsonc",
+    "/etc/nixos/interface/hyprland/config/waybar/modules/workspaces.jsonc"
+  ]
+}

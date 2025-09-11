@@ -37,7 +37,6 @@
     enable = true;
 
     displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -53,7 +52,6 @@
     rofi-bluetooth
     rofi-network-manager
 
-    cliphist
     waybar
     hyprpaper
     hypridle
@@ -62,6 +60,14 @@
     nwg-drawer
     swaynotificationcenter
     blueman
+    brightnessctl
+
+    wine
+    wineWowPackages.stable
+    winetricks
+    bottles
+    qbittorrent-enhanced
+    xarchiver
   ];
 
   fonts.packages = with pkgs; [
@@ -69,6 +75,11 @@
   ];
 
   services.displayManager.defaultSession = "hyprland-uwsm";
+
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = with pkgs; [ proton-ge-bin ];
+  };
 
   programs.hyprland = {
     enable = true;

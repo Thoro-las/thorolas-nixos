@@ -22,7 +22,7 @@ vim.opt.expandtab = false;
 vim.opt.timeoutlen = 300;
 vim.opt.updatetime = 250;
 
--- vim.opt.mouse = "";
+vim.opt.mouse = "";
 vim.opt.showmode = false;
 vim.opt.clipboard = "unnamedplus";
 
@@ -50,4 +50,4 @@ vim.opt.expandtab = true;
 vim.opt.shiftwidth = 2;
 vim.opt.softtabstop = 2;
 
-vim.opt.runtimepath:append("/home/thorolas/.nvm/versions/node/v24.2.0/bin")
+vim.opt.runtimepath:append("~/.nix-profile/bin")

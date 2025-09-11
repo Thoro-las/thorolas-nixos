@@ -1,6 +1,6 @@
 configuration {
   modes: "drun,run,window";
-  font: "JetBrainsMono 8";
+  font: "JetBrainsMono 12";
   fixed-num-lines: true;
   show-icons: true;
   icon-theme: "Fluent-dark";

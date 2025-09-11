@@ -1,0 +1,6 @@
+#workspaces {
+  background: @fg;
+  color: @bg;
+  font-size: @icon-size;
+}
+

@@ -9,7 +9,6 @@
   config = {
     enable = true;
 
-    # Functions
     functions = {
       conf = ''
         set -l files ""
@@ -71,12 +70,14 @@
     interactiveShellInit = ''
       # Export environment variables
       set -gx EDITOR "nvim"
+      set -gx VISUAL "nvim"
       set -gx SHELL (which fish)
       
       # Add to PATH
       fish_add_path $HOME/.config/composer/vendor/bin
       fish_add_path $HOME/.local/bin
       fish_add_path $HOME/.luarocks/bin
+      fish_add_path $HOME/.dotnet/tools
       
       # Wine configuration
       set -gx WINE_ROOT "$HOME/.wine"

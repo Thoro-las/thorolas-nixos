@@ -17,6 +17,10 @@ users-loader.create-user {
     modules.typing
   ];
 
+  scripts = with database; [
+    scripts.thrnix
+  ];
+
   home-config = { config, pkgs, ... }: {
     services.swaync.enable = true;
 

@@ -9,10 +9,12 @@ return {
         for _, file in ipairs(files) do
             local filename = vim.fn.fnamemodify(file, ":t:r")
             local ok, server = pcall(require, "thorolas.plugins.lsp.servers." .. filename)
-            if ok and type(server) == "function" then
+
+            if ok and type(server) == "function"
+              then
+                vim.notify("loaded " .. filename)
                 server(capabilities)
-            else
-                vim.notify("Failed to load LSP server: " .. filename)
+              else vim.notify("Failed to load LSP server: " .. filename)
             end
         end
 

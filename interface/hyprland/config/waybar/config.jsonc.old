@@ -1,0 +1,37 @@
+[
+  {
+    "include": [
+      "/etc/nixos/interface/hyprland/config/waybar/bar.jsonc",
+      "/etc/nixos/interface/hyprland/config/waybar/modules.jsonc"
+    ],
+
+    "position": "top",
+    "modules-left": [
+      "group/menu",
+      "group/workspaces"
+    ],
+
+    "modules-center": [
+    ],
+
+    "modules-right": []
+      // "group/states",
+      // "group/services",
+      // "group/info"
+    // ]
+  },
+
+  {
+    "include": [
+      "/etc/nixos/interface/hyprland/config/waybar/bar.jsonc",
+      "/etc/nixos/interface/hyprland/config/waybar/modules.jsonc"
+    ],
+
+    "position": "bottom",
+    "modules-left": [ ],
+    "modules-center": [
+      "hyprland/window"
+    ],
+    "modules-right": [ ],
+  }
+]

@@ -31,10 +31,10 @@ in
         (script-names: lib.filter check-exist script-names)
         (existing-scripts: lib.map
           (script: import ../scripts/${script}.nix { inherit pkgs lib home-manager; })
-            existing-scripts)
+          existing-scripts)
       ];
 
-      loaded-script-dependencies = lib.concatMap (script: script.packages or []) loaded-scripts;
+      loaded-script-dependencies = lib.concatMap (script: script.packages or [ ]) loaded-scripts;
       loaded-script-files = lib.map
         (script:
           pkgs.writeTextFile {
@@ -47,7 +47,10 @@ in
         loaded-scripts;
     in
     {
-      packages = with pkgs; loaded-script-files ++ loaded-script-languages ++ loaded-script-dependencies;
+      packages = with pkgs;
+        loaded-script-files
+        ++ loaded-script-languages
+        ++ loaded-script-dependencies;
 
       aliases = lib.pipe loaded-scripts [
         (loaded-scripts: lib.map (script: script.aliases) loaded-scripts)
