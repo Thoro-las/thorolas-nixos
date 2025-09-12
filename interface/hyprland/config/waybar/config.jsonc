@@ -1,43 +1,27 @@
 {
-  "layer": "bottom",
+  "layer": "top",
   "position": "top",
-  "height": 40,
-  "spacing": 2,
-  "exclusive": true,
+  "height": 27,
   "gtk-layer-shell": true,
-  "passthrough": false,
   "fixed-center": true,
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["mpris"],
-  "modules-right": [
-    "cpu",
-    "memory",
-    "pulseaudio",
-    "clock",
-    "clock#simpleclock",
-    "tray",
-    "custom/notification",
-    "custom/power",
+  "modules-left": [
+    "custom/appmenu",
+    "hyprland/workspaces",
+    "hyprland/window"
   ],
-  "custom/spotify": {
-    "format": "  {}",
-    "return-type": "json",
-    "on-click": "playerctl -p spotify play-pause",
-    "on-click-right": "spotifatius toggle-liked",
-    "on-click-middle": "playerctl -p spotify next",
-    "exec": "spotifatius monitor",
-  },
-  "mpris": {
-    "player": "spotify",
-    "dynamic-order": ["artist", "title"],
-    "format": "{player_icon} {dynamic}",
-    "format-paused": "{status_icon} <i>{dynamic}</i>",
-    "status-icons": {
-      "paused": "",
-    },
-    "player-icons": {
-      "default": "",
-    },
+  "modules-center": [],
+  "modules-right": [
+    "group/services",
+    "group/infos",
+    "group/state",
+    "custom/powermenu"
+  ],
+  "custom/appmenu": {
+    "format": " 󱄅 ",
+    "on-click": "rofi -show drun",
+    "interval": 60,
+    "tooltip": true,
+    "tooltip-format": "{}"
   },
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -47,23 +31,46 @@
     "active-only": false,
   },
   "hyprland/window": {
-    "format": "{title}",
+    "format": ">> {title} ",
+    "max-length": 50,
+    "icon": true,
+    "icon-size": 20
+  },
+  "group/infos": {
+    "orientation": "horizontal",
+    "modules": [
+      "memory",
+      "cpu",
+      "custom/harddisk",
+    ]
+  },
+  "group/state": {
+    "orientation": "horizontal",
+    "modules": [
+      "backlight",
+      "pulseaudio",
+      "clock"
+    ]
+  },
+  "group/services": {
+    "orientation": "horizontal",
+    "modules": [
+      "privacy",
+      "tray",
+      "custom/notification",
+    ]
   },
   "tray": {
     "show-passive-items": true,
     "spacing": 10,
   },
-  "clock#simpleclock": {
-    "tooltip": false,
-    "format": " {:%H:%M}",
-  },
   "clock": {
-    "format": " {:L%a %d %b}",
+    "format": "<span foreground='#8ebd6b'>  </span>{:L%a %d %b ~ %H:%M}",
     "calendar": {
       "format": {
         "days": "<span weight='normal'>{}</span>",
         "months": "<span color='#cdd6f4'><b>{}</b></span>",
-        "today": "<span color='#f38ba8' weight='700'><u>{}</u></span>",
+        "today": "<span color='#f38ba8' weight='700'>{}</span>",
         "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
         "weeks": "<span color='#a6e3a1'><b>W{}</b></span>",
       },
@@ -74,42 +81,74 @@
     "tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>",
   },
   "cpu": {
-    "format": " {usage}%",
-    "tooltip": true,
+    "format": "<span foreground='#8ebd6b'> </span>{usage:2d}%",
     "interval": 1,
   },
   "memory": {
-    "format": " {used:0.1f}Gi",
+    "format": "<span foreground='#8ebd6b'> </span>{used:1.0f}G"
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
-    "format-muted": "  muted",
+    "format": "<span foreground='#8ebd6b'>{icon}</span>{volume}%",
+    "format-muted": " muted",
     "format-icons": {
-      "headphone": "",
-      "default": [" ", " ", " "],
+      "headphone": " ",
+      "default": [
+        " ",
+        " ",
+        " "
+      ],
     },
     "on-click": "pavucontrol",
   },
-  "custom/sep": {
-    "format": "|",
-    "tooltip": false,
+  "backlight": {
+    "format": "<span foreground='#8ebd6b'>{icon}</span>{percent}%",
+    "format-icons": [
+      "󰃞 ",
+      "󰃟 ",
+      "󰃠 "
+    ],
   },
-  "custom/power": {
+  "custom/powermenu": {
     "tooltip": false,
     "on-click": "wlogout -p layer-shell &",
-    "format": "⏻",
+    "format": " 󰐥 "
+  },
+  "custom/harddisk": {
+    "exec": "df -h / | awk 'NR==2 { print $3 }'",
+    "format": "<span foreground='#8ebd6b'>󰋊 </span>{}",
   },
   "custom/notification": {
     "escape": true,
     "exec": "swaync-client -swb",
-    "exec-if": "which swaync-client",
-    "format": "{icon}",
+    "format": "<span foreground='#48b0bd'>{icon}</span>",
     "format-icons": {
-      "none": "󰅺",
-      "notification": "󰡟",
+      "none": "󰍥",
+      "notification": "󱥁",
     },
     "on-click": "sleep 0.1 && swaync-client -t -sw",
     "return-type": "json",
     "tooltip": false,
+  },
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ],
   },
 }

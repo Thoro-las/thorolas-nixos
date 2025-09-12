@@ -51,6 +51,11 @@
     rofi-wayland
     rofi-bluetooth
     rofi-network-manager
+    pavucontrol
+
+    usbutils
+    udisks
+    udiskie
 
     waybar
     hyprpaper
@@ -61,6 +66,7 @@
     swaynotificationcenter
     blueman
     brightnessctl
+    neofetch
 
     wine
     wineWowPackages.stable
@@ -68,6 +74,7 @@
     bottles
     qbittorrent-enhanced
     xarchiver
+    vulkan-tools
   ];
 
   fonts.packages = with pkgs; [
@@ -97,6 +104,9 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
 
   boot = {
     plymouth = {

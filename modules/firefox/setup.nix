@@ -45,6 +45,11 @@
             definedAliases = [ "@per" ];
           };
 
+          "DeepWiki" = {
+            urls = [{ template = "https://deepwiki.com/{searchTerms}"; }];
+            definedAliases = [ "@dwi" ];
+          };
+
           "My NixOS" = {
             urls = [{ template = "https://mynixos.com/search?q={searchTerms}"; }];
             definedAliases = [ "@myn" ];
@@ -57,6 +62,7 @@
         settings = [
           { name = "GitHub"; url = "https://github.com"; }
           { name = "NixOS"; url = "https://nixos.org"; }
+          { name = "Perplexity"; url = "https://perplexity.ai"; }
         ];
       };
     };

@@ -75,6 +75,7 @@ listview {
   scrollbar: true;
   padding: 0 0;
   lines: 7;
+  columns: 3;
   fixed-height: true;
   fixed-columns: true;
 }
