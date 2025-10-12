@@ -24,7 +24,7 @@
 * {
   font-family: "JetBrainsMono NFP";
   font-weight: 600;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 window#waybar {
@@ -85,7 +85,7 @@ window#waybar.empty #window {
 #services,
 #infos,
 #state {
-  border-bottom: 3px solid @green;
+  border-bottom: 3px solid @blue;
   background-color: @bg2;
   margin: 0 7px 0 0;
   padding: 0 3px;
@@ -95,7 +95,7 @@ window#waybar.empty #window {
 #services:hover,
 #infos:hover,
 #state:hover {
-  border-bottom: 3px solid @blue;
+  border-bottom: 3px solid @purple;
 }
 
 #backlight,
@@ -107,7 +107,10 @@ window#waybar.empty #window {
 #clock,
 #privacy,
 #custom-harddisk,
-#memory{
+#memory,
+#network,
+#bluetooth
+{
   margin: 0 7px;
 }
 

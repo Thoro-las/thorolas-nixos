@@ -9,7 +9,7 @@ let
 
     python = {
       shebang = "#!/usr/bin/env python3";
-      package = pkgs.python3;
+      package = null;
     };
   };
 

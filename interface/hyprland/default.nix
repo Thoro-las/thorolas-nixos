@@ -1,3 +1,4 @@
+{pkgs}:
 {
   home.file.".config/hypr" = {
     source = ./config/hypr;
@@ -18,4 +19,5 @@
     source = ./config/waybar;
     recursive = true;
   };
+
 }

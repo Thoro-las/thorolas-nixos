@@ -1,0 +1,5 @@
+[package]
+name = "Wide"
+version = "1.0.0"
+authors = ["Thoro-las"]
+entrypoint = "./template.typ"

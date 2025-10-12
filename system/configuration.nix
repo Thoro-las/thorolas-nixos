@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
   ];
-
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
@@ -27,35 +26,33 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+
   console.keyMap = "be-latin1";
   services.xserver.xkb = {
     layout = "be";
     variant = "nodeadkeys";
   };
 
-  services.xserver = {
+  services.xserver.enable = true;
+  services.displayManager.sddm = {
     enable = true;
-
-    displayManager.gdm.enable = true;
+    theme = "vinyl";
   };
 
   environment.systemPackages = with pkgs; [
     xdg-desktop-portal-hyprland
     polkit
     dconf
+    bluez
 
     wlogout
     kdePackages.dolphin
-    wofi
-    tmux
     rofi-wayland
     rofi-bluetooth
     rofi-network-manager
     pavucontrol
-
-    usbutils
-    udisks
-    udiskie
 
     waybar
     hyprpaper
@@ -67,18 +64,6 @@
     blueman
     brightnessctl
     neofetch
-
-    wine
-    wineWowPackages.stable
-    winetricks
-    bottles
-    qbittorrent-enhanced
-    xarchiver
-    vulkan-tools
-  ];
-
-  fonts.packages = with pkgs; [
-    dejavu_fonts
   ];
 
   services.displayManager.defaultSession = "hyprland-uwsm";
@@ -109,13 +94,13 @@
   services.gvfs.enable = true;
 
   boot = {
-    plymouth = {
-      enable = true;
-      theme = "circuit";
-      themePackages = with pkgs; [
-        (adi1090x-plymouth-themes.override { selected_themes = [ "circuit" ]; })
-      ];
-    };
+    # plymouth = {
+    #   enable = true;
+    #   theme = "circuit";
+    #   themePackages = with pkgs; [
+    #     (adi1090x-plymouth-themes.override { selected_themes = [ "circuit" ]; })
+    #   ];
+    # };
 
     uvesafb.enable = true;
     initrd.systemd.enable = true;

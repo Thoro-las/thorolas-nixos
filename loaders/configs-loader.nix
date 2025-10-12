@@ -26,7 +26,8 @@ let
   };
 
   database = loader-utility.get-database;
-in {
+in
+{
   OSgroups = {
     nixos-conf = { };
   };
@@ -66,7 +67,7 @@ in {
             home.stateVersion = state-version;
           })
 
-          ({ config, pkgs, ... }: import ../interface/hyprland/default.nix )
+          ({ config, pkgs, ... }: import ../interface/hyprland/default.nix { inherit pkgs; })
 
           ({ config, pkgs, ... }:
             user-config.home

@@ -11,9 +11,7 @@ return {
             local ok, server = pcall(require, "thorolas.plugins.lsp.servers." .. filename)
 
             if ok and type(server) == "function"
-              then
-                vim.notify("loaded " .. filename)
-                server(capabilities)
+              then server(capabilities)
               else vim.notify("Failed to load LSP server: " .. filename)
             end
         end

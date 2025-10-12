@@ -54,6 +54,11 @@
             urls = [{ template = "https://mynixos.com/search?q={searchTerms}"; }];
             definedAliases = [ "@myn" ];
           };
+
+          "ProofWiki" = {
+            urls = [{ template = "https://proofwiki.org/w/index.php?search={searchTerms}"; }];
+            definedAliases = [ "@prf" ];
+          };
         };
       };
 

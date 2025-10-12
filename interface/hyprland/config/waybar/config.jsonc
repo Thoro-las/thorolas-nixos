@@ -49,6 +49,9 @@
     "modules": [
       "backlight",
       "pulseaudio",
+      "network",
+      "bluetooth",
+      "battery",
       "clock"
     ]
   },
@@ -65,7 +68,7 @@
     "spacing": 10,
   },
   "clock": {
-    "format": "<span foreground='#8ebd6b'>  </span>{:L%a %d %b ~ %H:%M}",
+    "format": "<span foreground='#bf68d9'>  </span>{:L%a %d %b ~ %H:%M}",
     "calendar": {
       "format": {
         "days": "<span weight='normal'>{}</span>",
@@ -81,19 +84,54 @@
     "tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>",
   },
   "cpu": {
-    "format": "<span foreground='#8ebd6b'> </span>{usage:2d}%",
+    "format": "<span foreground='#bf68d9' font='13'> </span>{usage:02d}%",
     "interval": 1,
   },
   "memory": {
-    "format": "<span foreground='#8ebd6b'> </span>{used:1.0f}G"
+    "format": "<span foreground='#bf68d9' font='13'>󰘚 </span>{used:1.0f}G"
+  },
+  "battery": {
+    "format-icons": [
+      "󰂎 ",
+      "󱊡 ",
+      "󱊡 ",
+      "󱊢 ",
+      "󱊢 ",
+      "󱊢 ",
+      "󱊢 ",
+      "󱊣 ",
+      "󱊣 ",
+      "󱊣 "
+    ],
+    "states": {
+      "critical": 20,
+      "warning": 40,
+    },
+    "format": "<span foreground='#bf68d9' size='15pt'>{icon}</span>{capacity}%",
+    "format-chargin": "<span foreground='#bf68d9' size='15pt'> </span>{capacity}%",
+    "format-plugged": "<span foreground='#bf68d9' size='15pt'> </span>{capacity}%",
+  },
+  "network": {
+    "format": "<span foreground='#bf68d9'>󰒎 </span>Off",
+    "format-wifi": "<span foreground='#bf68d9'> </span>On",
+    "tooltip-format-wifi": "{essid}",
+    "format-ethernet": "<span foreground='#bf68d9'> </span>On",
+    "on-click": "networkmanager_dmenu"
+  },
+  "bluetooth": {
+    "format": "<span foreground='#bf68d9'>󰂲 </span>Off ",
+    "format-on": "<span foreground='#bf68d9'>󰂯 </span>On ",
+    "on-click": "blueman-manager"
   },
   "pulseaudio": {
-    "format": "<span foreground='#8ebd6b'>{icon}</span>{volume}%",
+    "format": "<span foreground='#bf68d9'>{icon}</span>{volume}%",
     "format-muted": " muted",
     "format-icons": {
       "headphone": " ",
       "default": [
         " ",
+        " ",
+        " ",
         " ",
         " "
       ],
@@ -101,12 +139,12 @@
     "on-click": "pavucontrol",
   },
   "backlight": {
-    "format": "<span foreground='#8ebd6b'>{icon}</span>{percent}%",
+    "format": "<span foreground='#bf68d9'>{icon}</span>{percent}%",
     "format-icons": [
       "󰃞 ",
       "󰃟 ",
       "󰃠 "
-    ],
+    ]
   },
   "custom/powermenu": {
     "tooltip": false,
@@ -115,7 +153,7 @@
   },
   "custom/harddisk": {
     "exec": "df -h / | awk 'NR==2 { print $3 }'",
-    "format": "<span foreground='#8ebd6b'>󰋊 </span>{}",
+    "format": "<span foreground='#bf68d9' font='13'>󰋊 </span>{}",
   },
   "custom/notification": {
     "escape": true,

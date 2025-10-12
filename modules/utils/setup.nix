@@ -5,8 +5,10 @@
       appimage-run
       ripgrep
       trashy
-      xsel
+      wl-clipboard
       wget
+
+      networkmanager_dmenu
     ];
   };
 }
