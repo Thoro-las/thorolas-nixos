@@ -15,6 +15,9 @@
       pkgs.lua5_1
       pkgs.gnumake
 
+      pkgs.jdk
+      pkgs.jetbrains.idea-community
+
       pkgs.dotnet-sdk
       pkgs.SDL2
       pkgs.SDL2_image

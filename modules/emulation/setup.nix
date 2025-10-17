@@ -3,9 +3,6 @@
   module = {
     packages = [
       pkgs.bottles
-      pkgs.winetricks
-      pkgs.wineWowPackages.stable
-      pkgs.vulkan-tools
     ];
   };
 }

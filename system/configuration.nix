@@ -11,6 +11,8 @@
 
   networking.hostName = "thorolas";
   networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "dnsmasq";
+  networking.networkmanager.dhcp = "internal";
 
   time.timeZone = "Africa/Algiers";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -47,6 +49,8 @@
     dconf
     bluez
 
+    dnsmasq
+
     wlogout
     kdePackages.dolphin
     rofi-wayland
@@ -73,6 +77,8 @@
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 
+  programs.nix-ld.enable = true;
+
   programs.hyprland = {
     enable = true;
     withUWSM = true;
@@ -94,16 +100,17 @@
   services.gvfs.enable = true;
 
   boot = {
-    # plymouth = {
-    #   enable = true;
-    #   theme = "circuit";
-    #   themePackages = with pkgs; [
-    #     (adi1090x-plymouth-themes.override { selected_themes = [ "circuit" ]; })
-    #   ];
-    # };
+    plymouth = {
+      enable = true;
+      theme = "circuit";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override { selected_themes = [ "circuit" ]; })
+      ];
+    };
 
     uvesafb.enable = true;
     initrd.systemd.enable = true;
+
 
     consoleLogLevel = 3;
     initrd.verbose = false;
