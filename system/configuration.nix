@@ -77,6 +77,8 @@
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 
+  virtualisation.virtualbox.host.enable = true;
+
   programs.nix-ld.enable = true;
 
   programs.hyprland = {

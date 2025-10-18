@@ -6,6 +6,7 @@ users-loader.create-user {
     modules.kitty
     modules.shell
     modules.dev
+    modules.gradle
     modules.git
     modules.gitui
     modules.fish
