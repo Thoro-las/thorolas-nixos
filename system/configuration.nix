@@ -72,12 +72,10 @@
 
   services.displayManager.defaultSession = "hyprland-uwsm";
 
-  programs.steam = {
+  virtualisation.virtualbox.host = {
     enable = true;
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
+    enableExtensionPack = true;
   };
-
-  virtualisation.virtualbox.host.enable = true;
 
   programs.nix-ld.enable = true;
 

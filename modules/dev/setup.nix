@@ -16,8 +16,8 @@
       pkgs.gnumake
 
       pkgs.jdk
+      pkgs.openjfx
       pkgs.jetbrains.idea-community
-      pkgs.sdkmanager
 
       pkgs.dotnet-sdk
       pkgs.SDL2

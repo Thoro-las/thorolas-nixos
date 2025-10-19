@@ -8,6 +8,9 @@
       wl-clipboard
       wget
 
+      zip
+      unzip
+
       networkmanager_dmenu
     ];
   };
