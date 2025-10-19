@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -10,9 +10,18 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "thorolas";
+
   networking.networkmanager.enable = true;
-  networking.networkmanager.dns = "dnsmasq";
-  networking.networkmanager.dhcp = "internal";
+  networking.networkmanager.dns = "systemd-resolved";
+  networking.useHostResolvConf = false;
+
+  services.resolved.enable = true;
+  services.resolved.dnssec = "allow-downgrade";
+  services.resolved.fallbackDns = [ "1.1.1.1" "8.8.8.8" "9.9.9.9" ];
+
+  services.nscd.enable = false;
+
+  system.nssModules = lib.mkForce [];
 
   time.timeZone = "Africa/Algiers";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -48,8 +57,6 @@
     polkit
     dconf
     bluez
-
-    dnsmasq
 
     wlogout
     kdePackages.dolphin
@@ -111,7 +118,6 @@
     uvesafb.enable = true;
     initrd.systemd.enable = true;
 
-
     consoleLogLevel = 3;
     initrd.verbose = false;
     kernelParams = [
@@ -121,6 +127,8 @@
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
     ];
+
+    blacklistedKernelModules = [ "kvm" "kvm_intel" "kvm_amd" ];
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

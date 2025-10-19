@@ -116,12 +116,12 @@
     "format-wifi": "<span foreground='#bf68d9'> </span>On",
     "tooltip-format-wifi": "{essid}",
     "format-ethernet": "<span foreground='#bf68d9'> </span>On",
-    "on-click": "networkmanager_dmenu"
+    "on-click": "sh -c 'networkmanager_dmenu'"
   },
   "bluetooth": {
     "format": "<span foreground='#bf68d9'>󰂲 </span>Off ",
     "format-on": "<span foreground='#bf68d9'>󰂯 </span>On ",
-    "on-click": "blueman-manager"
+    "on-click": "sh -c 'blueman-manager'"
   },
   "pulseaudio": {
     "format": "<span foreground='#bf68d9'>{icon}</span>{volume}%",

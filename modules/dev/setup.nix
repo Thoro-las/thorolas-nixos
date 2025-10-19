@@ -17,6 +17,7 @@
 
       pkgs.jdk
       pkgs.openjfx
+      pkgs.jdt-language-server
       pkgs.jetbrains.idea-community
 
       pkgs.dotnet-sdk
