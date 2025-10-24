@@ -3,12 +3,33 @@
   module = {
     packages = [
       (pkgs.python3.withPackages (ps: with ps; [ 
+        pip
+
+        ipython
         jupyter 
-        notebook 
+        jupytext
+        jupyter_client
+        jupyter_core
+        jupyter-client
+        jupyter-core
+        nbformat
+        notebook
+        pynvim
+        pillow
+        cairosvg
+        pnglatex
+        plotly
+        kaleido
+        pyperclip
+
         numpy 
         pandas
-        pip
+        matplotlib
       ]))
+
+      pkgs.pkg-config
+
+      pkgs.nodejs
 
       pkgs.gcc
       pkgs.tinycc

@@ -26,11 +26,11 @@ in
 {
   load = script-names:
     let
-      check-exist = script: builtins.pathExists ../scripts/${script}.nix;
+      check-exist = script: builtins.pathExists ../scripts/${script};
       loaded-scripts = lib.pipe script-names [
         (script-names: lib.filter check-exist script-names)
         (existing-scripts: lib.map
-          (script: import ../scripts/${script}.nix { inherit pkgs lib home-manager; })
+          (script: import ../scripts/${script} { inherit pkgs lib home-manager; })
           existing-scripts)
       ];
 
@@ -48,12 +48,12 @@ in
     in
     {
       packages = with pkgs;
-        loaded-script-files
-        ++ loaded-script-languages
+        loaded-script-languages
+        ++ loaded-script-files
         ++ loaded-script-dependencies;
 
       aliases = lib.pipe loaded-scripts [
-        (loaded-scripts: lib.map (script: script.aliases) loaded-scripts)
+        (loaded-scripts: lib.map (script: script.aliases or {}) loaded-scripts)
         (aliases: lib.attrsets.mergeAttrsList aliases)
       ];
 

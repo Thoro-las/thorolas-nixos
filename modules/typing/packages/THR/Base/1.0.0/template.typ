@@ -58,14 +58,15 @@
   )
 ]
 
-#let __ctbox(hue, title, subtitle, content, count: true, level: 1) = {
+#let __ctbox(hue, title, subtitle, content, count: true, level: 1, ovcount: true) = {
   __cbox-count.step(level: level)
   let ctitle = {
-    title + if count {[ #context {__chp-sect-count.display("1.") + __cbox-count.display("1.1")}]} + if subtitle != "" {" (" + subtitle + ")"}
+    title + if (count) {[ #context {if (ovcount) {__chp-sect-count.display("1.") } else { "" } + __cbox-count.display("1.1")}]} + if subtitle != "" {" (" + subtitle + ")"}
   }
   __cbox(hue, ctitle, content)
 }
 
+#let ctitle(title) = align(center)[ #text(size: 2em, title) ]
 
 #let chap(title, body, num: -1) = [
   #{
@@ -126,16 +127,16 @@
   #context __sum-content.final()
 ]
 
-#let def(name: "", body) = __ctbox( 7, "Definition", name, body)
-#let thm(name: "", body) = __ctbox( 4, "Theorem", name, body)
-#let pro(name: "", body) = __ctbox(16, "Proposition", name, body)
-#let cor(name: "", body) = __ctbox( 0, "Corollary", name, body)
-#let lem(name: "", body) = __ctbox( 3, "Lemma", name, body)
-#let nte(name: "", body) = __ctbox( 9, "Note", name, body, count: false)
-#let ntt(name: "", body) = __ctbox(12, "Notation", name, body, count: false)
-#let exr(name: "", body) = __ctbox(13, "Exercise", name, body)
-#let qst(name: "", body) = __ctbox(16, "Question", name, body, level: 2)
-#let alg(name: "", body) = __ctbox(13, "Algorithm", name, raw(body), count: false)
+#let def(name: "", ovcount: true, body) = __ctbox( 7, ovcount: ovcount, "Definition", name, body)
+#let thm(name: "", ovcount: true, body) = __ctbox( 4, ovcount: ovcount, "Theorem", name, body)
+#let pro(name: "", ovcount: true, body) = __ctbox(16, ovcount: ovcount, "Proposition", name, body)
+#let cor(name: "", ovcount: true, body) = __ctbox( 0, ovcount: ovcount, "Corollary", name, body)
+#let lem(name: "", ovcount: true, body) = __ctbox( 3, ovcount: ovcount, "Lemma", name, body)
+#let nte(name: "", ovcount: true, body) = __ctbox( 9, ovcount: ovcount, "Note", name, body, count: false)
+#let ntt(name: "", ovcount: true, body) = __ctbox(12, ovcount: ovcount, "Notation", name, body, count: false)
+#let exr(name: "", ovcount: true, body) = __ctbox(13, ovcount: ovcount, "Exercise", name, body)
+#let qst(name: "", ovcount: true, body) = __ctbox(16, ovcount: ovcount, "Question", name, body, level: 2)
+#let alg(name: "", ovcount: true, body) = __ctbox(13, ovcount: ovcount, "Algorithm", name, raw(body), count: false)
 
 #let exm(body) = [*Example: * #body]
 #let prf(body) = [_Proof. _

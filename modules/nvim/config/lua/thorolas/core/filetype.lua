@@ -13,3 +13,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
   end,
 })
+
+vim.api.nvim_create_user_command('JavaRun', function()
+  vim.cmd('!javac -d build src/*.java')
+  vim.cmd('!java -cp build Main')
+end, {})

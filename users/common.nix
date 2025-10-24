@@ -23,6 +23,7 @@ users-loader.create-user {
 
   scripts = with database; [
     scripts.thrnix
+    scripts.thrupl
   ];
 
   home-config = { config, pkgs, ... }: {

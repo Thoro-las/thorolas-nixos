@@ -51,3 +51,4 @@ vim.opt.shiftwidth = 2;
 vim.opt.softtabstop = 2;
 
 vim.opt.runtimepath:append("~/.nix-profile/bin")
+vim.env.JAVA_HOME = "/home/main/.nix-profile"
