@@ -119,7 +119,7 @@
   })
 ]
 
-#let summarize() = [
+#let summary() = [
   = *Summary*
   #text(size: 3em, "Summary")
   #linebreak()
@@ -138,7 +138,11 @@
 #let qst(name: "", ovcount: true, body) = __ctbox(16, ovcount: ovcount, "Question", name, body, level: 2)
 #let alg(name: "", ovcount: true, body) = __ctbox(13, ovcount: ovcount, "Algorithm", name, raw(body), count: false)
 
-#let exm(body) = [*Example: * #body]
+#let exm(body, count: false) = [
+  #if (count) {__cbox-count.step()}
+  * Example#context if (count) {" " + __chp-sect-count.display("1.") + __cbox-count.display("1.1")}: * #body
+]
+
 #let prf(body) = [_Proof. _
   #body
   #h(1fr)
@@ -198,6 +202,6 @@
 
   if (summarize) {
     pagebreak(weak: true)
-    summarize()
+    summary()
   }
 }

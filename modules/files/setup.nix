@@ -13,6 +13,8 @@
 
       pkgs.qbittorrent-enhanced
       pkgs.xarchiver
+
+      pkgs.libreoffice
     ];
   };
 }

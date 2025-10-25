@@ -34,21 +34,33 @@ return {
         fsx = runcode,
 
         java = function()
-          local main_class = vim.fn.input("Main class (default Main): ", "Main")
-          -- rm -rf build/*
-          -- javac -d build src/*.java
-          -- java -cp build Main
-          --
+          local main_file = ".main_class"
+          local main_class = nil
+
+          if vim.fn.filereadable(main_file) == 1 then
+            main_class = vim.fn.readfile(main_file)[1]
+          else
+            main_class = vim.fn.input("Main class (default Main): ", "Main")
+            vim.fn.writefile({ main_class }, main_file)
+          end
+
           vim.fn.mkdir("build", "p")
 
-          local compile = vim.fn.system("javac -d build src/*.java")
+          local jars = vim.fn.glob("lib/*.jar", 0, 1)
+          local classpath = "build"
+          if #jars > 0 then
+            classpath = classpath .. ":" .. table.concat(jars, ":")
+          end
+
+          local compile_cmd = string.format("javac -cp %s -d build src/**/*.java", classpath)
+          local compile = vim.fn.system(compile_cmd)
           if vim.v.shell_error ~= 0 then
             print("Compilation failed!")
             print(compile)
             return
           end
 
-          return string.format("java -cp build $s", main_class)
+          return string.format("java -cp %s %s", classpath, main_class)
         end
       },
       mode = 'term',
@@ -56,20 +68,6 @@ return {
         position = "vert",
         size = 50,
       }
-    })
-
-
-    vim.api.nvim_create_autocmd("TermClose", {
-      callback = function()
-        -- Instead of closing terminal window on exit,
-        -- just switch terminal to normal mode and keep window open
-        local bufnr = vim.api.nvim_get_current_buf()
-        -- Do nothing or optionally send an Enter key to keep terminal open
-        -- vim.api.nvim_input("<CR>")
-
-        -- Another approach: do not close window, just leave terminal buffer open
-        -- If you want, create a mapping to close manually later
-      end,
     })
   end
 }

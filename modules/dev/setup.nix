@@ -28,6 +28,8 @@
       ]))
 
       pkgs.pkg-config
+      pkgs.imagemagick
+      pkgs.imagemagick.dev
 
       pkgs.nodejs
 
@@ -40,6 +42,10 @@
       pkgs.openjfx
       pkgs.jdt-language-server
       pkgs.jetbrains.idea-community
+      pkgs.scenebuilder
+      pkgs.spring-boot-cli
+      pkgs.gradle
+      pkgs.maven
 
       pkgs.dotnet-sdk
       pkgs.SDL2

@@ -11,7 +11,10 @@
       zip
       unzip
 
-      networkmanager_dmenu
+      connman
+      connman-gtk
+
+      openpomodoro-cli
     ];
   };
 }
