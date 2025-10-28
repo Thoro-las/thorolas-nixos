@@ -89,8 +89,9 @@
   programs.hyprland = {
     enable = true;
     withUWSM = true;
-    xwayland.enable = true;
   };
+
+  programs.xwayland.enable = true;
 
   services.printing.enable = true;
   security.rtkit.enable = true;

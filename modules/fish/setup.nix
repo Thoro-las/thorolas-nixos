@@ -72,6 +72,7 @@
       set -gx EDITOR "nvim"
       set -gx VISUAL "nvim"
       set -gx SHELL (which fish)
+      set -gx JAVA_HOME ${pkgs.jdk21.home}
       
       # Add to PATH
       fish_add_path $HOME/.config/composer/vendor/bin

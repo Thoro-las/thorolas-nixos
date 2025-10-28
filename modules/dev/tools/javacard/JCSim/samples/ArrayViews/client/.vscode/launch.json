@@ -1,0 +1,23 @@
+{
+    /*
+    * Copyright (c) 2025, Oracle and/or its affiliates. All rights reserved.
+    */
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "jdk",
+            "request": "launch",
+            "mainClass": "${workspaceFolder}/src/com/oracle/javacard/sample/ClientArrayViews.java",
+            "args": "-capClient=${workspaceFolder}/../applet/deliverables/ClientApplet/com/oracle/jcclassic/samples/arrayview/ClientApplet/javacard/ClientApplet.cap -capServer=${workspaceFolder}/../applet/deliverables/ServerApplet/com/oracle/jcclassic/samples/arrayview/ServerApplet/javacard/ServerApplet.cap -capShared=${workspaceFolder}/../applet/deliverables/MyShareable/com/oracle/jcclassic/samples/arrayview/MyShareable/javacard/MyShareable.cap -props=${env:JC_HOME_SIMULATOR}/samples/client.config.properties",
+            "vmArgs": "-Djava.library.path=${env:JC_HOME_SIMULATOR}/runtime/bin --module-path ${env:JC_HOME_SIMULATOR}/client/AMService:${env:JC_HOME_SIMULATOR}/client/COMService --add-modules ALL-MODULE-PATH",
+            "windows": {
+                "mainClass": "${workspaceFolder}\\src\\com\\oracle\\javacard\\sample\\ClientArrayViews.java",
+                "args": "-capClient=${workspaceFolder}\\..\\applet\\deliverables\\ClientApplet\\com\\oracle\\jcclassic\\samples\\arrayview\\ClientApplet\\javacard\\ClientApplet.cap -capServer=${workspaceFolder}\\..\\applet\\deliverables\\ServerApplet\\com\\oracle\\jcclassic\\samples\\arrayview\\ServerApplet\\javacard\\ServerApplet.cap -capShared=${workspaceFolder}\\..\\applet\\deliverables\\MyShareable\\com\\oracle\\jcclassic\\samples\\arrayview\\MyShareable\\javacard\\MyShareable.cap -props=\"${env:JC_HOME_SIMULATOR}\\samples\\client.config.properties\"",
+                "vmArgs": "-Djava.library.path=\"${env:JC_HOME_SIMULATOR}\\runtime\\bin\" --module-path \"${env:JC_HOME_SIMULATOR}\\client\\AMService;${env:JC_HOME_SIMULATOR}\\client\\COMService\" --add-modules ALL-MODULE-PATH",
+            },            
+            "name": "Run Java Card Client",
+            "preLaunchTask": "Wait for Port 9025",
+            "console": "internalConsole",
+        },
+    ],
+}
