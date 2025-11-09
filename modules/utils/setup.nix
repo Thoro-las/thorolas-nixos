@@ -3,10 +3,13 @@
   module = {
     packages = with pkgs; [
       appimage-run
+
+      wget
       ripgrep
       trashy
+      busybox
+
       wl-clipboard
-      wget
 
       zip
       unzip

@@ -93,6 +93,10 @@
 
   programs.xwayland.enable = true;
 
+  services.flatpak.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+
   services.printing.enable = true;
   security.rtkit.enable = true;
 

@@ -1,30 +1,38 @@
 return {
   "mfussenegger/nvim-jdtls",
-  ft = { "java" },
+  ft = {"java"},
   config = function()
-    local jdtls = require("jdtls")
+    local jdtls = require('jdtls')
+    local root_markers = { '.project', '.classpath' }
+    local root_dir = require('jdtls.setup').find_root(root_markers)
 
-    local root_dir = require("jdtls.setup").find_root({ "gradlew", "mvnw", ".git" })
+    local workspace_dir = vim.fn.stdpath('data') .. '/jdtls-workspace/' .. vim.fn.fnamemodify(root_dir, ':p:h:t')
 
-    if root_dir == nil then
-      vim.notify("No project root found for Java (gradle/maven/git)", vim.log.levels.WARN)
-      return
-    end
+    local cmd = {
+      'jdtls',
+      '-data', workspace_dir
+    }
 
     local config = {
-      cmd = { "jdtls" },
+      cmd = cmd,
       root_dir = root_dir,
       settings = {
         java = {
-          format = { enabled = true },
+          project = {
+            referencedLibraries = { "lib/**/*.jar" },
+            outputPath = "build/"
+          },
+          -- sourcePaths = { "src", "res" },
         },
       },
+
       init_options = {
         bundles = {},
       },
-      flags = {
-        allow_incremental_sync = true,
-      },
+
+      on_attach = function(client, _)
+        client.server_capabilities.semanticTokensProvider = nil
+      end,
     }
 
     jdtls.start_or_attach(config)

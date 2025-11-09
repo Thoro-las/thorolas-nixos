@@ -58,8 +58,8 @@
   )
 ]
 
-#let __ctbox(hue, title, subtitle, content, count: true, level: 1, ovcount: true) = {
-  __cbox-count.step(level: level)
+#let __ctbox(hue, title, subtitle, content, count: true, level: 1, ovcount: true, countval: -1) = {
+  if (count) { __cbox-count.step(level: level) }
   let ctitle = {
     title + if (count) {[ #context {if (ovcount) {__chp-sect-count.display("1.") } else { "" } + __cbox-count.display("1.1")}]} + if subtitle != "" {" (" + subtitle + ")"}
   }
@@ -68,9 +68,10 @@
 
 #let ctitle(title) = align(center)[ #text(size: 2em, title) ]
 
-#let chap(title, body, num: -1) = [
+#let chapter(title, jump: true, body, num: -1) = [
   #{
-    pagebreak(weak: true)
+    if (jump == true) { pagebreak(weak: true) }
+    else { colbreak(weak: true) }
     if (num < 0) { __chp-sect-count.step() } 
     else { __chp-sect-count.update(num) }
 
@@ -93,7 +94,7 @@
   })
 ]
 
-#let sect(title, level: 2) = [
+#let section(title, level: 2) = [
   == #title
   #__chp-sect-count.step(level: level)
   #text(context __chp-sect-count.display("1.") + " " + title, size: 1.6em, weight: "bold") \
@@ -106,7 +107,7 @@
   })
 ]
 
-#let subs(title) = [
+#let subsection(title) = [
   === #title
   #__chp-sect-count.step(level: 3)
   #text(context __chp-sect-count.display("1.") + " " + title, size: 1.3em, weight: "bold") \
@@ -127,21 +128,29 @@
   #context __sum-content.final()
 ]
 
-#let def(name: "", ovcount: true, body) = __ctbox( 7, ovcount: ovcount, "Definition", name, body)
-#let thm(name: "", ovcount: true, body) = __ctbox( 4, ovcount: ovcount, "Theorem", name, body)
-#let pro(name: "", ovcount: true, body) = __ctbox(16, ovcount: ovcount, "Proposition", name, body)
-#let cor(name: "", ovcount: true, body) = __ctbox( 0, ovcount: ovcount, "Corollary", name, body)
-#let lem(name: "", ovcount: true, body) = __ctbox( 3, ovcount: ovcount, "Lemma", name, body)
-#let nte(name: "", ovcount: true, body) = __ctbox( 9, ovcount: ovcount, "Note", name, body, count: false)
-#let ntt(name: "", ovcount: true, body) = __ctbox(12, ovcount: ovcount, "Notation", name, body, count: false)
-#let exr(name: "", ovcount: true, body) = __ctbox(13, ovcount: ovcount, "Exercise", name, body)
-#let qst(name: "", ovcount: true, body) = __ctbox(16, ovcount: ovcount, "Question", name, body, level: 2)
-#let alg(name: "", ovcount: true, body) = __ctbox(13, ovcount: ovcount, "Algorithm", name, raw(body), count: false)
+#let def(name: "", count: true, ovcount: true, body)  = __ctbox( 7, count: count, ovcount: ovcount, "Definition", name, body)
+#let thm(name: "", count: true, ovcount: true, body)  = __ctbox( 4, count: count, ovcount: ovcount, "Theorem", name, body)
+#let pro(name: "", count: true, ovcount: true, body)  = __ctbox(16, count: count, ovcount: ovcount, "Proposition", name, body)
+#let cor(name: "", count: true, ovcount: true, body)  = __ctbox( 0, count: count, ovcount: ovcount, "Corollary", name, body)
+#let lem(name: "", count: true, ovcount: true, body)  = __ctbox( 3, count: count, ovcount: ovcount, "Lemma", name, body)
+#let nte(name: "", count: false, ovcount: true, body) = __ctbox( 9, count: count, ovcount: ovcount, "Note", name, body)
+#let ntt(name: "", count: false, ovcount: true, body) = __ctbox(12, count: count, ovcount: ovcount, "Notation", name, body)
+#let exr(name: "", count: true, ovcount: true, body)  = __ctbox(13, count: count, ovcount: ovcount, "Exercise", name, body)
+#let qst(name: "", count: true, ovcount: true, body)  = __ctbox(16, count: count, ovcount: ovcount, "Question", name, body, level: 2)
 
 #let exm(body, count: false) = [
   #if (count) {__cbox-count.step()}
   * Example#context if (count) {" " + __chp-sect-count.display("1.") + __cbox-count.display("1.1")}: * #body
 ]
+
+#set raw(theme: "One Dark.tmTheme")
+// #show raw: body => [
+//   #box(
+//     fill: color.rgb("#282C34"),
+//     inset: 3mm,
+//     body
+//   )
+// ]
 
 #let prf(body) = [_Proof. _
   #body
