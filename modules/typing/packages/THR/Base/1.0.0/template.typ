@@ -23,7 +23,7 @@
         fill: fill-color,
         stroke: (left: 1mm + border-color),
         align(left)[
-          #text(weight: "bold", fill: title-color, title):
+          #text(weight: "bold", style: "normal", fill: title-color, title + ":")
           #text(style: "italic", content)
         ]
       )
@@ -66,7 +66,10 @@
   __cbox(hue, ctitle, content)
 }
 
-#let ctitle(title) = align(center)[ #text(size: 2em, title) ]
+#let ctitle(title) = align(center)[
+  #v(2mm)
+  #text(size: 2em, title)
+]
 
 #let chapter(title, jump: true, body, num: -1) = [
   #{
@@ -143,14 +146,6 @@
   * Example#context if (count) {" " + __chp-sect-count.display("1.") + __cbox-count.display("1.1")}: * #body
 ]
 
-#set raw(theme: "One Dark.tmTheme")
-// #show raw: body => [
-//   #box(
-//     fill: color.rgb("#282C34"),
-//     inset: 3mm,
-//     body
-//   )
-// ]
 
 #let prf(body) = [_Proof. _
   #body
@@ -169,6 +164,20 @@
   show heading: none
   show table: contents => { align(center, contents) }
   set table(stroke: 0.3mm)
+
+  set raw(theme: "One Dark.tmTheme", tab-size: 2)
+  show raw: body => [
+    #block(
+      fill: color.rgb("#282C34"),
+      inset: 3mm,
+      body
+    )
+  ]
+  show raw.line: it => [
+    #let n = str(it.number)
+    #let disp = " " * (3 - n.len()) + n
+    #text(fill: color.rgb("#6c7079"), [#disp #h(-1mm)- ]) #it.body
+  ]
 
   if (mainpage) {
     set par(justify: false)
