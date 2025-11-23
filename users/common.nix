@@ -11,6 +11,7 @@ users-loader.create-user {
     modules.fish
 
     modules.utils
+    modules.tools
 
     modules.files
     modules.typing

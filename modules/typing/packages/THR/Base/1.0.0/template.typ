@@ -39,6 +39,7 @@
     stroke: (left: 1mm + black),
     inset: (left: 4mm),
     outset: (y: 2mm, left: -1mm),
+    width: 100%,
     body
   )
 ]
@@ -140,6 +141,7 @@
 #let ntt(name: "", count: false, ovcount: true, body) = __ctbox(12, count: count, ovcount: ovcount, "Notation", name, body)
 #let exr(name: "", count: true, ovcount: true, body)  = __ctbox(13, count: count, ovcount: ovcount, "Exercise", name, body)
 #let qst(name: "", count: true, ovcount: true, body)  = __ctbox(16, count: count, ovcount: ovcount, "Question", name, body, level: 2)
+#let alg(name: "", count: true, ovcount: true, body)  = __ctbox(13, count: count, ovcount: ovcount, "Algorithm", name, body, level: 2)
 
 #let exm(body, count: false) = [
   #if (count) {__cbox-count.step()}
@@ -148,9 +150,7 @@
 
 
 #let prf(body) = [_Proof. _
-  #body
-  #h(1fr)
-  $square.stroked$
+  #body #h(1fr) $square.stroked$
 ]
 
 #let prfout(name: "", body) = [
@@ -160,24 +160,35 @@
   ]
 ]
 
+#let code(title: none, link: none, code) = [
+  #align(center)[
+    #block(
+      fill: color.rgb("#282C34"),
+      inset: 3mm,
+      width: 95%,
+      radius: 1mm,
+      align(left)[
+        #show raw.line: it => [
+          #let n = str(it.number)
+          #let disp = " " * (3 - n.len()) + n
+          #text(fill: color.rgb("#6c7079"), [#disp #h(-1mm)- ]) #it.body
+        ]
+
+        #show raw: set text(ligatures: true, size: 0.9em, weight: "regular", style: "normal")
+
+        #code
+      ]
+    )
+  ]
+]
+
 #let template(doc, title: [], mainpage: true, summarize: false, contents: true, disclaimer: none, writer: none, comment: none, warning: none) = {
   show heading: none
   show table: contents => { align(center, contents) }
   set table(stroke: 0.3mm)
 
-  set raw(theme: "One Dark.tmTheme", tab-size: 2)
-  show raw: body => [
-    #block(
-      fill: color.rgb("#282C34"),
-      inset: 3mm,
-      body
-    )
-  ]
-  show raw.line: it => [
-    #let n = str(it.number)
-    #let disp = " " * (3 - n.len()) + n
-    #text(fill: color.rgb("#6c7079"), [#disp #h(-1mm)- ]) #it.body
-  ]
+  set raw(theme: "One Dark.tmTheme", syntaxes: "pseudo.sublime-syntax")
+  show raw: body => block(fill: color.rgb("#282C34"), inset: 0.7mm, body)
 
   if (mainpage) {
     set par(justify: false)
@@ -199,11 +210,11 @@
     }
 
     ooc([
-      #if (comment != none) [ 
-        #comment 
+      #if (comment != none) [
+        #comment
         #linebreak()
       ]
-      To seperate the contents of the course to actual additions or out of context information, a black band will be added by its side like the one englobing this comment.
+      To separate the contents of the course to actual additions or out of context information, a black band will be added by its side like the globing this comment.
     ])
     linebreak()
 

@@ -3,7 +3,6 @@
 {
   module = {
     packages = [
-
       (pkgs.python3.withPackages (ps: with ps; [ 
         pip
 
@@ -24,10 +23,16 @@
         kaleido
         pyperclip
 
-        numpy 
+        numpy
         pandas
         matplotlib
+
+        pyside6
+        qtpy
+        (opencv4.override({enableGtk3 = true;}))
       ]))
+      pkgs.qtcreator
+      pkgs.qt6.qttools
 
       pkgs.pkg-config
       pkgs.imagemagick
