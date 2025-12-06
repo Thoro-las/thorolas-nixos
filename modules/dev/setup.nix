@@ -31,8 +31,9 @@
         qtpy
         (opencv4.override({enableGtk3 = true;}))
       ]))
-      pkgs.qtcreator
+
       pkgs.qt6.qttools
+      pkgs.qt6.full
 
       pkgs.pkg-config
       pkgs.imagemagick
@@ -55,8 +56,13 @@
       pkgs.spring-boot-cli
       pkgs.scenebuilder
       pkgs.gradle
+      pkgs.maven
 
+      pkgs.mono
       pkgs.dotnet-sdk
+      pkgs.glade
+      pkgs.gtk3
+      pkgs.glib
       pkgs.SDL2
       pkgs.SDL2_image
 

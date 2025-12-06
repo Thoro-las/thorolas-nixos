@@ -65,7 +65,7 @@ contexts:
     # ─────────────────────────────────────────────
     # STRUCTURE KEYWORDS
     # ─────────────────────────────────────────────
-    - match: \b(algorithm|procedure|function|initialize|begin|end|type)\b
+    - match: \b(algorithm|procedure|function|initialize|begin|end|type|class)\b
       scope: keyword.declaration.pseudo
 
     # ─────────────────────────────────────────────

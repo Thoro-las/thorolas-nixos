@@ -155,7 +155,7 @@
 
 #let prfout(name: "", body) = [
   #ooc[
-    *Proof Outline:*
+    #text("Proof Outline:", weight: "bold", style: "normal")
     #text(style: "normal", body)
   ]
 ]

@@ -15,6 +15,8 @@
       pkgs.xarchiver
 
       pkgs.libreoffice
+
+      pkgs.mpv
     ];
   };
 }

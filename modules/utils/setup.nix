@@ -20,6 +20,10 @@
       fira
       htop-vim
       desktop-file-utils
+
+      obs-studio
+      droidcam
+      android-tools
     ];
   };
 }

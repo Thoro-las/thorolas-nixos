@@ -24,3 +24,10 @@ kw.mapd("n", "<leader>tt", function()
     })
 end, "Open Kitty")
 
+kw.mapd("n", "<leader>ti", function()
+    local cwd = vim.fn.expand("%:p:h")
+    vim.fn.jobstart({ "kitty", "-e", "nvim" }, {
+        cwd = cwd,
+        detach = true,
+    })
+end, "Open NVIM Session")
