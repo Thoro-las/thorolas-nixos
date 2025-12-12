@@ -1,1 +1,0 @@
-moduleSearchIndex = [{"l":"com.oracle.javacard.amservice"}];updateSearchResults();

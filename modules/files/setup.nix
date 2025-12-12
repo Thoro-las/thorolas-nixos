@@ -17,6 +17,18 @@
       pkgs.libreoffice
 
       pkgs.mpv
+
+      pkgs.sqlitebrowser
     ];
+  };
+
+  config = {
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = "org.pwmt.zathura.desktop";
+        "application/zip" = "xarchiver.desktop";
+      };
+    };
   };
 }

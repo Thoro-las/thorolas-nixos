@@ -24,6 +24,7 @@ users-loader.create-user {
   scripts = with database; [
     scripts.thrnix
     scripts.thrupl
+    scripts.thrpm
   ];
 
   home-config = { config, pkgs, ... }: {
@@ -33,6 +34,7 @@ users-loader.create-user {
       enable = true;
       defaultApplications = {
         "application/pdf" = "org.pwmt.zathura.desktop";
+        "application/zip" = "xarchiver.desktop";
       };
     };
   };

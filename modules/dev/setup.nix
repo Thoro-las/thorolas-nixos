@@ -7,6 +7,7 @@
         pip
 
         ipython
+        ipykernel
         jupyter 
         jupytext
         jupyter_client
@@ -35,6 +36,7 @@
       pkgs.qt6.qttools
       pkgs.qt6.full
 
+      pkgs.ueberzug
       pkgs.pkg-config
       pkgs.imagemagick
       pkgs.imagemagick.dev
@@ -62,7 +64,6 @@
       pkgs.dotnet-sdk
       pkgs.glade
       pkgs.gtk3
-      pkgs.glib
       pkgs.SDL2
       pkgs.SDL2_image
 

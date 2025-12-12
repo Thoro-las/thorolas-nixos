@@ -16,6 +16,7 @@
       connman
       connman-gtk
       openpomodoro-cli
+      tasktimer
 
       fira
       htop-vim
@@ -24,6 +25,8 @@
       obs-studio
       droidcam
       android-tools
+
+      eww
     ];
   };
 }

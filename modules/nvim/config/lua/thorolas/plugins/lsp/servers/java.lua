@@ -10,6 +10,7 @@ return function(capabilities)
       ".classpath",
       ".project"
     ),
+
     on_attach = function(client, _)
       client.server_capabilities.semanticTokensProvider = nil
       vim.lsp.handlers["textDocument/semanticTokens/full"] = function() end
