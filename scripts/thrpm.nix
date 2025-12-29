@@ -35,11 +35,15 @@
 
               QSpinBox {
                   opacity: 0.7;
-                  border: 1px solid #d4c5e2;
+                  border: 1px solid #C9BFB9;
                   border-radius: 5px;
                   padding: 5px;
                   font-size: 11px;
                   text-align: center;
+              }
+
+              QSpinBox:disabled {
+                  background-color: #C9BFB9;
               }
 
               QSpinBox::up-button, QSpinBox::down-button {
@@ -88,7 +92,7 @@
           self.minutes_spin.setRange(1, 960)
           self.minutes_spin.setValue(5)
           self.minutes_spin.setSuffix(' min')
-          self.minutes_spin.setFixedWidth(170)
+          self.minutes_spin.setFixedWidth(160)
           self.minutes_spin.setAlignment(Qt.AlignCenter)
 
           self.start_btn = QPushButton('')

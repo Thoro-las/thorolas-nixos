@@ -7,6 +7,7 @@
   "modules-left": [
     "custom/appmenu",
     "hyprland/workspaces",
+    "hyprland/submap",
     "hyprland/window"
   ],
   "modules-center": [],
@@ -22,6 +23,12 @@
     "interval": 60,
     "tooltip": true,
     "tooltip-format": "{}"
+  },
+  "hyprland/submap": {
+    "format": "mode: {}",
+    "max-length": 30,
+    "tooltip": false,
+    "on-click" : "hyprctl dispatch submap reset"
   },
   "hyprland/workspaces": {
     "on-click": "activate",

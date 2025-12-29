@@ -5,9 +5,7 @@
     program = "firefox";
     packages = [ ];
     aliases = { };
-    sources = {
-      ".mozilla/firefox/default/prefs.js".source = ./prefs.js;
-    };
+    sources = { ".mozilla/firefox/default/prefs.js".source = ./prefs.js; };
   };
 
   config = {
@@ -19,13 +17,12 @@
 
       extensions = {
         packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          downthemall
-          return-youtube-dislikes
-          multiselect-for-youtube
-          adaptive-tab-bar-colour
-          dark-background-light-text
-          tabliss
           vimium-c
+          nighttab
+          ghostery
+          dark-mode-webextension
+          return-youtube-dislikes
+          adaptive-tab-bar-colour
         ];
       };
 
@@ -36,7 +33,8 @@
 
         engines = {
           "GitHub" = {
-            urls = [{ template = "https://github.com/search?q={searchTerms}"; }];
+            urls =
+              [{ template = "https://github.com/search?q={searchTerms}"; }];
             definedAliases = [ "@gh" ];
           };
 
@@ -45,18 +43,28 @@
             definedAliases = [ "@per" ];
           };
 
+          "DeepSeek" = {
+            urls =
+              [{ template = "https://chat.deepseek.com/?q={searchTerms}"; }];
+            definedAliases = [ "@dc" ];
+          };
+
           "DeepWiki" = {
             urls = [{ template = "https://deepwiki.com/{searchTerms}"; }];
             definedAliases = [ "@dwi" ];
           };
 
           "My NixOS" = {
-            urls = [{ template = "https://mynixos.com/search?q={searchTerms}"; }];
+            urls =
+              [{ template = "https://mynixos.com/search?q={searchTerms}"; }];
             definedAliases = [ "@myn" ];
           };
 
           "ProofWiki" = {
-            urls = [{ template = "https://proofwiki.org/w/index.php?search={searchTerms}"; }];
+            urls = [{
+              template =
+                "https://proofwiki.org/w/index.php?search={searchTerms}";
+            }];
             definedAliases = [ "@prf" ];
           };
         };
@@ -65,9 +73,18 @@
       bookmarks = {
         force = true;
         settings = [
-          { name = "GitHub"; url = "https://github.com"; }
-          { name = "NixOS"; url = "https://nixos.org"; }
-          { name = "Perplexity"; url = "https://perplexity.ai"; }
+          {
+            name = "GitHub";
+            url = "https://github.com";
+          }
+          {
+            name = "NixOS";
+            url = "https://nixos.org";
+          }
+          {
+            name = "Perplexity";
+            url = "https://perplexity.ai";
+          }
         ];
       };
     };

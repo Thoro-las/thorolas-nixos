@@ -18,7 +18,6 @@ users-loader.create-user {
 
     modules.firefox
     modules.socials
-    modules.sage
   ];
 
   scripts = with database; [

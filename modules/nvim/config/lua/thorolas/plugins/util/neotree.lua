@@ -11,6 +11,16 @@ return {
   },
 
   config = function()
+    require("nvim-web-devicons").setup({
+      override = {
+        ["sage"] = {
+          icon = "󰍘",
+          color = "#428850",
+          name = "SageMath"
+        },
+      }
+    })
+
     local filesystem_commands = require("neo-tree.sources.filesystem.commands")
     local wk = require("thorolas.utility/keymaps");
     wk.map("n", "<leader>e", "<cmd>Neotree toggle reveal=true<CR>", { desc = "Toggle Explorer" })
@@ -48,12 +58,12 @@ return {
       },
       buffers = {
         follow_current_file = {
-          enabled = true,           -- for buffer view
+          enabled = true,
         },
       },
       git_status = {
         follow_current_file = {
-          enabled = true,           -- for git view if needed
+          enabled = true,
         },
       },
       window = {

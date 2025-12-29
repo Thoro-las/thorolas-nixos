@@ -1,19 +1,41 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "thorolas";
-
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "systemd-resolved";
   networking.useHostResolvConf = false;
+
+  # networking = {
+  #   useDHCP = false;
+  #   hostName = "thorolas";
+  #
+  #   interfaces.wlan0.ipv4.addresses = [{
+  #     address = "192.168.50.1";
+  #     prefixLength = 24;
+  #   }];
+  #
+  #   nat = {
+  #     enable = true;
+  #     externalInterface = "eth0";
+  #     internalInterfaces = [ "wlan0" ];
+  #   };
+  # };
+
+  # services.dnsmasq = {
+  #   enable = true;
+  #   settings = {
+  #     interface = "wlan0";
+  #     dhcp-range = "192.168.50.10,192.168.50.100,12h";
+  #   };
+  # };
+
+  networking.firewall.enable = true;
 
   services.resolved.enable = true;
   services.resolved.dnssec = "allow-downgrade";
@@ -21,7 +43,7 @@
 
   services.nscd.enable = false;
 
-  system.nssModules = lib.mkForce [];
+  system.nssModules = lib.mkForce [ ];
 
   time.timeZone = "Africa/Algiers";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -63,6 +85,7 @@
     rofi-wayland
     rofi-bluetooth
     rofi-network-manager
+    networkmanager_dmenu
     pavucontrol
 
     waybar
@@ -79,6 +102,7 @@
 
   services.displayManager.defaultSession = "hyprland-uwsm";
 
+  virtualisation.docker.enable = true;
   virtualisation.virtualbox.host = {
     enable = true;
     enableExtensionPack = true;
@@ -115,9 +139,12 @@
     plymouth = {
       enable = true;
       theme = "circuit";
-      themePackages = with pkgs; [
-        (adi1090x-plymouth-themes.override { selected_themes = [ "circuit" ]; })
-      ];
+      themePackages = with pkgs;
+        [
+          (adi1090x-plymouth-themes.override {
+            selected_themes = [ "circuit" ];
+          })
+        ];
     };
 
     uvesafb.enable = true;

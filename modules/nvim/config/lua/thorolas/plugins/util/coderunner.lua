@@ -28,15 +28,21 @@ return {
       filetype = {
         python = run_python,
         haskell = "runghc $file && exit",
-        pde = function()
+        sage = function()
+          local current_file = vim.fn.expand("%")
+          return string.format("sage %s", current_file)
+        end,
+
+        arduino = function()
           local file = vim.fn.expand("%:p")
           local dir = vim.fn.fnamemodify(file, ":h")
-          return "processing cli --sketch=" .. dir .. " --run"
+          return "processing-java --sketch=" .. dir .. " --run"
         end,
+
         c = function()
           local filename = vim.fn.expand("%:t:r")
           local file = vim.fn.expand("%")
-          return string.format("gcc %s -o %s && ./%s", file, filename, filename)
+          return string.format("gcc %s -o %s -lm && ./%s", file, filename, filename)
         end,
 
         fsharp = run_fsharp,

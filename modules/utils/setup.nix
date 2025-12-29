@@ -27,6 +27,13 @@
       android-tools
 
       eww
+
+      dnsmasq
+      hostapd
+      wirelesstools
+      iw
+
+      input-leap
     ];
   };
 }

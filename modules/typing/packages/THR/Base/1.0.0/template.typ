@@ -69,7 +69,7 @@
 
 #let ctitle(title) = align(center)[
   #v(2mm)
-  #text(size: 2em, title)
+  #text(size: 1.5em, title)
 ]
 
 #let chapter(title, jump: true, body, num: -1) = [
@@ -150,7 +150,7 @@
 
 
 #let prf(body) = [_Proof. _
-  #body #h(1fr) $square.stroked$
+  #{body + h(1fr) + $square.stroked$}
 ]
 
 #let prfout(name: "", body) = [
@@ -188,7 +188,7 @@
   set table(stroke: 0.3mm)
 
   set raw(theme: "One Dark.tmTheme", syntaxes: "pseudo.sublime-syntax")
-  show raw: body => block(fill: color.rgb("#282C34"), inset: 0.7mm, body)
+  show raw: body => box(baseline: 20%, fill: color.rgb("#282C34"), outset: (y: 0mm), inset: (x: 0.7mm, y: 1mm), body)
 
   if (mainpage) {
     set par(justify: false)

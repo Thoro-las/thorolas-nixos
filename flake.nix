@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager.url = "github:nix-community/home-manager/release-25.05";
@@ -18,17 +17,14 @@
 
       pkgs = import nixpkgs {
         system = system;
-        config = {
-          allowUnfree = true;
-        };
+        config = { allowUnfree = true; };
       };
 
       loadedUsers = import ./loaders/configs-loader.nix {
         inherit lib home-manager nur system;
         nixpkgs = pkgs;
       };
-    in
-    {
+    in {
       homeConfigurations = loadedUsers.HMusers;
       nixosConfigurations = {
         thorolas = lib.nixosSystem {
@@ -37,7 +33,10 @@
             system/configuration.nix
             ({ pkgs, ... }: {
               users.users = loadedUsers.OSusers // {
-                root = { hashedPassword = "$y$j9T$94N5V1zFu894r2GaVkTut1$u9hnEfJw6qdSQrHfFh6mkjAoCaQM8T6b04xp52hqgHC"; };
+                root = {
+                  hashedPassword =
+                    "$y$j9T$94N5V1zFu894r2GaVkTut1$u9hnEfJw6qdSQrHfFh6mkjAoCaQM8T6b04xp52hqgHC";
+                };
 
                 rescue = {
                   description = "Rescue";
