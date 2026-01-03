@@ -1,6 +1,4 @@
-{ lib, pkgs, home-manager, ... }:
-
-{
+{...}: {
   module = {
     program = "git";
   };

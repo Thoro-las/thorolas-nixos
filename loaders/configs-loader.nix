@@ -4,8 +4,7 @@ let
   loader-utility = import ./loader-utility.nix { inherit pkgs lib; };
   users-loader = import ./users-loader.nix { inherit pkgs lib home-manager; };
 
-  loaded-users = lib.pipe (loader-utility.fs.list-subitems ../users "directory")
-    [
+  loaded-users = lib.pipe (loader-utility.fs.list-subitems ../users "directory") [
       (user-names:
         lib.listToAttrs (lib.map (user-name: {
           name = user-name;
