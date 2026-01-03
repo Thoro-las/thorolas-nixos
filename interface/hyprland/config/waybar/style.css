@@ -1,25 +1,27 @@
-@define-color bg #1f2329;
-@define-color bg1 #282c34;
-@define-color bg2 #30363f;
-@define-color bg3 #323641;
-@define-color bg_blue #61afef;
-@define-color bg_d #181b20;
-@define-color bg_yellow #e8c88c;
-@define-color black #0e1013;
-@define-color blue #4fa6ed;
-@define-color cyan #48b0bd;
-@define-color dark_cyan #266269;
-@define-color dark_purple #7e3992;
-@define-color dark_red #8b3434;
-@define-color dark_yellow #835d1a;
-@define-color fg #a0a8b7;
-@define-color green #8ebd6b;
-@define-color grey #535965;
-@define-color light_grey #7a818e;
-@define-color orange #cc9057;
-@define-color purple #bf68d9;
-@define-color red #e55561;
-@define-color yellow #e2b86b;
+@define-color bg           #2b3339;
+@define-color bg1          #2b3339;
+@define-color bg2          #323c41;
+@define-color bg3          #323c41;
+
+@define-color bg_blue      #7fbbb3;
+@define-color bg_d         #2b3339;
+@define-color bg_yellow    #dbbc7f;
+@define-color black        #374247;
+
+@define-color blue         #7fbbb3;
+@define-color cyan         #83c092;
+@define-color dark_cyan    #266269;
+@define-color dark_purple  #d699b6;
+@define-color dark_red     #e67e80;
+@define-color dark_yellow  #835d1a;
+@define-color fg           #d3c6aa;
+@define-color green        #a7c080;
+@define-color grey         #53605c;
+@define-color light_grey   #9da9a0;
+@define-color orange       #e69875;
+@define-color purple       #d699b6;
+@define-color red          #e67e80;
+@define-color yellow       #dbbc7f;
 
 * {
   font-family: "JetBrainsMono NFP";
@@ -32,19 +34,21 @@ window#waybar {
 }
 
 #custom-appmenu {
-  background-color: @blue;
-  color: @bg;
-  font-size: 1.6em;
+  padding: 0px 10px;
+  /* background-color: @blue; */
+  margin: 0px;
+  color: @blue;
+  font-size: 1.7em;
 }
 
 #custom-powermenu {
-  background-color: @red;
+  background-color: @green;
   color: @bg;
   font-size: 1.4em;
 }
 
 #workspaces {
-  margin: 0 1mm;
+  margin: 0 10px 0 -4px;
 }
 
 #workspaces button {
@@ -53,6 +57,8 @@ window#waybar {
   border-bottom: 3px solid @fg1;
   margin-left: 3px;
   margin-right: 3px;
+
+     
   color: @fg;
 }
 
@@ -109,8 +115,7 @@ window#waybar.empty #window {
 #custom-harddisk,
 #memory,
 #network,
-#bluetooth
-{
+#bluetooth {
   margin: 0 7px;
 }
 

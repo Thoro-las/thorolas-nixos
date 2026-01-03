@@ -1,28 +1,37 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     flake-utils.url = "github:numtide/flake-utils";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nur.url = "github:nix-community/NUR";
-    nur.inputs.nixpkgs.follows = "nixpkgs";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
 
+      loaded-overlays =
+        builtins.readDir ./overlays
+        |> builtins.filter (lib.hasSuffix ".nix")
+        |> builtins.map (name: import ("./overlays/${name}"));
+
       pkgs = import nixpkgs {
         system = system;
         config = { allowUnfree = true; };
+        overlays = [ inputs.nur.overlays.default ] ++ loaded-overlays;
       };
 
       loadedUsers = import ./loaders/configs-loader.nix {
-        inherit lib home-manager nur system;
-        nixpkgs = pkgs;
+        inherit pkgs lib home-manager;
       };
     in {
       homeConfigurations = loadedUsers.HMusers;
@@ -31,6 +40,12 @@
           inherit system;
           modules = [
             system/configuration.nix
+
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+            }
+
             ({ pkgs, ... }: {
               users.users = loadedUsers.OSusers // {
                 root = {

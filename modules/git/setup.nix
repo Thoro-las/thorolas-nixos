@@ -8,10 +8,9 @@
   config = {
     enable = true;
 
-    userName = "thorolas";
-    userEmail = "had.azouaou@gmail.com";
-
-    extraConfig = {
+    settings = {
+      user.name = "thorolas";
+      user.email = "had.azouaou@gmail.com";
       safe.directory = "/etc/nixos";
     };
   };

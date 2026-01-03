@@ -20,12 +20,11 @@ return {
       dashboard.button("<leader>fp", "󱃐 Recent Projects", "<cmd>Telescope project<CR>"),
       dashboard.button("<leader>fb", "󱧶 File Browser", "<cmd>Telescope file_browser<CR>"),
       dashboard.button("<leader>fo", "󱋡 Recent Files", "<cmd>Telescope oldfiles<CR>"),
-      dashboard.button("<leader>ff", "󰱼 Find Files", "<cmd>Telescope oldfiles<CR>"),
       dashboard.button("<leader>qq", "󰤆 Quit Neovim", "<cmd>qa<CR>")
     };
 
     dashboard.section.footer.val = function()
-      return "Abstract... Abstract... Over-Abstract";
+      return "\n\nAbstract... Abstract... Over-Abstract";
     end
 
     dashboard.section.footer.opts.hl = "Type";

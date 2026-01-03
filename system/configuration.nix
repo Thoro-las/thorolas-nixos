@@ -11,29 +11,29 @@
   networking.networkmanager.dns = "systemd-resolved";
   networking.useHostResolvConf = false;
 
-  # networking = {
-  #   useDHCP = false;
-  #   hostName = "thorolas";
-  #
-  #   interfaces.wlan0.ipv4.addresses = [{
-  #     address = "192.168.50.1";
-  #     prefixLength = 24;
-  #   }];
-  #
-  #   nat = {
-  #     enable = true;
-  #     externalInterface = "eth0";
-  #     internalInterfaces = [ "wlan0" ];
-  #   };
-  # };
+  networking = {
+    useDHCP = false;
+    hostName = "thorolas";
 
-  # services.dnsmasq = {
-  #   enable = true;
-  #   settings = {
-  #     interface = "wlan0";
-  #     dhcp-range = "192.168.50.10,192.168.50.100,12h";
-  #   };
-  # };
+    interfaces.wlan0.ipv4.addresses = [{
+      address = "192.168.50.1";
+      prefixLength = 24;
+    }];
+
+    nat = {
+      enable = true;
+      externalInterface = "eth0";
+      internalInterfaces = [ "wlan0" ];
+    };
+  };
+
+  services.dnsmasq = {
+    enable = true;
+    settings = {
+      interface = "wlan0";
+      dhcp-range = "192.168.50.10,192.168.50.100,12h";
+    };
+  };
 
   networking.firewall.enable = true;
 
@@ -79,10 +79,11 @@
     polkit
     dconf
     bluez
+    libnotify
 
     wlogout
     kdePackages.dolphin
-    rofi-wayland
+    rofi
     rofi-bluetooth
     rofi-network-manager
     networkmanager_dmenu
@@ -163,6 +164,6 @@
     blacklistedKernelModules = [ "kvm" "kvm_intel" "kvm_amd" ];
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
   system.stateVersion = "25.05";
 }

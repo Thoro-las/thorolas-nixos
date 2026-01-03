@@ -85,11 +85,11 @@
       set -gx WINE_HOME "$WINE_ROOT/drive_c/users/$USER"
 
       # LD configuration
-      set -gx LD_LIBRARY_PATH "${pkgs.qt6.full}/lib" $LD_LIBRARY_PATH
       set -gx LD_LIBRARY_PATH "${pkgs.gtk3}/lib" $LD_LIBRARY_PATH
       set -gx LD_LIBRARY_PATH "${pkgs.glib}/lib" $LD_LIBRARY_PATH
     '';
 
+    # set -gx LD_LIBRARY_PATH "${pkgs.qt6.full}/lib" $LD_LIBRARY_PATH
     # Fish universal variables (from your fish_variables file)
     # These will be set when Fish starts
     shellInit = ''

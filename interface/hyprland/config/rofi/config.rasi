@@ -25,28 +25,30 @@ configuration {
 *******************************************************************************/
 
 * {
-  bg: #1f2329;
-  bg1: #282c34;
-  bg2: #30363f;
-  bg3: #323641;
-  bg-blue: #61afef;
-  bg-d: #181b20;
-  bg-yellow: #e8c88c;
-  black: #0e1013;
-  blue: #4fa6ed;
-  cyan: #48b0bd;
-  dark-cyan: #266269;
-  dark-purple: #7e3992;
-  dark-red: #8b3434;
+  bg: #2b3339;
+  bg1        : #2b3339;
+  bg2        : #323c41;
+  bg3        : #3a454a;
+
+  bg-blue: #7fbbb3;
+  bg-d: #2b3339;
+  bg-yellow: #dbbc7f;
+
+  black: #374247;
+  blue: #7fbbb3;
+  cyan: #83c092;
+  dark-cyan: #83c092;
+  dark-purple: #d699b6;
+  dark-red: #e67e80;
   dark-yellow: #835d1a;
-  fg: #a0a8b7;
-  green: #8ebd6b;
-  grey: #535965;
-  light-grey: #7a818e;
-  orange: #cc9057;
-  purple: #bf68d9;
-  red: #e55561;
-  yellow: #e2b86b;
+  fg: #d3c6aa;
+  green: #a7c080;
+  grey: #53605c;
+  light-grey: #9da9a0;
+  orange: #e69875;
+  purple: #d699b6;
+  red: #e67e80;
+  yellow: #dbbc7f;
 }
 
 window {

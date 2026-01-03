@@ -4,9 +4,9 @@ return function(capabilities)
     cmd = { "jdtls" },
     filetypes = { "java" },
     root_dir = require('lspconfig').util.root_pattern(
-      "pom.xml",         -- Maven
-      "build.gradle",    -- Gradle (Groovy)
-      "build.gradle.kts",-- Gradle (Kotlin)
+      "pom.xml",
+      "build.gradle",
+      "build.gradle.kts",
       ".classpath",
       ".project"
     ),

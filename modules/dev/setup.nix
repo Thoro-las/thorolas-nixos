@@ -53,14 +53,14 @@
 
           pyside6
           qtpy
-          (opencv4.override ({ enableGtk3 = true; }))
+          # (opencv4.override ({ enableGtk3 = true; }))
         ]))
 
       (lib.lowPrio pkgs.jupyter)
       pkgs.selenium-manager
       pkgs.geckodriver
       pkgs.qt6.qttools
-      pkgs.qt6.full
+      # pkgs.qt6
 
       pkgs.sageWithDoc
 
@@ -83,14 +83,11 @@
       (lib.lowPrio pkgs.clang-tools)
 
       pkgs.jdk
-      pkgs.openjfx
-      pkgs.jdt-language-server
-      pkgs.jetbrains.idea-community
-      pkgs.eclipses.eclipse-java
-      pkgs.spring-boot-cli
-      pkgs.scenebuilder
+      # pkgs.maven
       pkgs.gradle
-      pkgs.maven
+      # pkgs.jdt-language-server
+      # pkgs.jetbrains.idea-community
+      # pkgs.eclipses.eclipse-java
 
       pkgs.live-server
       pkgs.processing
@@ -100,12 +97,16 @@
       pkgs.dotnet-sdk
       pkgs.glade
       pkgs.gtk3
+      pkgs.glib
       pkgs.SDL2
       pkgs.SDL2_image
 
       pkgs.vscode
 
       pkgs.docker
+
+      pkgs.watchexec
     ];
   };
+
 }

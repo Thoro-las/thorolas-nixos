@@ -1,11 +1,16 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 27,
+  "height": 40,
+  "margin-bottom": 2,
+  "margin-left": 4,
+  "margin-right": 4,
+  "margin-top": 4,
   "gtk-layer-shell": true,
   "fixed-center": true,
   "modules-left": [
     "custom/appmenu",
+    "custom/my_icon",
     "hyprland/workspaces",
     "hyprland/submap",
     "hyprland/window"
@@ -14,11 +19,13 @@
   "modules-right": [
     "group/services",
     "group/infos",
-    "group/state",
-    "custom/powermenu"
+    "group/state"
   ],
+  "custom/my_icon": {
+    "format": "<img src='/home/user/icons/my_icon.svg'/>"
+  },
   "custom/appmenu": {
-    "format": " 󱄅 ",
+    "format": "󱄅",
     "on-click": "rofi -show drun",
     "interval": 60,
     "tooltip": true,
@@ -75,7 +82,7 @@
     "spacing": 10,
   },
   "clock": {
-    "format": "<span foreground='#bf68d9'>  </span>{:L%a %d %b ~ %H:%M}",
+    "format": "<span foreground='#7fbbb3'>  </span>{:L%a %d %b ~ %H:%M}",
     "calendar": {
       "format": {
         "days": "<span weight='normal'>{}</span>",
@@ -91,11 +98,11 @@
     "tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>",
   },
   "cpu": {
-    "format": "<span foreground='#bf68d9' font='13'> </span>{usage:02d}%",
+    "format": "<span foreground='#7fbbb3' font='13'> </span>{usage:02d}%",
     "interval": 1,
   },
   "memory": {
-    "format": "<span foreground='#bf68d9' font='13'>󰘚 </span>{used:1.0f}G"
+    "format": "<span foreground='#7fbbb3' font='13'>󰘚 </span>{used:1.0f}G"
   },
   "battery": {
     "format-icons": [
@@ -114,24 +121,24 @@
       "critical": 20,
       "warning": 40,
     },
-    "format": "<span foreground='#bf68d9' size='15pt'>{icon}</span>{capacity}%",
-    "format-chargin": "<span foreground='#bf68d9' size='15pt'> </span>{capacity}%",
-    "format-plugged": "<span foreground='#bf68d9' size='15pt'> </span>{capacity}%",
+    "format": "<span foreground='#7fbbb3' size='15pt'>{icon}</span>{capacity}%",
+    "format-chargin": "<span foreground='#7fbbb3' size='15pt'> </span>{capacity}%",
+    "format-plugged": "<span foreground='#7fbbb3' size='15pt'> </span>{capacity}%",
   },
   "network": {
-    "format": "<span foreground='#bf68d9'>󰒎 </span>Off",
-    "format-wifi": "<span foreground='#bf68d9'> </span>On",
+    "format": "<span foreground='#7fbbb3'>󰒎 </span>Off",
+    "format-wifi": "<span foreground='#7fbbb3'> </span>On",
     "tooltip-format-wifi": "{essid}",
-    "format-ethernet": "<span foreground='#bf68d9'> </span>On",
+    "format-ethernet": "<span foreground='#7fbbb3'> </span>On",
     "on-click": "sh -c 'networkmanager_dmenu'"
   },
   "bluetooth": {
-    "format": "<span foreground='#bf68d9'>󰂲 </span>Off ",
-    "format-on": "<span foreground='#bf68d9'>󰂯 </span>On ",
+    "format": "<span foreground='#7fbbb3'>󰂲 </span>Off ",
+    "format-on": "<span foreground='#7fbbb3'>󰂯 </span>On ",
     "on-click": "sh -c 'blueman-manager'"
   },
   "pulseaudio": {
-    "format": "<span foreground='#bf68d9'>{icon}</span>{volume}%",
+    "format": "<span foreground='#7fbbb3'>{icon}</span>{volume}%",
     "format-muted": " muted",
     "format-icons": {
       "headphone": " ",
@@ -146,7 +153,7 @@
     "on-click": "pavucontrol",
   },
   "backlight": {
-    "format": "<span foreground='#bf68d9'>{icon}</span>{percent}%",
+    "format": "<span foreground='#7fbbb3'>{icon}</span>{percent}%",
     "format-icons": [
       "󰃞 ",
       "󰃟 ",
@@ -160,7 +167,7 @@
   },
   "custom/harddisk": {
     "exec": "df -h / | awk 'NR==2 { print $3 }'",
-    "format": "<span foreground='#bf68d9' font='13'>󰋊 </span>{}",
+    "format": "<span foreground='#7fbbb3' font='13'>󰋊 </span>{}",
   },
   "custom/notification": {
     "escape": true,

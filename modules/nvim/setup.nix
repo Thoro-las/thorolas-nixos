@@ -26,6 +26,8 @@
       eslint_d
 
       tinymist
+
+      vim
     ];
 
     sources = {

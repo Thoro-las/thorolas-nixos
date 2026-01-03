@@ -1,20 +1,6 @@
-{ nixpkgs, lib, home-manager, nur, system, ... }:
+{ pkgs, lib, home-manager, ... }:
 
 let
-  state-version = "25.05";
-
-  overlays-directory = ../overlays;
-  overlay-names = builtins.filter (name: lib.hasSuffix ".nix" name)
-    (builtins.attrNames (builtins.readDir overlays-directory));
-  loaded-overlays =
-    map (name: import ("${overlays-directory}/${name}")) (overlay-names);
-  
-  pkgs = import nixpkgs.path {
-    inherit system;
-    config.allowUnfree = true;
-    overlays = loaded-overlays ++ [ nur.overlays.default ];
-  };
-
   loader-utility = import ./loader-utility.nix { inherit pkgs lib; };
   users-loader = import ./users-loader.nix { inherit pkgs lib home-manager; };
 
@@ -41,8 +27,7 @@ in {
     enable = true;
     isNormalUser = true;
 
-    extraGroups = [ "wheel" "networkmanager" "nixos-conf" ];
-    packages = with pkgs; [ ];
+    extraGroups = [ "wheel" "networkmanager" ];
 
     createHome = true;
     home = "/home/" + user;
@@ -52,26 +37,20 @@ in {
     home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
-
-
-        ({ config, pkgs, ... }@args:
-          (import (../users/common.nix) { inherit users-loader database; }) {
-            inherit config pkgs;
-          })
+        ({ config, pkgs, ... }:
+          (import (../users/common.nix) { inherit users-loader database; }) { inherit config pkgs; })
 
         ({ config, pkgs, ... }: {
           home.username = user;
           home.homeDirectory = "/home/" + user;
-          home.stateVersion = state-version;
+          home.stateVersion = "25.05";
         })
 
         ({ config, pkgs, ... }:
           import ../interface/hyprland/default.nix { inherit pkgs; })
 
         ({ config, pkgs, ... }:
-          user-config.home { inherit users-loader database; } {
-            inherit config pkgs;
-          })
+          user-config.home { inherit users-loader database; } { inherit config pkgs; })
       ];
     }) loaded-users;
 }
