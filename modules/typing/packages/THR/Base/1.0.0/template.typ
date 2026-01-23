@@ -163,9 +163,10 @@
 #let code(title: none, link: none, code) = [
   #align(center)[
     #block(
-      fill: color.rgb("#282C34"),
+      // fill: color.rgb("#282C34"),
       inset: 3mm,
-      width: 95%,
+      width: 100%,
+      stroke: 0.2mm,
       radius: 1mm,
       align(left)[
         #show raw.line: it => [
@@ -174,8 +175,7 @@
           #text(fill: color.rgb("#6c7079"), [#disp #h(-1mm)- ]) #it.body
         ]
 
-        #show raw: set text(ligatures: true, size: 0.9em, weight: "regular", style: "normal")
-
+        // #set raw(theme: "theme.tmTheme", syntaxes: ("pseudo.sublime-syntax",))
         #code
       ]
     )
@@ -187,8 +187,6 @@
   show table: contents => { align(center, contents) }
   set table(stroke: 0.3mm)
 
-  set raw(theme: "One Dark.tmTheme", syntaxes: "pseudo.sublime-syntax")
-  show raw: body => box(baseline: 20%, fill: color.rgb("#282C34"), outset: (y: 0mm), inset: (x: 0.7mm, y: 1mm), body)
 
   if (mainpage) {
     set par(justify: false)

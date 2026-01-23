@@ -1,4 +1,4 @@
 {
   name = "Main";
-  password = "$6$y.Ag8lyXg6fqM5kj$Q4tFmsKhMsDx6RKNovtNE4ORYvFWrwlJqpJ9acHNKUOYJzAzhPVca.zNGdWSD1U7B9DaQU8vCueTzZtaIQ6hz.";
+  password = "$6$zdFvmroeZCQO4Zkl$WgjJwzXMEMjSYi6mCyWfwk/f8svR6Ojg2UDmQOHkfC75rGfrpqVEd8vC2LX2z5mCCqQDJjzz.pKruE8jEh90E.";
 }

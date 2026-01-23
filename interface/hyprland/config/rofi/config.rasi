@@ -25,7 +25,7 @@ configuration {
 *******************************************************************************/
 
 * {
-  bg: #2b3339;
+  bg: #223133;
   bg1        : #2b3339;
   bg2        : #323c41;
   bg3        : #3a454a;
@@ -162,10 +162,12 @@ inputbar {
   padding: 1em;
   children: [ prompt, entry, case-indicator ];
 }
+
 case-indicator {
   spacing: 0;
   text-color: @fg;
 }
+
 entry {
   margin: 0 0 0 1em;
   spacing: 0;
@@ -174,6 +176,7 @@ entry {
   cursor-width: 1px;
   cursor-color: @green;
 }
+
 prompt {
   spacing: 0;
   horizontal-align: 0.5;

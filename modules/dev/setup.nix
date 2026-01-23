@@ -76,6 +76,7 @@
       pkgs.gcc
       pkgs.gdb
       pkgs.glibc
+      pkgs.glibc.static
       pkgs.glibcInfo
       pkgs.tinycc
       pkgs.lua5_1
@@ -106,6 +107,15 @@
       pkgs.docker
 
       pkgs.watchexec
+
+      pkgs.qemu
+      pkgs.nasm
+      pkgs.cdrkit
+      pkgs.bochs
+
+      pkgs.dosbox-x
+      pkgs.vice
+      pkgs.simh
     ];
   };
 

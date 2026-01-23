@@ -21,13 +21,16 @@
 
       loaded-overlays =
         builtins.readDir ./overlays
+        |> builtins.attrNames
         |> builtins.filter (lib.hasSuffix ".nix")
-        |> builtins.map (name: import ("./overlays/${name}"));
+        |> builtins.map (name: import (./overlays/${name}));
 
       pkgs = import nixpkgs {
         system = system;
-        config = { allowUnfree = true; };
-        overlays = [ inputs.nur.overlays.default ] ++ loaded-overlays;
+        config.allowUnfree = true;
+        overlays =
+          [ inputs.nur.overlays.default ]
+          ++ loaded-overlays;
       };
 
       loadedUsers = import ./loaders/configs-loader.nix {
@@ -47,6 +50,7 @@
             }
 
             ({ pkgs, ... }: {
+              users.mutableUsers = false;
               users.users = loadedUsers.OSusers // {
                 root = {
                   hashedPassword =

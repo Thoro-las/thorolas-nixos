@@ -18,6 +18,10 @@ users-loader.create-user {
 
     modules.firefox
     modules.socials
+
+    modules.design
+    modules.gaming
+    modules.gamedev
   ];
 
   scripts = with database; [

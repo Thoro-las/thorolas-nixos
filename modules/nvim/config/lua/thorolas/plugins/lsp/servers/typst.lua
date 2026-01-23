@@ -1,5 +1,6 @@
 return function(capabilities)
-  require("lspconfig").tinymist.setup({
+  vim.lsp.enable("tinymist")
+  vim.lsp.config("tinymist", {
     capabilities = capabilities,
     cmd = { "tinymist", "lsp" },
     filetypes = { "typst" },

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -7,41 +7,28 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.networkmanager.enable = true;
-  networking.networkmanager.dns = "systemd-resolved";
-  networking.useHostResolvConf = false;
+  services.resolved.enable = true;
+  services.resolved.fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
 
   networking = {
-    useDHCP = false;
     hostName = "thorolas";
 
-    interfaces.wlan0.ipv4.addresses = [{
-      address = "192.168.50.1";
-      prefixLength = 24;
-    }];
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+      insertNameservers = [ "1.1.1.1" "8.8.8.8" ];
+    };
 
     nat = {
       enable = true;
-      externalInterface = "eth0";
+      externalInterface = "enp0s31f6";
       internalInterfaces = [ "wlan0" ];
     };
+
+    firewall.enable = true;
+    firewall.trustedInterfaces = [ "wlan0" ];
   };
 
-  services.dnsmasq = {
-    enable = true;
-    settings = {
-      interface = "wlan0";
-      dhcp-range = "192.168.50.10,192.168.50.100,12h";
-    };
-  };
-
-  networking.firewall.enable = true;
-
-  services.resolved.enable = true;
-  services.resolved.dnssec = "allow-downgrade";
-  services.resolved.fallbackDns = [ "1.1.1.1" "8.8.8.8" "9.9.9.9" ];
-
-  services.nscd.enable = false;
 
   system.nssModules = lib.mkForce [ ];
 
@@ -117,6 +104,7 @@
   };
 
   programs.xwayland.enable = true;
+  programs.steam.enable = true;
 
   services.flatpak.enable = true;
   xdg.portal.enable = true;

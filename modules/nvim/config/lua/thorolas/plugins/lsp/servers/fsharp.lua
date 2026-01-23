@@ -1,5 +1,6 @@
 return function(capabilities)
-  require('lspconfig').fsautocomplete.setup({
+  vim.lsp.enable("fsautocomplete")
+  vim.lsp.config("fsautocomplete", {
     capabilities = capabilities,
     cmd = { "fsautocomplete", "--background-service-enabled" },
     filetypes = { "fsharp" },

@@ -5,7 +5,7 @@
     program = "firefox";
     packages = [ ];
     aliases = { };
-    sources = { ".mozilla/firefox/default/prefs.js".source = ./prefs.js; };
+    # sources = { ".mozilla/firefox/default/prefs.js".source = ./prefs.js; };
   };
 
   config = {

@@ -19,6 +19,7 @@
       pkgs.mpv
 
       pkgs.sqlitebrowser
+      pkgs.gparted
     ];
   };
 
