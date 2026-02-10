@@ -6,24 +6,9 @@ return {
     require("bufferline").setup({
       options = {
         mode = "buffers",
-        show_close_icon = false,
-        show_buffer_close_icons = false,
-        separator_style = "slant",
-        enforce_regular_tabs = true,
+        show_close_icon = true,
+        show_buffer_close_icons = true,
         always_show_bufferline = true,
-
-        custom_filter = function(buf_number, buf_numbers)
-          local ft = vim.bo[buf_number].filetype
-          local bt = vim.bo[buf_number].buftype
-          local name = vim.fn.bufname(buf_number)
-
-          -- Exclude these from bufferline
-          if ft == "qf" or bt == "nofile" or name == "messages" then
-            return false
-          end
-
-          return true
-        end
       },
     })
 

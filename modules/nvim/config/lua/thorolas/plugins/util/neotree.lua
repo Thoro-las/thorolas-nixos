@@ -11,15 +11,7 @@ return {
   },
 
   config = function()
-    require("nvim-web-devicons").setup({
-      override = {
-        ["sage"] = {
-          icon = "󰍘",
-          color = "#428850",
-          name = "SageMath"
-        },
-      }
-    })
+    require("nvim-web-devicons").setup({})
 
     local filesystem_commands = require("neo-tree.sources.filesystem.commands")
     local wk = require("thorolas.utility/keymaps");

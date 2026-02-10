@@ -10,7 +10,6 @@ return {
     })
 
     local kw = require("thorolas.utility.keymaps")
-
     kw.command("<leader>ln", "Nerdy", "Nerdy Show List")
   end,
 }

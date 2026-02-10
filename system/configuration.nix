@@ -105,6 +105,7 @@
 
   programs.xwayland.enable = true;
   programs.steam.enable = true;
+  programs.wireshark.enable = true;
 
   services.flatpak.enable = true;
   xdg.portal.enable = true;

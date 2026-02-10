@@ -2,7 +2,7 @@
 {
   module = {
     packages = [
-      pkgs.wireshark
+      # pkgs.wireshark
 
       pkgs.vimgolf
     ];

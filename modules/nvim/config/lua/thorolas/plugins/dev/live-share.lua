@@ -4,7 +4,7 @@ return {
     "jbyuki/instant.nvim",
   },
   config = function()
-    vim.g.instant_username = "your-username"
+    vim.g.instant_username = "thorolas"
     require("live-share").setup({
       port_internal = 8765,
       max_attempts = 40,

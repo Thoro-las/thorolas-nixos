@@ -163,7 +163,7 @@
 #let code(title: none, link: none, code) = [
   #align(center)[
     #block(
-      // fill: color.rgb("#282C34"),
+      fill: color.rgb("#282C34"),
       inset: 3mm,
       width: 100%,
       stroke: 0.2mm,
@@ -172,10 +172,11 @@
         #show raw.line: it => [
           #let n = str(it.number)
           #let disp = " " * (3 - n.len()) + n
-          #text(fill: color.rgb("#6c7079"), [#disp #h(-1mm)- ]) #it.body
+          #text(fill: color.rgb("#6c7079"), [#disp #h(-1mm)- ]) #text(fill: white, it.body)
         ]
 
-        // #set raw(theme: "theme.tmTheme", syntaxes: ("pseudo.sublime-syntax",))
+        #set raw(theme: "theme.tmTheme", syntaxes: ("pseudo.sublime-syntax",))
+        #set text(style: "normal", weight: "medium")
         #code
       ]
     )

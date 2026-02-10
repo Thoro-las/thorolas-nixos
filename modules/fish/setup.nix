@@ -46,11 +46,11 @@
         if test $last_status -ne 0
           set error_code "$(set_color normal)<$(set_color red)$last_status$(set_color normal)>"
         end
-        set -l end_sign "!"
+        set -l end_sign " ->"
         if test "$USER" = "root"
           set end_sign "#"
         end
-        printf "$(set_color normal)\n""$(set_color cyan)fish$error_code$(set_color blue)$end_sign$(set_color normal) "
+        printf "$(set_color normal)\n""$(set_color cyan)$error_code$(set_color blue)$end_sign$(set_color normal) "
       '';
 
       fish_greeting = ''

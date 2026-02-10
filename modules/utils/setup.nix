@@ -34,6 +34,14 @@
       iw
 
       input-leap
+
+      logisim-evolution
+      ngspice
+      simulide
+      digital
+      qucs-s
+
+      fuse
     ];
   };
 }

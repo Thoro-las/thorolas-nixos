@@ -60,7 +60,6 @@
       pkgs.selenium-manager
       pkgs.geckodriver
       pkgs.qt6.qttools
-      # pkgs.qt6
 
       pkgs.sageWithDoc
 
@@ -70,8 +69,6 @@
       pkgs.imagemagick.dev
 
       pkgs.nodejs
-
-      pkgs.logisim-evolution
 
       pkgs.gcc
       pkgs.gdb
@@ -105,7 +102,6 @@
       pkgs.vscode
 
       pkgs.docker
-
       pkgs.watchexec
 
       pkgs.qemu
@@ -116,6 +112,17 @@
       pkgs.dosbox-x
       pkgs.vice
       pkgs.simh
+
+      pkgs.zellij
+
+      pkgs.clojure
+      pkgs.clojure-lsp
+
+      pkgs.nim
+      pkgs.nim_lk
+      pkgs.nim_builder
+      pkgs.nimlsp
+      pkgs.nimble
     ];
   };
 

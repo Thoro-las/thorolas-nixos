@@ -6,10 +6,11 @@
       pkgs.vulkan-loader
       pkgs.vulkan-tools
 
-      pkgs.bottles
       pkgs.winetricks
       pkgs.wineWowPackages.stable
       pkgs.vulkan-tools
+
+      (pkgs.bottles.override { removeWarningPopup = true; })
     ];
   };
 }

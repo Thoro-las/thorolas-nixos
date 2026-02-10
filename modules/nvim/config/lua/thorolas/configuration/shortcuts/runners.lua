@@ -20,8 +20,6 @@ end
 
 vim.api.nvim_create_user_command("RunMake", function(options)
   local currentfile = vim.api.nvim_buf_get_name(0)
-  -- if currentfile == "" then return end
-
   local makedirectory = findmake(vim.fs.dirname(currentfile))
 
   if makedirectory then
@@ -37,5 +35,3 @@ end, {})
 
 kw.group("<leader>rm", "make")
 kw.command("<leader>rmm", "RunMake", "Run Makefile Targetless")
-
-

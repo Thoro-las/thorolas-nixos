@@ -47,7 +47,6 @@ return {
     telescope.load_extension("file_browser")
     telescope.load_extension("project")
 
-
     local kw = require("thorolas.utility.keymaps")
 
     kw.group("<leader>f", "file")

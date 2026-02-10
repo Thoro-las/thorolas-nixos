@@ -40,5 +40,6 @@ users-loader.create-user {
         "application/zip" = "xarchiver.desktop";
       };
     };
+
   };
 }

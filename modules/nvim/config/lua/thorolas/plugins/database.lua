@@ -6,4 +6,6 @@ return {
     { import = "thorolas.plugins.nav" },
     { import = "thorolas.plugins.extra" },
     { import = "thorolas.plugins.dev" },
+    { import = "thorolas.plugins.runs" },
+    { import = "thorolas.plugins.tools" },
 }
