@@ -183,6 +183,17 @@
   ]
 ]
 
+#let follow-bar(message) = {
+  grid(
+    columns: (1fr, auto, 1fr),
+    column-gutter: 1mm,
+    align: center + horizon,
+    line(length: 100%, stroke: (paint: gray, dash: "densely-dashed")),
+    text(message, fill: gray),
+    line(length: 100%, stroke: (paint: gray, dash: "densely-dashed")),
+  )
+}
+
 #let template(doc, title: [], mainpage: true, summarize: false, contents: true, disclaimer: none, writer: none, comment: none, warning: none) = {
   show heading: none
   show table: contents => { align(center, contents) }
@@ -213,7 +224,7 @@
         #comment
         #linebreak()
       ]
-      To separate the contents of the course to actual additions or out of context information, a black band will be added by its side like the globing this comment.
+      To separate the contents of the course to actual additions or out of context information, a black band will be added by its side like the one on this comment.
     ])
     linebreak()
 

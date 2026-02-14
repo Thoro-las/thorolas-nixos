@@ -69,6 +69,10 @@
       pkgs.imagemagick.dev
 
       pkgs.nodejs
+      pkgs.nodemon
+      pkgs.tsx
+      pkgs.typescript
+      pkgs.typescript-language-server
 
       pkgs.gcc
       pkgs.gdb

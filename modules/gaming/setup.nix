@@ -10,6 +10,8 @@
       pkgs.wineWowPackages.stable
       pkgs.vulkan-tools
 
+      pkgs.atlauncher
+
       (pkgs.bottles.override { removeWarningPopup = true; })
     ];
   };
