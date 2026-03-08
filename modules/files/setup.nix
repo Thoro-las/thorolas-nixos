@@ -20,6 +20,8 @@
 
       pkgs.sqlitebrowser
       pkgs.gparted
+
+      pkgs.unrar
     ];
   };
 

@@ -29,6 +29,8 @@
     firewall.trustedInterfaces = [ "wlan0" ];
   };
 
+  services.vsftpd.enable = true;
+  services.sshd.enable = true;
 
   system.nssModules = lib.mkForce [ ];
 

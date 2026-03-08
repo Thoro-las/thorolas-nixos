@@ -22,20 +22,39 @@
 
       for file in ''${FILE_LIST[@]}; do
         file=$(echo "$file" | xargs)
-        if [[ -e "$file" ]]; then
-          echo "|> Uploading $file"
-          if [[ "$shared" == "y" ]]; then
-            rclone copy "$file" "$remote_path" --progress --drive-shared-with-me
-          else
-            rclone copy "$file" "$remote_path" --progress
-          fi
-        else
-          echo "<| File $file Not Found"
+        if [[ -e "$file" ]]; 
+          then echo "|> Uploading $file"
+            if [[ "$shared" == "y" ]]; 
+              then rclone copy "$file" "$remote_path" --progress --drive-shared-with-me
+              else rclone copy "$file" "$remote_path" --progress
+            fi
+          else echo "<| File $file Not Found"
         fi
       done
 
       echo "Upload Complete"
     }
+
+    if [[ "$1" == "all" ]]; then
+      echo "Searching for .thrupload files..."
+
+      find . -type f -name ".thrupload" | while read -r config; do
+        dir=$(dirname "$config")
+
+        echo ""
+        echo "Processing $dir"
+
+        (
+          cd "$dir" || exit
+          read_config
+          upload
+        )
+      done
+
+      echo ""
+      echo "All uploads completed."
+      exit 0
+    fi
 
     if [[ -f "$CONFIG_FILE" ]]; then
       echo "Loading $CONFIG_FILE"

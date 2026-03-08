@@ -3,7 +3,9 @@
 {
   module = {
     program = "firefox";
-    packages = [ ];
+    packages = [
+      pkgs.brave
+    ];
     aliases = { };
   };
 

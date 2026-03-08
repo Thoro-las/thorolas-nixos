@@ -2,67 +2,8 @@
 
 {
   module = {
-    sources = {
-      ".libraries" = {
-        source = ./libraries;
-        recursive = true;
-      };
-
-      ".local/share/jupyter/kernels/sagemath/kernel.json".source =
-        pkgs.writeText "sage-kernel.json" ''
-          {
-            "argv": [
-              "${pkgs.sageWithDoc}/bin/sage",
-              "--python",
-              "-m",
-              "sage.repl.ipython_kernel",
-              "-f",
-              "{connection_file}"
-            ],
-            "display_name": "SageMath ${pkgs.sageWithDoc.version}",
-            "language": "sage",
-            "codemirror_mode": "python"
-          }
-        '';
-    };
 
     packages = [
-      (pkgs.python3.withPackages (ps:
-        with ps; [
-          pip
-
-          ipython
-          ipykernel
-          jupyter-client
-          jupyter-console
-          jupyter
-          jupytext
-          nbformat
-          notebook
-          pynvim
-          pillow
-          cairosvg
-          pnglatex
-          plotly
-          kaleido
-          pyperclip
-
-          numpy
-          pandas
-          matplotlib
-
-          pyside6
-          qtpy
-          # (opencv4.override ({ enableGtk3 = true; }))
-        ]))
-
-      (lib.lowPrio pkgs.jupyter)
-      pkgs.selenium-manager
-      pkgs.geckodriver
-      pkgs.qt6.qttools
-
-      pkgs.sageWithDoc
-
       pkgs.ueberzug
       pkgs.pkg-config
       pkgs.imagemagick
@@ -85,23 +26,30 @@
       (lib.lowPrio pkgs.clang-tools)
 
       pkgs.jdk
-      # pkgs.maven
       pkgs.gradle
-      # pkgs.jdt-language-server
-      # pkgs.jetbrains.idea-community
-      # pkgs.eclipses.eclipse-java
 
       pkgs.live-server
       pkgs.processing
       pkgs.arduino
 
       pkgs.mono
-      pkgs.dotnet-sdk
       pkgs.glade
       pkgs.gtk3
       pkgs.glib
       pkgs.SDL2
       pkgs.SDL2_image
+      pkgs.dotnet-sdk
+      pkgs.netcoredbg
+      pkgs.skia
+
+      pkgs.glfw
+      pkgs.mesa
+      pkgs.libxkbcommon
+      pkgs.xorg.libX11
+      pkgs.xorg.libXcursor
+      pkgs.xorg.libXi
+      pkgs.xorg.libXrandr
+      pkgs.libGL
 
       pkgs.vscode
 
@@ -118,6 +66,7 @@
       pkgs.simh
 
       pkgs.zellij
+      pkgs.multitail
 
       pkgs.clojure
       pkgs.clojure-lsp
@@ -127,7 +76,64 @@
       pkgs.nim_builder
       pkgs.nimlsp
       pkgs.nimble
-    ];
-  };
 
+      pkgs.tlaps
+      pkgs.tlaplus
+      pkgs.tlafmt
+      pkgs.tlaplus-toolbox
+
+      (pkgs.python3.withPackages (ps:
+        with ps; [
+          pip
+
+          ipython
+          ipykernel
+          jupyter-client
+          jupyter-console
+          jupyter
+          jupytext
+          nbformat
+          nbclassic
+          notebook
+          pynvim
+          pillow
+          cairosvg
+          pnglatex
+          plotly
+          kaleido
+          pyperclip
+
+          numpy
+          pandas
+          matplotlib
+
+          pyside6
+          qtpy
+          # (opencv4.override ({ enableGtk3 = true; }))
+
+          cryptography
+        ]))
+
+      (lib.lowPrio pkgs.jupyter)
+      pkgs.selenium-manager
+      pkgs.geckodriver
+
+      pkgs.qt6.qtbase
+      pkgs.qt6.qtdeclarative
+      pkgs.qt6.qttools
+      pkgs.qt6.qtwayland
+      pkgs.qt6.qtquick3d
+      pkgs.qt6.qtquicktimeline
+
+      pkgs.sageWithDoc
+
+    ];
+
+    sources = {
+      ".libraries" = {
+        source = ./libraries;
+        recursive = true;
+      };
+    };
+  };
 }

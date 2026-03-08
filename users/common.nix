@@ -22,6 +22,7 @@ users-loader.create-user {
     modules.design
     modules.gaming
     modules.gamedev
+    modules.emulation
   ];
 
   scripts = with database; [

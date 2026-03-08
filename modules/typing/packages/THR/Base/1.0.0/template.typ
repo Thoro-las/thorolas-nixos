@@ -83,7 +83,7 @@
   }
 
   #block(inset: (y: 3mm), [
-    = *Chapter*: #title
+    #context __chp-sect-count.display(i => [= #smallcaps[*Chapter #i*: #title]])
     #text(size: 2em, "Chapter " + context __chp-sect-count.display())
     #v(-6mm)
     #text(size: 3em, title)
@@ -99,8 +99,8 @@
 ]
 
 #let section(title, level: 2) = [
-  == #title
   #__chp-sect-count.step(level: level)
+  #context __chp-sect-count.display((..i) => [== #i.pos().map(str).join("."). #title])
   #text(context __chp-sect-count.display("1.") + " " + title, size: 1.6em, weight: "bold") \
   #v(1mm)
 
@@ -112,8 +112,8 @@
 ]
 
 #let subsection(title) = [
-  === #title
   #__chp-sect-count.step(level: 3)
+  #context __chp-sect-count.display((..i) => [=== #i.pos().map(str).join("."). #title])
   #text(context __chp-sect-count.display("1.") + " " + title, size: 1.3em, weight: "bold") \
   #v(0mm)
 
@@ -197,7 +197,7 @@
 #let template(doc, title: [], mainpage: true, summarize: false, contents: true, disclaimer: none, writer: none, comment: none, warning: none) = {
   show heading: none
   show table: contents => { align(center, contents) }
-  set table(stroke: 0.3mm)
+  set table(stroke: 0.2mm)
 
 
   if (mainpage) {

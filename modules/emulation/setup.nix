@@ -2,7 +2,8 @@
 {
   module = {
     packages = [
-      pkgs.bottles
+      pkgs.gns3-gui
+      pkgs.gns3-server
     ];
   };
 }

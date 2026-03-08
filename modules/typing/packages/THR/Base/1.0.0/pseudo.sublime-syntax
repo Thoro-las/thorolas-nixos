@@ -43,7 +43,7 @@ contexts:
     # SECTION KEYWORDS WITH COLON (input:, output:, etc.)
     # AFTER THEM: text becomes plain white
     # ─────────────────────────────────────────────
-    - match: '\b(input|output|precondition|postcondition)\b(?=\s*:)'
+    - match: '\b(input|output|algorithm|precondition|postcondition)\b(?=\s*:)'
       scope: keyword.declaration.section.pseudo
       push: after_colon
 
@@ -65,8 +65,8 @@ contexts:
     # ─────────────────────────────────────────────
     # STRUCTURE KEYWORDS
     # ─────────────────────────────────────────────
-    - match: \b(algorithm|procedure|function|initialize|begin|end|type|class)\b
-      scope: keyword.declaration.pseudo
+    # - match: \b(algorithm|procedure|function|initialize|begin|end|type)\b
+    #   scope: keyword.declaration.pseudo
 
     # ─────────────────────────────────────────────
     # LOGICAL OPERATORS
