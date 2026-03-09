@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   module = {
     program = "neovim";
@@ -32,7 +32,7 @@
 
     sources = {
       ".config/nvim" = {
-        source = ./config;
+        source = config.lib.file.mkOutOfStoreSymlink ./config;
         recursive = true;
       };
     };

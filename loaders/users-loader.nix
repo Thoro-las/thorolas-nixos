@@ -8,12 +8,13 @@ in
   create-user = { ... }@args:
     { config, pkgs, ... }:
     let
-      modules-content = modules-loader.load (args.modules or [ ]);
-      scripts-content = scripts-loader.load (args.scripts or [ ]);
+      dependencies = { inherit lib pkgs home-manager config; };
+      modules-content = modules-loader.load dependencies (args.modules or [ ]);
+      scripts-content = scripts-loader.load dependencies (args.scripts or [ ]);
 
       loaded-home-config =
         if args ? home-config
-        then args.home-config { inherit config pkgs; }
+        then args.home-config { inherit home-manager config pkgs; }
         else { };
     in
     {

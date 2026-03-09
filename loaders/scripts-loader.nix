@@ -28,13 +28,13 @@ let
 in
 {
   load =
-    script-names:
+    dependencies: script-names:
     let
       check-exist = script: builtins.pathExists ../scripts/${script};
       loaded-scripts =
         script-names
         |> lib.filter check-exist
-        |> lib.map (script: import ../scripts/${script} { inherit pkgs lib home-manager; });
+        |> lib.map (script: import ../scripts/${script} dependencies);
 
       loaded-script-dependencies = lib.concatMap (script: script.packages or [ ]) loaded-scripts;
       loaded-script-files = lib.map (

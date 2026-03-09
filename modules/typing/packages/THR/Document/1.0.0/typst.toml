@@ -1,5 +1,5 @@
 [package]
-name = "Sum"
+name = "Document"
 version = "1.0.0"
 authors = ["Thoro-las"]
 entrypoint = "./template.typ"

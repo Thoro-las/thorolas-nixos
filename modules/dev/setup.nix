@@ -136,11 +136,11 @@
       pkgs.nixfmt
     ];
 
-    sources = {
-      ".libraries" = {
-        source = ./libraries;
-        recursive = true;
-      };
-    };
+    # sources = {
+    #   ".libraries" = {
+    #     source = ./libraries;
+    #     recursive = true;
+    #   };
+    # };
   };
 }

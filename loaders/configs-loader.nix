@@ -48,7 +48,11 @@ in
       modules = [
         (
           { config, pkgs, ... }:
-          (import (../users/common.nix) { inherit users-loader database; }) { inherit config pkgs; }
+          (import (../users/common.nix) { inherit users-loader database; }) { inherit home-manager config pkgs; }
+        )
+
+        (
+          { config, pkgs, ... }: user-config.home { inherit users-loader database; } { inherit home-manager config pkgs; }
         )
 
         (
@@ -61,10 +65,6 @@ in
         )
 
         ({ config, pkgs, ... }: import ../display/hyprland/default.nix { inherit pkgs; })
-
-        (
-          { config, pkgs, ... }: user-config.home { inherit users-loader database; } { inherit config pkgs; }
-        )
       ];
     }
   ) loaded-users;

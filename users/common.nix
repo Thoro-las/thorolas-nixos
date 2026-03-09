@@ -32,7 +32,7 @@ users-loader.create-user {
     scripts.thrpm
   ];
 
-  home-config = { config, pkgs, ... }: {
+  home-config = { home-manager, config, pkgs, ... }: {
     services.swaync.enable = true;
 
     xdg.mimeApps = {
@@ -52,6 +52,5 @@ users-loader.create-user {
         "image/webp" = "vimiv.desktop";
       };
     };
-
   };
 }

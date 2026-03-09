@@ -11,10 +11,8 @@ let
 in
 {
   load =
-    module-names:
+    dependencies: module-names:
     let
-      dependencies = { inherit lib pkgs home-manager; };
-
       existing-modules = lib.filter (
         module:
         builtins.elem module available-modules && (
