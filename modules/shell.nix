@@ -4,7 +4,6 @@
     packages = [
       pkgs.eza
       pkgs.zoxide
-      pkgs.tmux
     ];
 
     aliases = {

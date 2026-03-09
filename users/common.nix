@@ -23,6 +23,8 @@ users-loader.create-user {
     modules.gaming
     modules.gamedev
     modules.emulation
+
+    modules.tmux
   ];
 
   scripts = with database; [

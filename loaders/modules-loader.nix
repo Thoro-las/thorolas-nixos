@@ -1,56 +1,59 @@
-{ lib, pkgs, home-manager, ... }:
+{
+  lib,
+  pkgs,
+  home-manager,
+  ...
+}:
 
 let
   loader-utility = import ./loader-utility.nix { inherit home-manager lib pkgs; };
-  available-modules = loader-utility.fs.list-subitems ../modules "directory";
+  available-modules = loader-utility.fs.list-subitems ../modules "all";
 in
 {
-  load = module-names:
+  load =
+    module-names:
     let
       dependencies = { inherit lib pkgs home-manager; };
 
-      existing-modules = lib.filter
-        (module:
-          builtins.elem module available-modules &&
-          builtins.pathExists ../modules/${module}/setup.nix
-        )
-        module-names;
+      existing-modules = lib.filter (
+        module:
+        builtins.elem module available-modules && (
+           builtins.pathExists ../modules/${module}/setup.nix 
+        || builtins.pathExists ../modules/${module})
+      ) module-names;
 
-      loaded-modules = lib.map
-        (module:
-          let file = import ../modules/${module}/setup.nix dependencies;
-          in
-          {
+      loaded-modules = 
+        existing-modules 
+        |> lib.map (module:
+          let
+            file =
+              if lib.strings.hasSuffix ".nix" module 
+                then import ../modules/${module} dependencies
+                else import ../modules/${module}/setup.nix dependencies;
+          in {
             module = file.module;
             config = file.config or { enable = true; };
           }
-        )
-        existing-modules;
+        );
     in
     {
-      programs = lib.pipe loaded-modules [
-        (loaded-modules: lib.filter ({ module, config }: module ? program) loaded-modules)
-        (loaded-modules: lib.map
-          ({ module, config }: {
-            name = module.program;
-            value = config;
-          })
-          loaded-modules)
-        (loaded-programs: lib.listToAttrs loaded-programs)
-        (loaded-programs: loaded-programs //
-          { home-manager.enable = true; })
-      ];
+      programs =
+        loaded-modules
+        |> lib.filter ({ module, config }: module ? program)
+        |> lib.map ( { module, config }: { name = module.program; value = config; })
+        |> lib.listToAttrs
+        |> (loaded-programs: loaded-programs // { home-manager.enable = true; });
 
-      aliases = lib.pipe loaded-modules [
-        (loaded-modules: lib.map ({ module, config }: module.aliases or {}) loaded-modules)
-        (aliases: lib.attrsets.mergeAttrsList aliases)
-      ];
+      aliases = 
+        loaded-modules
+        |> lib.map ({ module, config }: module.aliases or { })
+        |> lib.attrsets.mergeAttrsList;
 
-      sources = lib.pipe loaded-modules [
-        (loaded-modules: lib.map ({ module, config }: module.sources or {}) loaded-modules)
-        (aliases: lib.attrsets.mergeAttrsList aliases)
-      ];
+      sources =
+        loaded-modules
+        |> lib.map ({ module, config }: module.sources or { })
+        |> lib.attrsets.mergeAttrsList;
 
-      packages = lib.lists.concatMap ({ module, config }: module.packages or []) loaded-modules;
+      packages = lib.lists.concatMap ({ module, config }: module.packages or [ ]) loaded-modules;
     };
 }

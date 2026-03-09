@@ -1,6 +1,9 @@
-{...}: {
+{pkgs,...}: {
   module = {
     program = "git";
+    modules = [
+      pkgs.gitui
+    ];
   };
 
   config = {
