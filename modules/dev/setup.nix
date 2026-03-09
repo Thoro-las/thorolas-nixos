@@ -133,6 +133,7 @@
 
       pkgs.sageWithDoc
 
+      pkgs.nixfmt
     ];
 
     sources = {

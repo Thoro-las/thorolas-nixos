@@ -1,7 +1,7 @@
-{ users-loader, database, ... }:
+{ users-loader, ... }:
 
 users-loader.create-user {
-  modules = [ ];
-  scripts = [ ];
-  packages = [ ];
+  # modules = [ ];
+  # scripts = [ ];
+  # packages = [ ];
 }
