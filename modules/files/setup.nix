@@ -6,22 +6,20 @@
       pkgs.zathura
       pkgs.vimiv-qt
       pkgs.yazi
+      pkgs.mpv
 
       pkgs.usbutils
       pkgs.udisks
       pkgs.udiskie
-
-      pkgs.qbittorrent-enhanced
-      pkgs.xarchiver
+      pkgs.gparted
+      pkgs.ncdu
 
       pkgs.libreoffice
-
-      pkgs.mpv
-
       pkgs.sqlitebrowser
-      pkgs.gparted
 
       pkgs.unrar
+      pkgs.qbittorrent-enhanced
+      pkgs.xarchiver
     ];
   };
 

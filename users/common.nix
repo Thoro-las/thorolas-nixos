@@ -16,7 +16,7 @@ users-loader.create-user {
     modules.files
     modules.typing
 
-    modules.firefox
+    modules.browsers
     modules.socials
 
     modules.design
@@ -38,7 +38,17 @@ users-loader.create-user {
       enable = true;
       defaultApplications = {
         "application/pdf" = "org.pwmt.zathura.desktop";
+
         "application/zip" = "xarchiver.desktop";
+        "application/rar" = "xarchiver.desktop";
+
+        "image/png" = "vimiv.desktop";
+        "image/jpeg" = "vimiv.desktop";
+        "image/jpg" = "vimiv.desktop";
+        "image/gif" = "vimiv.desktop";
+        "image/bmp" = "vimiv.desktop";
+        "image/tiff" = "vimiv.desktop";
+        "image/webp" = "vimiv.desktop";
       };
     };
 

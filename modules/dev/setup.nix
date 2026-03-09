@@ -92,8 +92,11 @@
           jupyter-console
           jupyter
           jupytext
+          jupynium
+          jupyter-themes
           nbformat
           nbclassic
+          nbconvert
           notebook
           pynvim
           pillow
@@ -115,8 +118,11 @@
         ]))
 
       (lib.lowPrio pkgs.jupyter)
+      (lib.lowPrio pkgs.jupyter-all)
       pkgs.selenium-manager
+      pkgs.selenium-server-standalone
       pkgs.geckodriver
+      pkgs.chromedriver
 
       pkgs.qt6.qtbase
       pkgs.qt6.qtdeclarative

@@ -46,7 +46,7 @@ in {
         })
 
         ({ config, pkgs, ... }:
-          import ../interface/hyprland/default.nix { inherit pkgs; })
+          import ../display/hyprland/default.nix { inherit pkgs; })
 
         ({ config, pkgs, ... }:
           user-config.home { inherit users-loader database; } { inherit config pkgs; })

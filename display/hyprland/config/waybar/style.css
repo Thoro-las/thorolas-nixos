@@ -1,0 +1,125 @@
+@define-color bg           #2b3339;
+@define-color bg1          #2b3339;
+@define-color bg2          #323c41;
+@define-color bg3          #323c41;
+
+@define-color bg_blue      #7fbbb3;
+@define-color bg_d         #2b3339;
+@define-color bg_yellow    #dbbc7f;
+@define-color black        #374247;
+
+@define-color blue         #7fbbb3;
+@define-color cyan         #83c092;
+@define-color dark_cyan    #266269;
+@define-color dark_purple  #d699b6;
+@define-color dark_red     #e67e80;
+@define-color dark_yellow  #835d1a;
+@define-color fg           #d3c6aa;
+@define-color green        #a7c080;
+@define-color grey         #53605c;
+@define-color light_grey   #9da9a0;
+@define-color orange       #e69875;
+@define-color purple       #d699b6;
+@define-color red          #e67e80;
+@define-color yellow       #dbbc7f;
+
+* {
+  font-family: "JetBrainsMono NFP";
+  font-weight: 600;
+  font-size: 17px;
+}
+
+window#waybar {
+  background-color: @bg;
+}
+
+#custom-appmenu {
+  padding: 0px 10px;
+  /* background-color: @blue; */
+  margin: 0px;
+  color: @blue;
+  font-size: 1.7em;
+}
+
+#custom-powermenu {
+  background-color: @green;
+  color: @bg;
+  font-size: 1.4em;
+}
+
+#workspaces {
+  margin: 0 10px 0 -4px;
+}
+
+#workspaces button {
+  border-radius: 0px;
+  background-color: @bg2;
+  border-bottom: 3px solid @fg1;
+  margin-left: 3px;
+  margin-right: 3px;
+
+     
+  color: @fg;
+}
+
+#workspaces button:hover {
+  color: #1e1e2e;
+  background-color: #cdd6f4;
+}
+
+#workspaces button:not(.empty) {
+  border-bottom: 3px solid @green;
+}
+
+#workspaces button.active {
+  border-bottom: 3px solid @blue;
+  color: @blue;
+}
+
+
+window#waybar.empty #window {
+  background-color: transparent;
+  color: transparent;
+}
+
+#window {
+  padding: 0 1mm;
+  margin: 0 1mm;
+  color: @fg;
+}
+
+#services,
+#infos,
+#state {
+  border-bottom: 3px solid @blue;
+  background-color: @bg2;
+  margin: 0 7px 0 0;
+  padding: 0 3px;
+  color: @fg;
+}
+
+#services:hover,
+#infos:hover,
+#state:hover {
+  border-bottom: 3px solid @purple;
+}
+
+#backlight,
+#pulseaudio,
+#cpu,
+#harddisk,
+#tray,
+#custom-notification,
+#clock,
+#privacy,
+#custom-harddisk,
+#memory,
+#network,
+#bluetooth {
+  margin: 0 7px;
+}
+
+tooltip {
+  background-color: @bg;
+  border: 2px solid @fg;
+}
