@@ -7,7 +7,6 @@ users-loader.create-user {
     modules.shell
     modules.dev
     modules.git
-    modules.gitui
     modules.fish
 
     modules.utils
