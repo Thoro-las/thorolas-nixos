@@ -32,7 +32,7 @@
 
     sources = {
       ".config/nvim" = {
-        source = config.lib.file.mkOutOfStoreSymlink ./config;
+        source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/modules/nvim/config";
         recursive = true;
       };
     };

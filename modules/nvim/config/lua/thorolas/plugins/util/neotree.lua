@@ -12,6 +12,13 @@ return {
 
   config = function()
     require("nvim-web-devicons").setup({})
+    require("nvim-web-devicons").set_icon({
+      qmd = {
+        icon = "󰐗",
+        color = "#1E90CC",
+        name = "QuartoMarkdown",
+      }
+    })
 
     local filesystem_commands = require("neo-tree.sources.filesystem.commands")
     local wk = require("thorolas.utility/keymaps");

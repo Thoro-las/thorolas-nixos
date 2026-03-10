@@ -134,6 +134,8 @@
       pkgs.sageWithDoc
 
       pkgs.nixfmt
+
+      pkgs.quarto
     ];
 
     # sources = {

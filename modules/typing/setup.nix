@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   module = {
     packages = [
@@ -7,12 +7,14 @@
       pkgs.typstyle
       pkgs.tinymist
 
+      pkgs.texliveFull
+
       pkgs.inkscape
     ];
 
     sources = {
       ".local/share/typst/packages" = {
-        source = ./packages;
+        source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/modules/typing/packages";
         recursive = true;
       };
     };

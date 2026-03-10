@@ -7,6 +7,9 @@ kw.command("<leader>rtp", "TypstPreview", "Start Typst Preview")
 kw.command("<leader>rtu", "TypstPreviewUpdate", "Refresh Typst Preview")
 kw.command("<leader>rts", "TypstPreviewStop", "Stop Typst Preview")
 
+kw.group("<leader>rq", "quarto")
+kw.command("<leader>rqq", "QuartoPreview", "Start Quarto Watch")
+
 kw.group("<leader>rr", "coderunner")
 kw.command("<leader>rrr", "RunCode", "Run The Current File")
 
