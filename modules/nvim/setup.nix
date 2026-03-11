@@ -26,7 +26,6 @@
       eslint_d
 
       tinymist
-
       vim
     ];
 

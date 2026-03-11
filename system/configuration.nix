@@ -4,6 +4,9 @@
   imports = [ ./hardware-configuration.nix ];
   nixpkgs.config.allowUnfree = true;
 
+  # services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -88,6 +91,47 @@
     blueman
     brightnessctl
     neofetch
+
+    # TODO: CLEAN LATER
+    wget 
+    taskwarrior3
+    git
+    btop
+    neovim
+    python311
+    ffmpeg
+    python314
+    adw-gtk3
+    (wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) {})
+    telegram-desktop
+    libreoffice-qt
+    hunspell
+    hunspellDicts.ru_RU
+    hunspellDicts.en_US
+    obsidian
+    obs-studio
+    p7zip
+    papers
+    fastfetch
+    quickshell
+    gnome-shell-extensions
+    grim
+    playerctl
+    satty
+    yq-go
+    xdg-desktop-portal-gtk
+    eww
+    swappy
+    slurp
+    mpvpaper
+    gnome-tweaks
+    pkgsCross.mingwW64.stdenv.cc
+    wmctrl
+    bottles
+    qbittorrent
+    power-profiles-daemon
+    jdk8
+    steam-run
   ];
 
   services.displayManager.defaultSession = "hyprland-uwsm";
@@ -98,21 +142,45 @@
     enableExtensionPack = true;
   };
 
-  programs.nix-ld.enable = true;
 
   programs.hyprland = {
     enable = true;
     withUWSM = true;
   };
 
+  programs.zsh.enable = true;
+  programs.adb.enable = true;
+  programs.dconf.enable = true;
+  programs.gamemode.enable = true;
+
+  programs.nix-ld.enable = true;
   programs.xwayland.enable = true;
   programs.steam.enable = true;
   programs.wireshark.enable = true;
 
-  services.flatpak.enable = true;
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
 
+  xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [ 
+        xdg-desktop-portal-wlr 
+        xdg-desktop-portal-gtk  
+      ]; 
+      config.common.default = "*";
+  };
+
+  qt = {
+    enable = true;
+    style = "adwaita-dark";
+    platformTheme = "gnome";
+  };
+
+  fonts.packages = with pkgs; [
+    udev-gothic-nf
+    noto-fonts
+    liberation_ttf
+  ];
+
+  services.flatpak.enable = true;
   services.printing.enable = true;
   security.rtkit.enable = true;
 
@@ -153,6 +221,12 @@
     ];
 
     blacklistedKernelModules = [ "kvm" "kvm_intel" "kvm_amd" ];
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 14d";
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];

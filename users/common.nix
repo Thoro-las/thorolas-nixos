@@ -33,7 +33,7 @@ users-loader.create-user {
   ];
 
   home-config = { home-manager, config, pkgs, ... }: {
-    services.swaync.enable = true;
+    # services.swaync.enable = true;
 
     xdg.mimeApps = {
       enable = true;

@@ -64,7 +64,7 @@ in
           }
         )
 
-        ({ config, pkgs, ... }: import ../display/hyprland/default.nix { inherit pkgs; })
+        ({ config, pkgs, ... }: import ../display/hyprland/default.nix { inherit home-manager config pkgs; })
       ];
     }
   ) loaded-users;

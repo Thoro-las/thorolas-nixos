@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   module = {
     program = "kitty";
@@ -8,13 +8,10 @@
 
     sources = {
       ".config/kitty" = {
+        # source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/modules/kitty/config/";
         source = ./config;
         recursive = true;
       };
     };
-  };
-
-  config = {
-    enable = true;
   };
 }
