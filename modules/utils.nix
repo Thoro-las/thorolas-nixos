@@ -42,6 +42,8 @@
       qucs-s
 
       fuse
+
+      swww
     ];
   };
 }

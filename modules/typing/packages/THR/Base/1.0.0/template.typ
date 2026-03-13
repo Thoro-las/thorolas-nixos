@@ -22,7 +22,7 @@
   set table(stroke: 0.2mm)
 
   show raw.where(block: true): contents => code(contents)
-  show table: contents => align(center, align(left, contents))
+  show table: contents => align(center, contents)
 
   if (not cover.at("hide-page", default: false)) {
     set par(justify: false)
@@ -33,6 +33,7 @@
     set par(justify: true)
 
     v(1fr)
+    v(1cm)
 
     block(
       stroke: (left: 1mm + black),

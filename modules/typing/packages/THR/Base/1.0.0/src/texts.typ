@@ -11,6 +11,7 @@
 ]
 
 #let outlines() = [
+  #v(1cm)
   #block(
     stroke: (left: 1mm + black),
     inset: (left: 7mm),

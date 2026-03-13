@@ -49,8 +49,9 @@
 ]
 
 
-#let prf(body) = [_Proof. _
-  #block({
+#let prf(body) = [
+  #block(width: 100%, {
+    [_Proof. _]
     body
     place(right + bottom, $square.stroked$)
   })
