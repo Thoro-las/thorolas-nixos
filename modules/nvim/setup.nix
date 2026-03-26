@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 {
   module = {
     program = "neovim";
@@ -26,7 +26,36 @@
       eslint_d
 
       tinymist
+      typstyle
       vim
+
+      skim
+      viu
+      gzip
+      hpx
+
+      tree-sitter
+
+      jdt-language-server
+
+
+      imagemagick
+      chafa
+      ueberzug
+      (lib.lowPrio ueberzugpp)
+      pkg-config
+      imagemagick
+      imagemagick.dev
+
+      julia
+
+      fzf
+
+      figlet
+      pandoc
+      glow
+
+      luaPackages.jsregexp
     ];
 
     sources = {

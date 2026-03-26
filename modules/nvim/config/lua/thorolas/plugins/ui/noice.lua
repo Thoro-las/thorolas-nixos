@@ -8,7 +8,6 @@ return {
     require("notify").setup({
       max_width = 40,
       max_height = 4,
-      -- render = "compact",
       stages = "slide",
     })
 
@@ -54,5 +53,6 @@ return {
 
     local kw = require("thorolas.utility.keymaps")
     kw.command("<leader>ln", "NoiceTelescope", "Show Noice Telescope")
+    kw.command("<leader>ls", "NoiceDismiss", "Noice Dismiss")
   end
 }

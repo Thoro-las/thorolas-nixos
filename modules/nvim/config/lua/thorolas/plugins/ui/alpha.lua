@@ -4,55 +4,39 @@ return {
     local dashboard = require("alpha.themes.dashboard");
 
     dashboard.section.header.val = {
-      [[                                                                 ]],
-      [[                                                                 ]],
-      [[                                                                 ]],
-      [[                                                                 ]],
-      [[                                                                 ]],
-      [[                                                                 ]],
-      [[                 █████                                         ]],
-      [[      ███████  █████          ████  ████                    ]],
-      [[     ████████ █████            ████ ████                    ]],
-      [[    ████████████████████████████████ ███████████████ ]],
-      [[   ██████████████████    █████████████ ███ ████████████ ]],
-      [[  ███████████████████████ █████████ ███ ████ ████ ████ ]],
-      [[ █████ ███████████    ███ █████████ ███ ████ ████ ████ ]],
-      [[█████  ████████████████████████ █████ ███ ████ ████ ████]],
-      [[                                                                 ]],
-      [[                                                                 ]],
+      [[                                                                   ]],
+      [[                  █████                                          ]],
+      [[       ███████  █████          ████  ████                     ]],
+      [[      ████████ █████            ████ ████                     ]],
+      [[     ████████████████████████████████ ███████████████  ]],
+      [[    ██████████████████    █████████████ ███ ████████████  ]],
+      [[   ███████████████████████ █████████ ███ ████ ████ ████  ]],
+      [[  █████ ███████████    ███ █████████ ███ ████ ████ ████  ]],
+      [[ █████  ████████████████████████ █████ ███ ████ ████ ████ ]],
+      [[                                                                   ]],
     };
 
-    dashboard.section.buttons.val = {
-      -- dashboard.button("<leader>fp", "󱃐 Recent Projects", "<cmd>Telescope project<CR>"),
-      -- dashboard.button("<leader>fb", "󱧶 File Browser", "<cmd>Telescope file_browser<CR>"),
-      -- dashboard.button("<leader>fo", "󱋡 Recent Files", "<cmd>Telescope oldfiles<CR>"),
-      -- dashboard.button("<leader>qq", "󰤆 Quit Neovim", "<cmd>qa<CR>")
-    };
-
-    dashboard.section.footer.val = {
-      [[Abstract... AbstractFactoryProvider]],
-    };
+    dashboard.section.buttons.val = { };
+    dashboard.section.footer.val = { [[AbstractFactoryProvider]], };
 
     dashboard.section.header.opts.hl = "String";
     dashboard.section.buttons.opts.hl = "Keyword";
     dashboard.section.footer.opts.hl = "Type";
 
-    dashboard.opts.opts.noautocmd = true;
-    require("alpha").setup(dashboard.opts);
-
-    local function show_alpha_if_last_buffer()
-      local bufs = vim.fn.getbufinfo({ buflisted = 1 })
-      if #bufs == 1 and bufs[1].name == "" then
-        require("alpha").start(true)
-      end
+    dashboard.opts.layout[1].val = function()
+      local contentheight = #dashboard.section.header.val + #dashboard.section.footer.val
+      return vim.fn.floor((vim.fn.winheight(0) - contentheight - 2) / 2)
     end
 
-    vim.api.nvim_create_autocmd("BufDelete", {
-      callback = function()
-        vim.defer_fn(function()
-          show_alpha_if_last_buffer()
-        end, 50)
-      end,
+    table.insert(dashboard.opts.layout, {
+      type = "padding",
+      val = function()
+        local contentheight = #dashboard.section.header.val + #dashboard.section.footer.val
+        return vim.fn.floor((vim.fn.winheight(0) - contentheight - 2) / 2)
+      end
     })
+
+    dashboard.opts.opts.noautocmd = true;
+    require("alpha").setup(dashboard.opts);
   end
 };

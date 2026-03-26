@@ -4,11 +4,6 @@
   module = {
 
     packages = [
-      pkgs.ueberzug
-      pkgs.pkg-config
-      pkgs.imagemagick
-      pkgs.imagemagick.dev
-
       pkgs.nodejs
       pkgs.nodemon
       pkgs.tsx
@@ -21,9 +16,11 @@
       pkgs.glibc.static
       pkgs.glibcInfo
       pkgs.tinycc
-      pkgs.lua5_1
       pkgs.gnumake
       (lib.lowPrio pkgs.clang-tools)
+      (pkgs.lua.withPackages (ps: [
+        ps.cjson
+      ]))
 
       pkgs.jdk
       pkgs.gradle

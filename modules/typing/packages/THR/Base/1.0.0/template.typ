@@ -50,14 +50,16 @@
         }
 
         #if ("comment" in cover and cover.comment != none) [
-          #cover.comment
           #linebreak()
+          #cover.comment
         ]
         To separate the contents of the course to actual additions or out of context information, a black band will be added by its side like the one on this comment.
 
-        #linebreak()
 
-        #if("warning" in cover and cover.warning != none) { text(fill: red, [#cover.warning]); linebreak(); }
+        #if("warning" in cover and cover.warning != none) {
+          linebreak()
+          text(fill: red, [#cover.warning]);
+        }
       ]
     )
 

@@ -8,8 +8,8 @@ return {
     require("lualine").setup({
       options = {
         icons_enabled = true,
-        section_separators = { left = "", right = "" },
-        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
         disabled_filetypes = {
           statusline = {},
           winbar = {},
@@ -32,7 +32,7 @@ return {
 
         lualine_x = { "encoding", "fileformat", "filetype", },
         lualine_y = { "filesize" },
-        lualine_z = { "location" },
+        lualine_z = { "progress", "location" },
       },
 
       inactive_sections = {

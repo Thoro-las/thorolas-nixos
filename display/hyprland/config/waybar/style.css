@@ -35,7 +35,6 @@ window#waybar {
 
 #custom-appmenu {
   padding: 0px 10px;
-  /* background-color: @blue; */
   margin: 0px;
   color: @blue;
   font-size: 1.7em;
@@ -58,13 +57,12 @@ window#waybar {
   margin-left: 3px;
   margin-right: 3px;
 
-     
   color: @fg;
 }
 
 #workspaces button:hover {
-  color: #1e1e2e;
-  background-color: #cdd6f4;
+  background-color: @red;
+  color: @bg1;
 }
 
 #workspaces button:not(.empty) {
@@ -72,14 +70,9 @@ window#waybar {
 }
 
 #workspaces button.active {
-  border-bottom: 3px solid @blue;
-  color: @blue;
-}
-
-
-window#waybar.empty #window {
-  background-color: transparent;
-  color: transparent;
+  background-color: @bg_blue;
+  border-bottom: 3px solid @bg_blue;
+  color: @bg1;
 }
 
 #window {
@@ -93,15 +86,13 @@ window#waybar.empty #window {
 #state {
   border-bottom: 3px solid @blue;
   background-color: @bg2;
-  margin: 0 7px 0 0;
-  padding: 0 3px;
+  margin: 0 0 0 7px;
+  padding: 0 10px;
   color: @fg;
 }
 
-#services:hover,
-#infos:hover,
-#state:hover {
-  border-bottom: 3px solid @purple;
+#services {
+  padding: 0 0 0 10px;
 }
 
 #backlight,

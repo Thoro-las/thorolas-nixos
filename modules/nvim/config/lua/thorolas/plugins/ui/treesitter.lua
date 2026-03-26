@@ -7,6 +7,7 @@ return {
       auto_install = true,
 
       indent = { enable = true },
+
       highlight = {
         enable = true,
         disable = function(_, buf)

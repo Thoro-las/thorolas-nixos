@@ -35,17 +35,17 @@
     "format": "mode: {}",
     "max-length": 30,
     "tooltip": false,
-    "on-click" : "hyprctl dispatch submap reset"
+    "on-click": "hyprctl dispatch submap reset"
   },
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{id}",
     "all-outputs": true,
     "disable-scroll": false,
-    "active-only": false,
+    "active-only": false
   },
   "hyprland/window": {
-    "format": ">> {title} ",
+    "format": " {title} ",
     "max-length": 50,
     "icon": true,
     "icon-size": 20
@@ -55,7 +55,7 @@
     "modules": [
       "memory",
       "cpu",
-      "custom/harddisk",
+      "custom/harddisk"
     ]
   },
   "group/state": {
@@ -74,12 +74,12 @@
     "modules": [
       "privacy",
       "tray",
-      "custom/notification",
+      "custom/notification"
     ]
   },
   "tray": {
     "show-passive-items": true,
-    "spacing": 10,
+    "spacing": 10
   },
   "clock": {
     "format": "<span foreground='#7fbbb3'>  </span>{:L%a %d %b ~ %H:%M}",
@@ -89,17 +89,17 @@
         "months": "<span color='#cdd6f4'><b>{}</b></span>",
         "today": "<span color='#f38ba8' weight='700'>{}</span>",
         "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
-        "weeks": "<span color='#a6e3a1'><b>W{}</b></span>",
+        "weeks": "<span color='#a6e3a1'><b>W{}</b></span>"
       },
       "mode": "month",
       "mode-mon-col": 1,
-      "on-scroll": 1,
+      "on-scroll": 1
     },
-    "tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>",
+    "tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>"
   },
   "cpu": {
     "format": "<span foreground='#7fbbb3' font='13'> </span>{usage:02d}%",
-    "interval": 1,
+    "interval": 1
   },
   "memory": {
     "format": "<span foreground='#7fbbb3' font='13'>󰘚 </span>{used:1.0f}G"
@@ -119,11 +119,11 @@
     ],
     "states": {
       "critical": 20,
-      "warning": 40,
+      "warning": 40
     },
     "format": "<span foreground='#7fbbb3' size='15pt'>{icon}</span>{capacity}%",
     "format-chargin": "<span foreground='#7fbbb3' size='15pt'> </span>{capacity}%",
-    "format-plugged": "<span foreground='#7fbbb3' size='15pt'> </span>{capacity}%",
+    "format-plugged": "<span foreground='#7fbbb3' size='15pt'> </span>{capacity}%"
   },
   "network": {
     "format": "<span foreground='#7fbbb3'>󰒎 </span>Off",
@@ -148,9 +148,9 @@
         " ",
         " ",
         " "
-      ],
+      ]
     },
-    "on-click": "pavucontrol",
+    "on-click": "pavucontrol"
   },
   "backlight": {
     "format": "<span foreground='#7fbbb3'>{icon}</span>{percent}%",
@@ -167,7 +167,7 @@
   },
   "custom/harddisk": {
     "exec": "df -h / | awk 'NR==2 { print $3 }'",
-    "format": "<span foreground='#7fbbb3' font='13'>󰋊 </span>{}",
+    "format": "<span foreground='#7fbbb3' font='13'>󰋊 </span>{}"
   },
   "custom/notification": {
     "escape": true,
@@ -175,11 +175,11 @@
     "format": "<span foreground='#48b0bd'>{icon}</span>",
     "format-icons": {
       "none": "󰍥",
-      "notification": "󱥁",
+      "notification": "󱥁"
     },
     "on-click": "sleep 0.1 && swaync-client -t -sw",
     "return-type": "json",
-    "tooltip": false,
+    "tooltip": false
   },
   "privacy": {
     "icon-spacing": 4,
@@ -201,6 +201,6 @@
         "tooltip": true,
         "tooltip-icon-size": 24
       }
-    ],
-  },
+    ]
+  }
 }

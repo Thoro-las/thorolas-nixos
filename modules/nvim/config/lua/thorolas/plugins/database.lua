@@ -8,4 +8,5 @@ return {
     { import = "thorolas.plugins.dev" },
     { import = "thorolas.plugins.runs" },
     { import = "thorolas.plugins.tools" },
+    { import = "thorolas.plugins.tests" },
 }
