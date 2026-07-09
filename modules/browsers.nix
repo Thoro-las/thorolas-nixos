@@ -1,4 +1,4 @@
-{ lib, pkgs, home-manager, ... }:
+{ pkgs, ... }:
 
 {
   module = {

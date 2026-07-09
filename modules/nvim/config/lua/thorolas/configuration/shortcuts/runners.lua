@@ -10,6 +10,15 @@ kw.command("<leader>rts", "TypstPreviewStop", "Stop Typst Preview")
 kw.group("<leader>rq", "quarto")
 kw.command("<leader>rqq", "QuartoPreview", "Start Quarto Watch")
 
+kw.group("<leader>ra", "arduino")
+kw.command("<leader>rac", "InoCheck", "Compile & Verify Sketch")
+kw.command("<leader>rau", "InoUpload", "Upload Sketch")
+kw.command("<leader>rag", "InoGUI", "GUI Settings")
+kw.command("<leader>ram", "InoMonitor", "Serial Monitor")
+kw.command("<leader>rap", "InoSelectPort", "Select Arduino Port")
+kw.command("<leader>rab", "InoSelectBoard", "Select Arduino Board")
+kw.command("<leader>ral", "InoLib", "Select Arduino Libraries")
+
 kw.group("<leader>rr", "coderunner")
 kw.command("<leader>rrr", "RunCode", "Run The Current File")
 

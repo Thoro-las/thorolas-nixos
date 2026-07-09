@@ -90,7 +90,7 @@ return {
         },
       }
     })
-    -- Setup for command line completion
+
     cmp.setup.cmdline("/", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {

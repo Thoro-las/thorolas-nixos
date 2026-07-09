@@ -8,12 +8,7 @@
       pkgs.yazi
       pkgs.mpv
 
-      pkgs.usbutils
-      pkgs.udisks
-      pkgs.udiskie
-      pkgs.gparted
-      pkgs.ncdu
-
+      pkgs.onlyoffice-desktopeditors
       pkgs.libreoffice
       pkgs.sqlitebrowser
 

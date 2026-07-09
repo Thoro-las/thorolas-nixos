@@ -3,30 +3,8 @@
   module = {
     packages = with pkgs; [
       appimage-run
-
-      wget
-      ripgrep
-      trashy
-      busybox
-
       wl-clipboard
-      zip
-      unzip
-
-      connman
-      connman-gtk
-      openpomodoro-cli
-      tasktimer
-
-      fira
-      htop-vim
       desktop-file-utils
-
-      obs-studio
-      droidcam
-      android-tools
-
-      eww
 
       dnsmasq
       hostapd
@@ -34,16 +12,14 @@
       iw
 
       input-leap
-
-      logisim-evolution
-      ngspice
-      simulide
-      digital
-      qucs-s
-
       fuse
-
       swww
+
+      usbutils
+      udisks
+      udiskie
+      gparted
+      ncdu
     ];
   };
 }

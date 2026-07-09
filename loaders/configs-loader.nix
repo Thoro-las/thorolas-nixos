@@ -2,12 +2,13 @@
   pkgs,
   lib,
   home-manager,
+  inputs,
   ...
 }:
 
 let
-  loader-utility = import ./loader-utility.nix { inherit pkgs lib; };
-  users-loader = import ./users-loader.nix { inherit pkgs lib home-manager; };
+  loader-utility = import ./loader-utility.nix { inherit pkgs lib inputs; };
+  users-loader = import ./users-loader.nix { inherit pkgs lib home-manager inputs; };
 
   loaded-users =
     (loader-utility.fs.list-subitems ../users "directory")

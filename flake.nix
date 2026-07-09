@@ -12,11 +12,6 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    illogical-impulse = {
-      url = "github:bigsaltyfishes/end-4-dots";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -39,7 +34,7 @@
       };
 
       loadedUsers = import ./loaders/configs-loader.nix {
-        inherit pkgs lib home-manager;
+        inherit pkgs lib home-manager inputs;
       };
     in {
       homeConfigurations = loadedUsers.HMusers;
@@ -50,6 +45,7 @@
             system/configuration.nix
 
             home-manager.nixosModules.home-manager {
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = ".old";

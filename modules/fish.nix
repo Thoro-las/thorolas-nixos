@@ -66,7 +66,6 @@
       };
     };
 
-    # Interactive shell initialization (for exports and other setup)
     interactiveShellInit = ''
       # Export environment variables
       set -gx EDITOR "nvim"
@@ -89,9 +88,6 @@
       set -gx LD_LIBRARY_PATH "${pkgs.glib}/lib" $LD_LIBRARY_PATH
     '';
 
-    # set -gx LD_LIBRARY_PATH "${pkgs.qt6.full}/lib" $LD_LIBRARY_PATH
-    # Fish universal variables (from your fish_variables file)
-    # These will be set when Fish starts
     shellInit = ''
       # Fish color scheme
       set -U fish_color_autosuggestion brblack

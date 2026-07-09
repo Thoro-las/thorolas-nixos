@@ -28,7 +28,7 @@
 
 #let ctitle(title) = align(center)[
   #v(2mm)
-  #text(size: 1.5em, title)
+  #text(size: 1.8em, weight: "bold", title)
 ]
 
 #let chapter(title, body, num: -1) = [
@@ -41,7 +41,7 @@
   }
 
   #block(inset: (y: 3mm), [
-    #context counter("title-counter").display(i => [= #text(size: 1.3em, smallcaps[*Chapter #i*: #title])])
+    #context counter("title-counter").display(i => [= #text(size: 1.2em, smallcaps[*Chapter #i*: #title])])
     #text(size: 2em, "Chapter " + context counter("title-counter").display())
     #v(-6mm)
     #text(size: 3em, title)
@@ -57,8 +57,8 @@
   #v(1mm)
 ]
 
-#let subsection(title) = [
-  #counter("title-counter").step(level: 3)
+#let subsection(title, level: 3) = [
+  #counter("title-counter").step(level: level)
   #context counter("title-counter").display((..i) => [=== #i.pos().map(str).join("."). #title])
   #text(context counter("title-counter").display("1.") + " " + title, size: 1.3em, weight: "bold") \
   #v(0mm)
@@ -75,3 +75,4 @@
     line(length: 100%, stroke: (paint: gray, dash: "densely-dashed")),
   )
 }
+

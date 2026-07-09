@@ -4,7 +4,6 @@
   imports = [ ./hardware-configuration.nix ];
   nixpkgs.config.allowUnfree = true;
 
-  # services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
   boot.loader.systemd-boot.enable = true;
@@ -207,8 +206,9 @@
         ];
     };
 
-    uvesafb.enable = true;
+    # uvesafb.enable = true;
     initrd.systemd.enable = true;
+    initrd.kernelModules = [ "i915" ];
 
     consoleLogLevel = 3;
     initrd.verbose = false;
@@ -218,6 +218,7 @@
       "boot.shell_on_fail"
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
+      "video=1920x1080"
     ];
 
     blacklistedKernelModules = [ "kvm" "kvm_intel" "kvm_amd" ];

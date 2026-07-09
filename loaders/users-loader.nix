@@ -1,14 +1,14 @@
-{ pkgs, lib, home-manager, ... }:
+{ pkgs, lib, home-manager, inputs, ... }:
 
 let
-  modules-loader = import ./modules-loader.nix { inherit lib pkgs home-manager; };
-  scripts-loader = import ./scripts-loader.nix { inherit lib pkgs home-manager; };
+  modules-loader = import ./modules-loader.nix { inherit lib pkgs inputs home-manager; };
+  scripts-loader = import ./scripts-loader.nix { inherit lib pkgs inputs home-manager; };
 in
 {
   create-user = { ... }@args:
     { config, pkgs, ... }:
     let
-      dependencies = { inherit lib pkgs home-manager config; };
+      dependencies = { inherit lib pkgs home-manager config inputs; };
       modules-content = modules-loader.load dependencies (args.modules or [ ]);
       scripts-content = scripts-loader.load dependencies (args.scripts or [ ]);
 

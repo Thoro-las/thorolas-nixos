@@ -1,7 +1,7 @@
 local kw = require("thorolas.utility.keymaps")
 
-kw.maps("n", "j", "gj")
-kw.maps("n", "k", "gk")
+kw.maps("n", "<A-j>", "gj")
+kw.maps("n", "<A-k>", "gk")
 
 kw.group("<leader>q", "quit")
 kw.command("<leader>bd", "bufdo bwipeout", "Close All Buffers")

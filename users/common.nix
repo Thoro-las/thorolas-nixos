@@ -18,23 +18,25 @@ users-loader.create-user {
     modules.browsers
     modules.socials
 
-    modules.design
-    modules.gaming
-    modules.gamedev
-    modules.emulation
+    modules.spices
 
-    modules.tmux
+    modules.design
+    modules.recording
+    modules.gamedev
+
+    modules.gaming
+    modules.emulation
   ];
 
   scripts = with database; [
     scripts.thrnix
     scripts.thrupl
     scripts.thrpm
+
+    scripts.powermenu
   ];
 
   home-config = { home-manager, config, pkgs, ... }: {
-    # services.swaync.enable = true;
-
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {

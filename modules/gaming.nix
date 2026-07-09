@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   module = {
     packages = [
@@ -9,8 +9,6 @@
       pkgs.winetricks
       pkgs.wineWowPackages.stable
       pkgs.vulkan-tools
-
-      pkgs.prismlauncher
 
       (pkgs.bottles.override { removeWarningPopup = true; })
     ];

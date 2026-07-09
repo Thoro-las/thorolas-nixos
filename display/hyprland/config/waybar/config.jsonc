@@ -109,20 +109,22 @@
       "󰂎 ",
       "󱊡 ",
       "󱊡 ",
+      "󱊡 ",
       "󱊢 ",
       "󱊢 ",
       "󱊢 ",
       "󱊢 ",
-      "󱊣 ",
       "󱊣 ",
       "󱊣 "
     ],
+
     "states": {
       "critical": 20,
       "warning": 40
     },
+
     "format": "<span foreground='#7fbbb3' size='15pt'>{icon}</span>{capacity}%",
-    "format-chargin": "<span foreground='#7fbbb3' size='15pt'> </span>{capacity}%",
+    "format-charging": "<span foreground='#7fbbb3' size='15pt'> </span>{capacity}%",
     "format-plugged": "<span foreground='#7fbbb3' size='15pt'> </span>{capacity}%"
   },
   "network": {
@@ -144,8 +146,6 @@
       "headphone": " ",
       "default": [
         " ",
-        " ",
-        " ",
         " ",
         " "
       ]

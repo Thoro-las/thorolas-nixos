@@ -4,5 +4,8 @@ return function(capabilities)
     capabilities = capabilities,
     cmd = { "tinymist", "lsp" },
     filetypes = { "typst" },
+    settings = {
+      formatterMode = "typstyle",
+    }
   })
 end

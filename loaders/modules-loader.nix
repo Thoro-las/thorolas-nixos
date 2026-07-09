@@ -2,6 +2,7 @@
   lib,
   pkgs,
   home-manager,
+  inputs,
   ...
 }:
 

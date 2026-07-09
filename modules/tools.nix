@@ -1,11 +1,24 @@
 { pkgs, ... }:
 {
   module = {
-    packages = [
-      pkgs.vimgolf
-      pkgs.fd
+    packages = with pkgs; [
+      fd
+      pdfcpu
+      vimgolf
 
-      pkgs.pdfcpu
+      zip
+      unzip
+
+      wget
+      ripgrep
+      trashy
+      busybox
+
+      less
+
+      reptyr
+      walker
+      xournalpp
     ];
   };
 }

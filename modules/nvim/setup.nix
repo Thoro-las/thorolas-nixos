@@ -55,7 +55,6 @@
       pandoc
       glow
 
-      luaPackages.jsregexp
     ];
 
     sources = {

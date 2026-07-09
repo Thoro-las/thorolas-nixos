@@ -1,5 +1,5 @@
 #import "src/boxes.typ": def, thm, pro, cor, lem, exr, qst, alg, nte, ntt, prf, exm
-#import "src/texts.typ": ooc, ctitle, chapter, section, subsection, outlines, follow-bar
+#import "src/texts.typ": ooc, ctitle, chapter, section, subsection, outlines, follow-bar//, references
 #import "src/codes.typ": code
 
 #let template(

@@ -2,6 +2,7 @@ return {
   "goolord/alpha-nvim",
   config = function()
     local dashboard = require("alpha.themes.dashboard");
+    dashboard.opts.opts.noautocmd = true;
 
     dashboard.section.header.val = {
       [[                                                                   ]],
@@ -36,7 +37,6 @@ return {
       end
     })
 
-    dashboard.opts.opts.noautocmd = true;
     require("alpha").setup(dashboard.opts);
   end
 };

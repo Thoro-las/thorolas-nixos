@@ -2,7 +2,6 @@
 
 {
   module = {
-
     packages = [
       pkgs.nodejs
       pkgs.nodemon
@@ -12,22 +11,35 @@
 
       pkgs.gcc
       pkgs.gdb
+      pkgs.cgdb
+      pkgs.gdbgui
+      pkgs.valgrind
       pkgs.glibc
       pkgs.glibc.static
       pkgs.glibcInfo
       pkgs.tinycc
       pkgs.gnumake
+      pkgs.cmake
+      pkgs.eigen
+      pkgs.cppman
       (lib.lowPrio pkgs.clang-tools)
       (pkgs.lua.withPackages (ps: [
         ps.cjson
       ]))
 
+      pkgs.luajitPackages.jsregexp
+
       pkgs.jdk
+      (lib.lowPrio pkgs.jdk25_headless)
+      (lib.lowPrio pkgs.jdk8_headless)
       pkgs.gradle
 
       pkgs.live-server
       pkgs.processing
+
       pkgs.arduino
+      pkgs.arduino-cli
+      pkgs.arduino-language-server
 
       pkgs.mono
       pkgs.glade
@@ -37,6 +49,7 @@
       pkgs.SDL2_image
       pkgs.dotnet-sdk
       pkgs.netcoredbg
+      pkgs.azure-cli
       pkgs.skia
 
       pkgs.glfw
@@ -83,6 +96,7 @@
         with ps; [
           pip
 
+          ptpython
           ipython
           ipykernel
           jupyter-client
@@ -109,7 +123,6 @@
 
           pyside6
           qtpy
-          # (opencv4.override ({ enableGtk3 = true; }))
 
           cryptography
         ]))
@@ -129,17 +142,10 @@
       pkgs.qt6.qtquicktimeline
 
       pkgs.sageWithDoc
-
       pkgs.nixfmt
-
       pkgs.quarto
+      
+      pkgs.puredata
     ];
-
-    # sources = {
-    #   ".libraries" = {
-    #     source = ./libraries;
-    #     recursive = true;
-    #   };
-    # };
   };
 }

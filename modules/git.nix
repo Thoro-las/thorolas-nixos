@@ -1,4 +1,5 @@
-{pkgs,...}: {
+{ pkgs, ... }:
+{
   module = {
     program = "git";
     modules = [
