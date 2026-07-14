@@ -55,10 +55,10 @@
       pkgs.glfw
       pkgs.mesa
       pkgs.libxkbcommon
-      pkgs.xorg.libX11
-      pkgs.xorg.libXcursor
-      pkgs.xorg.libXi
-      pkgs.xorg.libXrandr
+      pkgs.libX11
+      pkgs.libXcursor
+      pkgs.libXi
+      pkgs.libXrandr
       pkgs.libGL
 
       pkgs.vscode
@@ -146,6 +146,8 @@
       pkgs.quarto
       
       pkgs.puredata
+
+      pkgs.antigravity
     ];
   };
 }

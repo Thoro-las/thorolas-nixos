@@ -13,7 +13,7 @@
 
       input-leap
       fuse
-      swww
+      awww
 
       usbutils
       udisks

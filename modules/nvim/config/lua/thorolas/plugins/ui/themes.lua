@@ -1,7 +1,10 @@
 return {
   "neanias/everforest-nvim",
+  dependencies = {
+    "mitander/flume.nvim",
+  },
 
   config = function()
-    vim.cmd("colorscheme everforest")
+    vim.cmd("colorscheme flume")
   end
 }

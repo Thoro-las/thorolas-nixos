@@ -8,7 +8,14 @@
 
 let
   loader-utility = import ./loader-utility.nix { inherit pkgs lib inputs; };
-  users-loader = import ./users-loader.nix { inherit pkgs lib home-manager inputs; };
+  users-loader = import ./users-loader.nix {
+    inherit
+      pkgs
+      lib
+      home-manager
+      inputs
+      ;
+  };
 
   loaded-users =
     (loader-utility.fs.list-subitems ../users "directory")
@@ -49,11 +56,14 @@ in
       modules = [
         (
           { config, pkgs, ... }:
-          (import (../users/common.nix) { inherit users-loader database; }) { inherit home-manager config pkgs; }
+          (import (../users/common.nix) { inherit users-loader database; }) {
+            inherit home-manager config pkgs;
+          }
         )
 
         (
-          { config, pkgs, ... }: user-config.home { inherit users-loader database; } { inherit home-manager config pkgs; }
+          { config, pkgs, ... }:
+          user-config.home { inherit users-loader database; } { inherit home-manager config pkgs; }
         )
 
         (
@@ -65,7 +75,9 @@ in
           }
         )
 
-        ({ config, pkgs, ... }: import ../display/hyprland/default.nix { inherit home-manager config pkgs; })
+        (
+          { config, pkgs, ... }: import ../display/hyprland/default.nix { inherit home-manager config pkgs; }
+        )
       ];
     }
   ) loaded-users;

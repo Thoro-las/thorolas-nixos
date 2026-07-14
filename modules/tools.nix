@@ -19,6 +19,8 @@
       reptyr
       walker
       xournalpp
+
+      android-tools
     ];
   };
 }

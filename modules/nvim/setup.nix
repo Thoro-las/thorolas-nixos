@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   module = {
     program = "neovim";
@@ -18,7 +23,7 @@
 
       lua-language-server
       rust-analyzer
-      nodePackages.typescript-language-server
+      typescript-language-server
       pyright
 
       stylua
@@ -37,7 +42,6 @@
       tree-sitter
 
       jdt-language-server
-
 
       imagemagick
       chafa
@@ -68,5 +72,10 @@
   config = {
     enable = true;
     defaultEditor = true;
+
+    withRuby = true;
+    withPython3 = true;
+
+    sideloadInitLua = true;
   };
 }

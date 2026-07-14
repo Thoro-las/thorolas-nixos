@@ -10,7 +10,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   services.resolved.enable = true;
-  services.resolved.fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
+  services.resolved.fallbackDns = [
+    "1.1.1.1"
+    "8.8.8.8"
+  ];
 
   networking = {
     hostName = "thorolas";
@@ -18,7 +21,10 @@
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";
-      insertNameservers = [ "1.1.1.1" "8.8.8.8" ];
+      insertNameservers = [
+        "1.1.1.1"
+        "8.8.8.8"
+      ];
     };
 
     nat = {
@@ -89,48 +95,47 @@
     swaynotificationcenter
     blueman
     brightnessctl
-    neofetch
-
-    # TODO: CLEAN LATER
-    wget 
-    taskwarrior3
-    git
-    btop
-    neovim
-    python311
-    ffmpeg
-    python314
-    adw-gtk3
-    (wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) {})
-    telegram-desktop
-    libreoffice-qt
-    hunspell
-    hunspellDicts.ru_RU
-    hunspellDicts.en_US
-    obsidian
-    obs-studio
-    p7zip
-    papers
     fastfetch
-    quickshell
-    gnome-shell-extensions
-    grim
-    playerctl
-    satty
-    yq-go
-    xdg-desktop-portal-gtk
-    eww
-    swappy
-    slurp
-    mpvpaper
-    gnome-tweaks
-    pkgsCross.mingwW64.stdenv.cc
-    wmctrl
-    bottles
-    qbittorrent
-    power-profiles-daemon
-    jdk8
-    steam-run
+
+    # # TODO: CLEAN LATER
+    # wget
+    # taskwarrior3
+    # git
+    # btop
+    # neovim
+    # ffmpeg
+    # python314
+    # adw-gtk3
+    # (wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) { })
+    # telegram-desktop
+    # libreoffice-qt
+    # hunspell
+    # hunspellDicts.ru_RU
+    # hunspellDicts.en_US
+    # obsidian
+    # obs-studio
+    # p7zip
+    # papers
+    # fastfetch
+    # quickshell
+    # gnome-shell-extensions
+    # grim
+    # playerctl
+    # satty
+    # yq-go
+    # xdg-desktop-portal-gtk
+    # eww
+    # swappy
+    # slurp
+    # mpvpaper
+    # gnome-tweaks
+    # pkgsCross.mingwW64.stdenv.cc
+    # wmctrl
+    # bottles
+    # qbittorrent
+    # power-profiles-daemon
+    # jdk8
+    # steam-run
   ];
 
   services.displayManager.defaultSession = "hyprland-uwsm";
@@ -141,14 +146,12 @@
     enableExtensionPack = true;
   };
 
-
   programs.hyprland = {
     enable = true;
     withUWSM = true;
   };
 
   programs.zsh.enable = true;
-  programs.adb.enable = true;
   programs.dconf.enable = true;
   programs.gamemode.enable = true;
 
@@ -157,14 +160,13 @@
   programs.steam.enable = true;
   programs.wireshark.enable = true;
 
-
   xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs; [ 
-        xdg-desktop-portal-wlr 
-        xdg-desktop-portal-gtk  
-      ]; 
-      config.common.default = "*";
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+    ];
+    config.common.default = "*";
   };
 
   qt = {
@@ -198,15 +200,13 @@
     plymouth = {
       enable = true;
       theme = "circuit";
-      themePackages = with pkgs;
-        [
-          (adi1090x-plymouth-themes.override {
-            selected_themes = [ "circuit" ];
-          })
-        ];
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "circuit" ];
+        })
+      ];
     };
 
-    # uvesafb.enable = true;
     initrd.systemd.enable = true;
     initrd.kernelModules = [ "i915" ];
 
@@ -221,7 +221,11 @@
       "video=1920x1080"
     ];
 
-    blacklistedKernelModules = [ "kvm" "kvm_intel" "kvm_amd" ];
+    blacklistedKernelModules = [
+      "kvm"
+      "kvm_intel"
+      "kvm_amd"
+    ];
   };
 
   nix.gc = {
@@ -230,6 +234,11 @@
     options = "--delete-older-than 14d";
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
-  system.stateVersion = "25.05";
+  nix.settings.experimental-features = [
+    "flakes"
+    "nix-command"
+    "pipe-operators"
+  ];
+
+  system.stateVersion = "26.05";
 }

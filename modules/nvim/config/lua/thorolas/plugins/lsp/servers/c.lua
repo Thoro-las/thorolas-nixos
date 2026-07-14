@@ -6,7 +6,12 @@ return function(capabilities)
       "clangd",
       "--completion-style=detailed",
       "--function-arg-placeholders",
-      "--query-driver=/nix/store/*-gcc*/bin/gcc" 
-    }
+      "--query-driver=/nix/store/*-gcc*/bin/gcc"
+    },
+    init_options = {
+      fallbackFlags = {
+        "-std=c++20",
+      },
+    },
   })
 end

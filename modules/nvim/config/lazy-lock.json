@@ -16,6 +16,7 @@
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "esp32.nvim": { "branch": "main", "commit": "112b4b052b7d3ccd361a53e683808435a4ecaf5a" },
   "everforest-nvim": { "branch": "main", "commit": "323e7633034a8068636a11597cec03bca5465c50" },
+  "flume.nvim": { "branch": "master", "commit": "437a43ffd3c77dab5862403648277aefbf6366ef" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
   "gitsigns.nvim": { "branch": "main", "commit": "5310a7f3a97b6de629269f8935691627a076ae4b" },
   "hexview.nvim": { "branch": "main", "commit": "413b73a2177a8d48b1af6658d2741584da209ece" },

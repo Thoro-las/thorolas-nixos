@@ -10,6 +10,7 @@
       pkgs.texliveFull
 
       pkgs.inkscape
+      pkgs.languagetool
     ];
 
     sources = {

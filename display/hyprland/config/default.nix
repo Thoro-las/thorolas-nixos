@@ -1,5 +1,9 @@
 { config, ... }:
 {
+  imports = [
+    ./waybar/default.nix
+  ];
+
   home.file.".config/hypr" = {
     source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/display/hyprland/config/hypr";
     recursive = true;
@@ -19,4 +23,5 @@
     source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/display/hyprland/config/waybar";
     recursive = true;
   };
+
 }

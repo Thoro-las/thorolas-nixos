@@ -3,7 +3,7 @@
   module = {
     packages = [
       pkgs.discord
-      pkgs.youtube-music
+      pkgs.pear-desktop
       pkgs.telegram-desktop
     ];
   };

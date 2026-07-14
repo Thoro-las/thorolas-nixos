@@ -1,7 +1,17 @@
 return {
   c = function()
-    local filename = vim.fn.expand("%:t:r")
-    local file = vim.fn.expand("%")
-    return string.format("gcc %s -o %s -lm && ./%s", file, filename, filename)
-  end,
+    local file = vim.fn.expand("%:p")
+    local exe  = vim.fn.expand("%:p:r")
+
+    local cmd  = string.format(
+      'gcc "%s" -lm -o "%s" && "%s" && rm -f "%s"',
+      file,
+      exe,
+      exe,
+      exe
+    )
+
+    vim.notify(cmd)
+    return cmd
+  end
 }

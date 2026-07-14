@@ -1,7 +1,13 @@
 return {
-  c = function()
-    local filename = vim.fn.expand("%:t:r")
+  cpp = function()
     local file = vim.fn.expand("%")
-    return string.format("g++ %s -o %s -lm && ./%s", file, filename, filename)
+    local exe = vim.fn.tempname()
+
+    return string.format(
+      "g++ -std=c++20 -Wall -Wextra %s -o %s && %s",
+      vim.fn.shellescape(file),
+      vim.fn.shellescape(exe),
+      vim.fn.shellescape(exe)
+    )
   end,
 }
