@@ -1,9 +1,15 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
-   home.packages = with pkgs; [
-       pkgs.swaynotificationcenter
-   ];
+  home.packages = with pkgs; [
+    swaynotificationcenter
+  ];
 
-   xdg.configFile."swaync".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config/programs/swaync";
+  home.file.".config/swaync".source =
+    config.lib.file.mkOutOfStoreSymlink "/etc/nixos/display/hyprland/config/swaync";
 }

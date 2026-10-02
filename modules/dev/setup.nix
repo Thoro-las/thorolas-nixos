@@ -124,8 +124,13 @@
           pyside6
           qtpy
 
+          fastapi
+          uvicorn
+
           cryptography
         ]))
+
+      pkgs.uv
 
       (lib.lowPrio pkgs.jupyter)
       (lib.lowPrio pkgs.jupyter-all)
@@ -144,10 +149,11 @@
       pkgs.sageWithDoc
       pkgs.nixfmt
       pkgs.quarto
-      
-      pkgs.puredata
 
+      pkgs.direnv
+      
       pkgs.antigravity
+      pkgs.wayland-scanner
     ];
   };
 }

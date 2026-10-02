@@ -1,5 +1,4 @@
 return function(capabilities)
-  vim.lsp.enable("jdtls")
   vim.lsp.config("jdtls", {
     capabilities = capabilities,
     cmd = { "jdtls" },
@@ -18,4 +17,6 @@ return function(capabilities)
       vim.lsp.handlers["textDocument/semanticTokens/range"] = function() end
     end,
   })
+
+  vim.lsp.enable("jdtls")
 end

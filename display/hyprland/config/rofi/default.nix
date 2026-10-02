@@ -1,5 +1,6 @@
 { config, lib, ... }:
 
-{ 
-  xdg.configFile."rofi".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config/programs/rofi";
+{
+  home.file.".config/rofi".source =
+    config.lib.file.mkOutOfStoreSymlink "/etc/nixos/display/hyprland/config/rofi";
 }

@@ -63,7 +63,7 @@ in
 
         (
           { config, pkgs, ... }:
-          user-config.home { inherit users-loader database; } { inherit home-manager config pkgs; }
+          (user-config.home { inherit users-loader database; }) { inherit home-manager config pkgs; }
         )
 
         (

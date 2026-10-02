@@ -5,6 +5,6 @@ return {
   },
 
   config = function()
-    vim.cmd("colorscheme flume")
+    vim.cmd("colorscheme everforest")
   end
 }

@@ -59,6 +59,10 @@
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
 
+  # hardware.opentabletdriver.enable = true;
+  # hardware.uinput.enable = true;
+  # boot.kernelModules = [ "uinput" ];
+
   console.keyMap = "be-latin1";
   services.xserver.xkb = {
     layout = "be";
@@ -79,7 +83,7 @@
     libnotify
 
     wlogout
-    kdePackages.dolphin
+    nautilus
     rofi
     rofi-bluetooth
     rofi-network-manager
@@ -96,46 +100,6 @@
     blueman
     brightnessctl
     fastfetch
-
-    # # TODO: CLEAN LATER
-    # wget
-    # taskwarrior3
-    # git
-    # btop
-    # neovim
-    # ffmpeg
-    # python314
-    # adw-gtk3
-    # (wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) { })
-    # telegram-desktop
-    # libreoffice-qt
-    # hunspell
-    # hunspellDicts.ru_RU
-    # hunspellDicts.en_US
-    # obsidian
-    # obs-studio
-    # p7zip
-    # papers
-    # fastfetch
-    # quickshell
-    # gnome-shell-extensions
-    # grim
-    # playerctl
-    # satty
-    # yq-go
-    # xdg-desktop-portal-gtk
-    # eww
-    # swappy
-    # slurp
-    # mpvpaper
-    # gnome-tweaks
-    # pkgsCross.mingwW64.stdenv.cc
-    # wmctrl
-    # bottles
-    # qbittorrent
-    # power-profiles-daemon
-    # jdk8
-    # steam-run
   ];
 
   services.displayManager.defaultSession = "hyprland-uwsm";

@@ -7,8 +7,12 @@
       pkgs.vulkan-tools
 
       pkgs.winetricks
-      # pkgs.wineWowPackages.stable
+      pkgs.wineWow64Packages.full
       pkgs.vulkan-tools
+
+      pkgs.mame
+
+      pkgs.balatro-mod-manager
 
       (pkgs.bottles.override { removeWarningPopup = true; })
     ];

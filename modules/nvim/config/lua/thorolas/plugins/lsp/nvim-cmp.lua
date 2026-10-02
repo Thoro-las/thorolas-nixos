@@ -11,7 +11,7 @@ return {
     "onsails/lspkind.nvim",
 
     "rafamadriz/friendly-snippets",
-    "benfowler/telescope-luasnip.nvim"
+    "benfowler/telescope-luasnip.nvim",
   },
 
   config = function()
@@ -33,8 +33,29 @@ return {
       mapping = cmp.mapping.preset.insert({
         ["<C-J>"] = cmp.mapping.select_next_item(),
         ["<C-K>"] = cmp.mapping.select_prev_item(),
+        ["<C-S-J>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-S-K>"] = cmp.mapping.scroll_docs(4),
+
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+        ["<C-L>"] = cmp.mapping(function(fallback)
+          if luasnip.expand_or_jumpable()
+          then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+
+        ["<C-H>"] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(-1)
+          then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" })
       }),
 
       sources = cmp.config.sources({
@@ -50,6 +71,13 @@ return {
           mode = "symbol_text",
           maxwidth = 50
         }),
+      },
+
+      window = {
+        documentation = cmp.config.window.bordered({
+          max_width = 80,
+          max_height = 5
+        })
       },
 
       sorting = {

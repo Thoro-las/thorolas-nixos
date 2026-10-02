@@ -29,11 +29,10 @@ users-loader.create-user {
   ];
 
   scripts = with database; [
-    scripts.thrnix
     scripts.thrupl
     scripts.thrpm
+    scripts.thrprojector
 
-    scripts.powermenu
   ];
 
   home-config = { home-manager, config, pkgs, ... }: {

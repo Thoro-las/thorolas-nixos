@@ -49,7 +49,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = ".old";
-              home-manager.users = lib.mapAttrs (user: user-config: user) loadedUsers.HMusers;
+              # home-manager.users = lib.mapAttrs (user: user-config: user) loadedUsers.HMusers;
             }
 
             ({ pkgs, ... }: {

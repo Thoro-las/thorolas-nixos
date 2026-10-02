@@ -14,12 +14,16 @@
       input-leap
       fuse
       awww
+      eww
+      quickshell
 
       usbutils
       udisks
       udiskie
       gparted
       ncdu
+
+      syncplay
     ];
   };
 }

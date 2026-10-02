@@ -1,7 +1,9 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   module = {
     packages = with pkgs; [
+      btop
+
       fd
       pdfcpu
       vimgolf
@@ -21,6 +23,18 @@
       xournalpp
 
       android-tools
+
+      zoom-us
+
+      losslesscut
+      openshot-qt
+      openai-whisper
+      (lib.lowPrio subtitleedit)
+
+      xppen_4
+      opentabletdriver
+
+      cheese
     ];
   };
 }

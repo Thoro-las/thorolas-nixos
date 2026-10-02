@@ -40,6 +40,16 @@ return {
 
           show_hidden = true,
           silent_chdir = false,
+          on_project_selected = function(prompt_bufnr)
+            local action_state = require("telescope.actions.state")
+            local actions = require("telescope.actions")
+
+            local project = action_state.get_selected_entry()
+            actions.close(prompt_bufnr)
+
+            vim.cmd("cd" .. vim.fn.fnameescape(project.value))
+            vim.schedule(function() vim.cmd("Neotree reveal") end)
+          end,
         },
       },
     })

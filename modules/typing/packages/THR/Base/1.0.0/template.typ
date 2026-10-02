@@ -1,6 +1,9 @@
-#import "src/boxes.typ": def, thm, pro, cor, lem, exr, qst, alg, nte, ntt, prf, exm
-#import "src/texts.typ": ooc, ctitle, chapter, section, subsection, outlines, follow-bar//, references
-#import "src/codes.typ": code
+#import "src/colors.typ" as colors
+#import "src/boxes.typ" as boxes
+
+#import "src/boxes.typ": def, thm, pro, cor, lem, exr, qst, alg, nte, ntt, prf, exm, set-box-count
+#import "src/texts.typ": ooc, ctitle, chapter, section, subsection, outlines, follow-bar, references, scratchpad
+#import "src/codes.typ": code, pseudo
 
 #let template(
   cover: (
@@ -23,6 +26,8 @@
 
   show raw.where(block: true): contents => code(contents)
   show table: contents => align(center, contents)
+  show link: set text(fill: blue)
+
 
   if (not cover.at("hide-page", default: false)) {
     set par(justify: false)
@@ -69,5 +74,7 @@
     }
   }
 
+  set page(numbering: "1 / 1", number-align: right)
+  counter(page).update(1)
   doc
 }

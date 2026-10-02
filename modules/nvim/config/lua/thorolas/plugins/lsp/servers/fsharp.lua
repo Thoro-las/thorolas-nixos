@@ -1,5 +1,4 @@
 return function(capabilities)
-  vim.lsp.enable("fsautocomplete")
   vim.lsp.config("fsautocomplete", {
     capabilities = capabilities,
     cmd = { "fsautocomplete" },
@@ -12,4 +11,6 @@ return function(capabilities)
     --   ".git"
     -- ),
   })
+
+  vim.lsp.enable("fsautocomplete")
 end
