@@ -35,6 +35,8 @@
       opentabletdriver
 
       cheese
+
+      yt-dlp
     ];
   };
 }

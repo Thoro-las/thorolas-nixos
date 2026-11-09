@@ -15,6 +15,9 @@
     "8.8.8.8"
   ];
 
+  networking.firewall.allowedTCPPorts = [ 4747 ];
+  networking.firewall.allowedUDPPorts = [ 4747 ];
+
   networking = {
     hostName = "thorolas";
 
@@ -32,6 +35,10 @@
       externalInterface = "enp0s31f6";
       internalInterfaces = [ "wlan0" ];
     };
+
+    extraHosts = ''
+      104.21.9.215 ping.usebottles.com
+    '';
 
     firewall.enable = true;
     firewall.trustedInterfaces = [ "wlan0" ];
@@ -205,4 +212,21 @@
   ];
 
   system.stateVersion = "26.05";
+
+
+
+# Include the v4l2loopback kernel module package matching your active kernel
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.v4l2loopback
+  ];
+
+  # Load the module automatically at boot
+  boot.kernelModules = [
+    "v4l2loopback"
+  ];
+
+  # (Optional) Pass options to v4l2loopback to create named virtual devices
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=1 video_nr=10 card_label="DroidCam" exclusive_caps=1
+  '';
 }

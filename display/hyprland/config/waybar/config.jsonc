@@ -61,7 +61,6 @@
       "backlight",
       "pulseaudio",
       "network",
-      "bluetooth",
       "battery",
       "clock"
     ]
@@ -82,7 +81,7 @@
     "spacing": 10
   },
   "clock": {
-    "format": "<span foreground='#7fbbb3'>  </span>{:L%H:%M}",
+    "format": "<span foreground='#7fbbb3'>  </span>{:%d/%m %H:%M}",
     "calendar": {
       "format": {
         "days": "<span weight='normal'>{}</span>",
@@ -128,10 +127,10 @@
     "format-plugged": "<span foreground='#7fbbb3' size='15pt'> </span>{capacity}%"
   },
   "network": {
-    "format": "<span foreground='#7fbbb3'>󰒎 </span>Off",
-    "format-wifi": "<span foreground='#7fbbb3'> </span>On",
+    "format": "<span foreground='#7fbbb3'>󰒎 </span>Off ",
+    "format-wifi": "<span foreground='#7fbbb3'> </span>On ",
     "tooltip-format-wifi": "{essid}",
-    "format-ethernet": "<span foreground='#7fbbb3'> </span>On",
+    "format-ethernet": "<span foreground='#7fbbb3'> </span>On ",
     "on-click": "sh -c 'networkmanager_dmenu'"
   },
   "bluetooth": {

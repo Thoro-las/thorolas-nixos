@@ -1,14 +1,16 @@
-{ lib, pkgs, home-manager, ... }:
+{ pkgs, ... }:
 
 let
-  oldpkgs = import(builtins.fetchTarball {
+  oldpkgs = import (builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixos-25.11.tar.gz";
     sha256 = "0ln4yw7z3g9lb0x081hc0pd2j1wsx2qqf6bgmwwvdbkcl4bcy1dp";
   }) { system = pkgs.system; };
-in {
+in
+{
   module = {
     packages = [
       oldpkgs.zathura
+
       pkgs.vimiv-qt
       pkgs.yazi
       pkgs.mpv

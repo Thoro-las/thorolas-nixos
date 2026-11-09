@@ -3,13 +3,19 @@
 {
   module = {
     packages = [
+      pkgs.mdterm
+      pkgs.swaks
+
       pkgs.nodejs
       pkgs.nodemon
       pkgs.tsx
       pkgs.typescript
       pkgs.typescript-language-server
 
-      pkgs.gcc
+      pkgs.clang
+      (lib.lowPrio pkgs.gcc)
+      pkgs.clang-tools
+
       pkgs.gdb
       pkgs.cgdb
       pkgs.gdbgui
@@ -22,17 +28,16 @@
       pkgs.cmake
       pkgs.eigen
       pkgs.cppman
-      (lib.lowPrio pkgs.clang-tools)
-      (pkgs.lua.withPackages (ps: [
-        ps.cjson
-      ]))
 
+
+      (pkgs.lua.withPackages (ps: [ ps.cjson ]))
       pkgs.luajitPackages.jsregexp
 
       pkgs.jdk
+      pkgs.gradle
+      (lib.lowPrio pkgs.eclipses.eclipse-dsl)
       (lib.lowPrio pkgs.jdk25_headless)
       (lib.lowPrio pkgs.jdk8_headless)
-      pkgs.gradle
 
       pkgs.live-server
       pkgs.processing
@@ -92,10 +97,8 @@
       pkgs.tlafmt
       pkgs.tlaplus-toolbox
 
-      (pkgs.python3.withPackages (ps:
-        with ps; [
-          pip
-
+      (pkgs.python3.withPackages (
+        ps: with ps; [
           ptpython
           ipython
           ipykernel
@@ -128,16 +131,19 @@
           uvicorn
 
           cryptography
-        ]))
+
+          scapy
+        ]
+      ))
 
       pkgs.uv
 
-      (lib.lowPrio pkgs.jupyter)
-      (lib.lowPrio pkgs.jupyter-all)
-      pkgs.selenium-manager
-      pkgs.selenium-server-standalone
       pkgs.geckodriver
       pkgs.chromedriver
+      pkgs.selenium-manager
+      pkgs.selenium-server-standalone
+      (lib.lowPrio pkgs.jupyter)
+      (lib.lowPrio pkgs.jupyter-all)
 
       pkgs.qt6.qtbase
       pkgs.qt6.qtdeclarative
@@ -150,10 +156,14 @@
       pkgs.nixfmt
       pkgs.quarto
 
-      pkgs.direnv
-      
       pkgs.antigravity
       pkgs.wayland-scanner
+
+      pkgs.direnv
     ];
+
+    aliases = {
+      m = "make";
+    };
   };
 }
